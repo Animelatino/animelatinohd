@@ -6,6 +6,7 @@ class MyDocument extends Document {
             <Html lang="es">
                 <Head>
                     <link rel="icon" href="/images/favicon.ico"/>
+                    <script async src="https://arc.io/widget.min.js#R2yjvhvV"></script>
                 </Head>
                 <body>
                     <Main />
