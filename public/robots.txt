@@ -1,0 +1,8 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Disallow: /admin
+Disallow: /ver/
+Disallow: /anime/
+Disallow: /stream/
+
+sitemap: https://api.animelatinohd.com/sitemap.xml
