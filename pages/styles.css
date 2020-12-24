@@ -1,0 +1,620 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+
+:root {
+    --bg-color: #eeeeee;
+    --primary-color: #444;
+    --secondary-color: #404E5C;
+    --tertiary-color: #FBFBFB;
+    --active: #222;
+    --border-color: #e4e7ed;
+    --white: #fff;
+    --black: #000;
+    --orange: #f44336;
+}
+
+[data-theme="dark"] {
+    --bg-color: #242424;
+    --primary-color: #bbb;
+    --secondary-color: #ccc;
+    --tertiary-color: #1c1c1c;
+    --active: #fff;
+    --border-color: #2f2f2f;
+}
+
+*, ::before, ::after {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: inherit;
+}
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    margin: 0 auto;
+    line-height: 1.8;
+    font-size: 1rem;
+    overflow-x: hidden;
+    height: 100%;
+    background-color: var(--bg-color);
+    color: var(--primary-color)
+}
+
+iframe { 
+    border: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+main {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0px 15px 80px;
+}
+
+.NotFoundPage { 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+}
+
+.NotFoundPage img { 
+    width: 500px;
+    height: 500px;
+    object-fit: cover;
+}
+
+.NotFoundPage h3 {
+    color: var(--primary-color);
+    text-align: center;
+    position: relative;
+    top: -40px;
+}
+
+.EpisodePage .episode-title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 1rem auto;
+    font-size: 1.8rem;
+}
+
+.EpisodePage .message {
+    font-weight: 700;
+    margin: 0.5rem auto;
+    display: block;
+}
+
+.EpisodePage .options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem 1rem;
+}
+
+.EpisodePage .options .option {
+    text-align: center;
+    align-items: center;
+    padding: 10px 5px;
+    cursor: pointer;
+    border-radius: .25rem;
+    background-color: var(--tertiary-color);
+    color: var(--primary-color);
+    border: 1px solid;
+    border-color: var(--border-color);
+}
+
+.EpisodePage .options .option svg {
+    fill: var(--primary-color);
+}
+
+.EpisodePage .navEpisodes {
+    margin-top: 15px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 4px;
+    background-color: var(--tertiary-color);
+    color: var(--primary-color);
+    border: 1px solid;
+    border-color: var(--border-color);
+}
+
+.EpisodePage .navEpisodes div a {
+    display: flex;
+}
+
+.EpisodePage .navEpisodes svg {
+    fill: var(--primary-color);
+}
+
+.EpisodePage .videoPlayer {
+    width: 100%;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0px;
+    overflow: hidden;
+    border-radius: 4px;
+    background-color: var(--tertiary-color);
+    border: 1px solid;
+    border-color: var(--border-color);
+}
+
+.EpisodePage .backButton {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 2;
+    padding: 5px 10px;
+    display: flex;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: var(--tertiary-color);
+}
+
+.EpisodePage .backButton svg{
+    fill: var(--primary-color);
+}
+
+.EpisodePage .videoPlayer .video {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+}
+
+.bottomTab {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    z-index: 3;
+    display: none;
+    background-color: var(--tertiary-color);
+    border-top: 1px solid;
+    border-color: var(--border-color);
+}
+
+.bottomTab .active svg {
+    fill: var(--orange);
+}
+
+.bottomTab svg {
+    fill: var(--primary-color);
+    cursor: pointer;
+}
+
+
+.navbar {
+    width: 100%;
+    background-color: var(--tertiary-color);
+    border-bottom: 1px solid;
+    border-color: var(--border-color);
+}
+
+.navbar .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.navbar .container input {
+    background-color: var(--bg-color);
+    border: 1px solid;
+    border-color: var(--bg-color);
+    padding: .5rem 1rem;
+    border-radius: 4px;
+    color: var(--primary-color);
+}
+
+.navbar .container input:focus {
+    outline: 0;
+}
+
+.navbar .container .nav-active {
+    color: var(--active);
+}
+
+.navbar .container span.logo {
+    line-height: 3rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1.6rem;
+    letter-spacing: 1.5px;
+}
+
+.navbar .container nav ul {
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+}
+
+.navbar .container nav ul li {
+    margin-left: 2rem;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.navbar .container nav ul li svg {
+    fill: var(--primary-color);
+}
+
+main h2.titlePage{
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+/* Pagina de Busqueda */
+
+.SearchAnimesPage .serchBox {
+    position: relative;
+    margin: 1rem auto;
+    display: none;
+}
+
+.SearchAnimesPage .serchBox input {
+    background: var(--tertiary-color);
+    border: 1px solid;
+    border-color: var(--tertiary-color);
+    padding: 0.3rem 0.8rem;
+    padding-right: 0;
+    border-radius: 4px;
+    color: var(--primary-color);
+    height: 45px;
+    width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box; 
+}
+
+.SearchAnimesPage .serchBox  input:focus {
+    outline: 0;
+}
+
+.SearchAnimesPage .noAnimeSearch {
+    text-align: center;
+}
+
+/* Lista de episodios */
+.listEpisodes {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 1rem;
+    grid-row-gap: 2rem;
+    margin-top: 1rem;
+}
+
+.listEpisodes .episode {
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+    background-color: var(--tertiary-color);
+    color: var(--primary-color);
+    border: 1px solid;
+    border-color: var(--border-color);
+}
+
+.listEpisodes .episode .episode-content {
+    position: relative;
+}
+
+.listEpisodes .episode .episode-content .episode-image {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.5%
+}
+
+.listEpisodes .episode .episode-content .episode-image div:first-child {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.listEpisodes .episode .episode-content .episode-image .poster {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 3px 3px 0 0;
+}
+
+.listEpisodes .episode .episode-content .episode-info {
+    padding: 5px;
+}
+
+.listEpisodes .episode .episode-content .episode-info .episode-title {
+    color: var(--primary-color);
+}
+
+/* Lista de animes */
+.listAnimes {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 1rem;
+    grid-row-gap: 2rem;
+    margin-top: 1rem;
+}
+
+.listAnimes .anime {
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+    background-color: var(--tertiary-color);
+    color: var(--primary-color);
+    border: 1px solid;
+    border-color: var(--border-color);
+}
+
+.listAnimes .anime .anime-content {
+	position: relative;
+}
+
+.listAnimes .anime .anime-content .anime-image {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 150%
+}
+
+.listAnimes .anime .anime-content .anime-image div:first-child {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.listAnimes .anime .anime-content .anime-image .estreno {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    z-index: 1;
+    background-color: var(--orange);
+    color: var(--white);
+    padding: 2px 5px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.listAnimes .anime .anime-content .anime-image .views {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 3px 7px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.listAnimes .anime .anime-content .anime-image .views svg {
+    fill: var(--white);
+	margin-right: 5px;
+}
+
+.listAnimes .anime .anime-content .anime-image .poster {
+    position: relative;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 3px 3px 0 0;
+}
+
+.listAnimes .anime .anime-info {
+    padding: 5px;
+}
+
+.listAnimes .anime .anime-info .anime-title {
+    color: var(--primary-color);
+}
+
+
+/* Pagina Anime */
+.PageAnime {
+    padding-bottom: 90px;
+}
+
+.PageAnime .banner {
+    width: 100%;
+    height: 340px;
+    object-fit: cover;
+    border: 0;
+    margin: 0;
+    display: block;
+}
+
+.PageAnime .banner div:first-child {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.PageAnime .info-tab {
+    background-color: var(--tertiary-color);
+    margin-bottom: 1.2rem;
+}
+
+.PageAnime .info-tab .info-tab-content {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 0.8rem;
+}
+
+.PageAnime .info-tab .info-tab-content .poster {
+    width: 215px;
+    height: 305px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-top: -125px;
+    box-shadow: 0 0 29px rgba(49, 54, 68, 0.25);
+}
+
+.PageAnime .info-tab .info-tab-content .poster div:first-child {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.PageAnime .info-tab .info-tab-content .info-tab-data {
+    padding: 1rem 1rem 0 1rem;
+    margin: 1.4rem;
+    margin-top: -5px;
+}
+
+.PageAnime .info-tab .info-tab-content .info-tab-data .desc {
+    color: var(--secondary-color);
+    padding-top: 0.5rem;
+}
+
+.PageAnime .info-tab .info-tab-content .info-tab-data .tabs {
+    margin-top: 1rem;
+    position: relative;
+    top: 1.2rem;
+}
+.PageAnime .info-tab .info-tab-content .info-tab-data .tabs span {
+    margin-right: 2rem;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    font-weight: 700
+}
+
+.PageAnime .info-tab .info-tab-content .info-tab-data .tabs span.active {
+    color: var(--orange);
+}
+
+.PageAnime .bar-tab {
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 4px;
+}
+
+.PageAnime .episodes {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+}
+
+.PageAnime .episodes .episode {
+    position: relative;
+    border-radius: 4px;
+    padding: 0.2rem 0.6rem;
+    cursor: pointer;
+    text-align: center;
+    background-color: var(--tertiary-color);
+    border: 1px solid;
+    border-color: var(--border-color);
+}
+
+
+@media screen and (max-width: 1024px) {
+    .listEpisodes {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .listAnimes {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .PageAnime .info-tab-content, .PageAnime .bar-tab {
+        width: 95%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .EpisodePage .options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .EpisodePage .episode-title {
+        font-size: 1.4rem;
+    }
+    .listEpisodes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .listEpisodes .episode .episode-info .episode-title {
+        font-size: 14px
+    }
+    .listAnimes {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .listAnimes .anime .anime-info .anime-title {
+        font-size: 14px
+    }
+    .PageAnime .banner {
+        height: 200px;
+    }
+    .PageAnime .info-tab .info-tab-content {
+        padding: 0.5rem;
+        flex-direction: column;
+        width: 96%;
+        margin: auto;
+    }
+    .PageAnime .info-tab .info-tab-content .poster {
+        margin-top: -135px;
+        width: 120px;
+        height: 170px;
+    }
+    .PageAnime .info-tab .info-tab-content .info-tab-data {
+        padding: 1rem 0px 0px;
+        margin: 0px;    
+    }
+    .PageAnime .info-tab .info-tab-content .info-tab-data .tabs {
+        top: 0;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    body{ 
+        font-size: .9rem;
+    }
+    .NotFoundPage img {
+        width: 350px;
+        height: 350px;
+    }
+    .EpisodePage .navEpisodes div a {
+        font-size: 0px;
+    }
+    .navbar {
+        display: none;
+    }
+    .bottomTab {
+        display: block;
+        display: flex;
+        justify-content: space-between;
+    }
+    .listEpisodes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .listEpisodes .episode .episode-info .episode-title {
+        font-size: 13px
+    }
+    .listAnimes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .PageAnime .banner {
+        height: 200px;
+    }
+    .PageAnime .episodes {
+        grid-template-columns: repeat(6, 1fr);
+    }
+    .SearchAnimesPage .serchBox {
+        display: block;
+    }
+}
