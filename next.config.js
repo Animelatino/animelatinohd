@@ -8,6 +8,7 @@ const nextConfig = {
     env: {
         homePage: 'https://animelatinohd.com',
         apiPage: 'https://api.animelatinohd.com/api',
+        streamPage: 'https://api.animelatinohd.com/stream',
     },
 }
 

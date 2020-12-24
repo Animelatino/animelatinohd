@@ -41,7 +41,7 @@ const EpisodeContent = (props) => {
     }
 
     const optionPress = (id) => {
-    	setIframe(`http://api.animelatinohd.com/stream/${id}`);
+    	setIframe(`${process.env.streamPage}/${id}`);
     }
     
     const backPressed = async () => {
