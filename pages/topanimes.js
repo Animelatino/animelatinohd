@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import AnimeCard from '../components/AnimeCard';
 import { NextSeo } from 'next-seo';
+import Layout from '../components/Layout';
 
 const TopAnimes = (props) => {
     const [animes, setAnimes] = useState(props.animes);
@@ -30,15 +31,17 @@ const TopAnimes = (props) => {
     }
 
     return (
-        <main className="TopAnimesPage">
-            <NextSeo {...SEO} />
-            <h2 className="titlePage">Animes más vistos</h2>
-            <div className="listAnimes">
-        	{animes?.map((anime, idx) => (
-          		<AnimeCard anime={anime} key={idx} />
-        	))}
-      		</div>
-        </main>
+        <Layout>
+            <main className="TopAnimesPage">
+                <NextSeo {...SEO} />
+                <h2 className="titlePage">Animes más vistos</h2>
+                <div className="listAnimes">
+                {animes?.map((anime, idx) => (
+                    <AnimeCard anime={anime} key={idx} />
+                ))}
+                </div>
+            </main>
+        </Layout>
     );
 }
 

@@ -9,6 +9,7 @@ const nextConfig = {
         homePage: 'https://animelatinohd.com',
         apiPage: 'https://api.animelatinohd.com/api',
         streamPage: 'https://api.animelatinohd.com/stream',
+        GA_TRACKING_ID: 'UA-162278791-1'
     },
 }
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import EpisodeCard from '../components/EpisodeCard';
 import { NextSeo } from 'next-seo';
+import Layout from '../components/Layout';
 
 const Index = (props) => {
     const [episodes, setEpisodes] = useState(props.episodes);
@@ -30,15 +31,17 @@ const Index = (props) => {
     }
 
     return (
-        <main className="homePage">
-            <NextSeo {...SEO} />
-            <h2 className="titlePage">Últimos episodios</h2>
-            <div className="listEpisodes">
-        	{episodes?.map((episode, idx) => (
-          		<EpisodeCard episode={episode} key={idx} />
-        	))}
-      		</div>
-        </main>
+        <Layout>
+            <main className="homePage">
+                <NextSeo {...SEO} />
+                <h2 className="titlePage">Últimos episodios</h2>
+                <div className="listEpisodes">
+                {episodes?.map((episode, idx) => (
+                    <EpisodeCard episode={episode} key={idx} />
+                ))}
+                </div>
+            </main>
+        </Layout>
     );
 }
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AnimeCard from '../components/AnimeCard';
 import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
+import Layout from '../components/Layout';
 
 const Search = (props) => {
     const router = useRouter();
@@ -33,28 +34,30 @@ const Search = (props) => {
 
 
     return (
-        <main className="SearchAnimesPage">
-            <NextSeo {...SEO} />
-            <div className="serchBox">
-                <form>
-                    <input autoFocus id="search" placeholder="Buscar..." name="q"/>
-                </form>
-            </div>
-            { animes.length > 0
-            ?   <>
-                    <h2 className="titlePage">Resultados de busqueda para {router?.query?.q}</h2>
-                    <div className="listAnimes">
-                        { animes?.map((anime, idx) => (
-                            <AnimeCard anime={anime} key={idx} />
-                        ))}
-                    </div>
-                </>
-            :   <div className="noAnimeSearch">
-                    <h2>No se encontraron animes con el termino buscado</h2>
-                    <p>Verifica que el nombre ingresado sea el correcto</p>
+        <Layout>
+            <main className="SearchAnimesPage">
+                <NextSeo {...SEO} />
+                <div className="serchBox">
+                    <form>
+                        <input autoFocus id="search" placeholder="Buscar..." name="q"/>
+                    </form>
                 </div>
-            }
-        </main>
+                { animes.length > 0
+                ?   <>
+                        <h2 className="titlePage">Resultados de busqueda para {router?.query?.q}</h2>
+                        <div className="listAnimes">
+                            { animes?.map((anime, idx) => (
+                                <AnimeCard anime={anime} key={idx} />
+                            ))}
+                        </div>
+                    </>
+                :   <div className="noAnimeSearch">
+                        <h2>No se encontraron animes con el termino buscado</h2>
+                        <p>Verifica que el nombre ingresado sea el correcto</p>
+                    </div>
+                }
+            </main>
+        </Layout>
     );
 }
 

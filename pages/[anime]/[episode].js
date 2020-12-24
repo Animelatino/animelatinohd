@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import { PlayIcon, LeftIcon, ListIcon, RightIcon, CloseIcon } from '../../components/Icons';
 import ErrorPage from 'next/error';
+import Layout from '../../components/Layout';
 
 const Episode = (props) => {
     return <EpisodeContent key={props.data.id} initialEpisode={props.data} />;
@@ -49,68 +50,70 @@ const EpisodeContent = (props) => {
 	}
 
     return (
-        <main className="EpisodePage">
-            <NextSeo {...SEO} />
-            <h1 className="episode-title">{`${episode?.anime?.title} - ${episode?.number} `}</h1>
-            { iframe 
-            ?   <div className="videoPlayer">
-                    <div className="video">
-                        <iframe src={iframe} allow="fullscreen" width="100%" height="100%"/>
+        <Layout>
+            <main className="EpisodePage">
+                <NextSeo {...SEO} />
+                <h1 className="episode-title">{`${episode?.anime?.title} - ${episode?.number} `}</h1>
+                { iframe 
+                ?   <div className="videoPlayer">
+                        <div className="video">
+                            <iframe src={iframe} allow="fullscreen" width="100%" height="100%"/>
+                        </div>
+                        <div className="backButton" onClick={() => backPressed()}>
+                            <CloseIcon />
+                        </div>
                     </div>
-                    <div className="backButton" onClick={() => backPressed()}>
-                        <CloseIcon />
-                    </div>
-                </div>
-            :   <>
-                    <span className="message">Seleccione una opción para reproducir</span>
-                    <div className="options">
-                        {episode?.players?.map((player) => (
-                            <div key={player.id} className="option" onClick={() => optionPress(player.id)}>
-                                <div className="icon">
-                                    <PlayIcon/>
+                :   <>
+                        <span className="message">Seleccione una opción para reproducir</span>
+                        <div className="options">
+                            {episode?.players?.map((player) => (
+                                <div key={player.id} className="option" onClick={() => optionPress(player.id)}>
+                                    <div className="icon">
+                                        <PlayIcon/>
+                                    </div>
+                                    <div className="info">
+                                        <span className="languaje">{player?.languaje === 0 ? 'Subtitulado' : 'Latino'} &bull; </span>
+                                        <span className="title">{player?.server?.title}</span>
+                                    </div>
                                 </div>
-                                <div className="info">
-                                    <span className="languaje">{player?.languaje === 0 ? 'Subtitulado' : 'Latino'} &bull; </span>
-                                    <span className="title">{player?.server?.title}</span>
-                                </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
+                    </>
+                }
+                <div className="navEpisodes">
+                    <div className="prev">
+                        {episode?.anterior && (
+                        <Link href={`/${episode?.anterior?.anime?.slug}/${episode?.anterior?.number}`} as={`/${episode?.anterior?.anime?.slug}/${episode?.anterior?.number}`}>
+                            <a>
+                                <LeftIcon />
+                                <span>Episodio anterior</span>
+                            </a>
+                        </Link>
+                        )}
                     </div>
-                </>
-            }
-            <div className="navEpisodes">
-                <div className="prev">
-                    {episode?.anterior && (
-                    <Link href={`/${episode?.anterior?.anime?.slug}/${episode?.anterior?.number}`} as={`/${episode?.anterior?.anime?.slug}/${episode?.anterior?.number}`}>
-                        <a>
-                            <LeftIcon />
-                            <span>Episodio anterior</span>
-                        </a>
-                    </Link>
-                    )}
+                    <div className="list">
+                        {episode?.anime && (
+                        <Link href={`/${episode?.anime?.slug}`}>
+                            <a>
+                                <ListIcon />
+                                <span>Lista de episodios</span>
+                            </a>
+                        </Link>
+                        )}
+                    </div>
+                    <div className="next">
+                        {episode?.siguiente && (
+                        <Link href={`/${episode?.siguiente?.anime?.slug}/${episode?.siguiente?.number}`} as={`/${episode?.siguiente?.anime?.slug}/${episode?.siguiente?.number}`}>
+                            <a>
+                                <RightIcon />
+                                <span>Episodio siguiente</span>
+                            </a>
+                        </Link>
+                        )}
+                    </div>
                 </div>
-                <div className="list">
-                    {episode?.anime && (
-                    <Link href={`/${episode?.anime?.slug}`}>
-                        <a>
-                            <ListIcon />
-                            <span>Lista de episodios</span>
-                        </a>
-                    </Link>
-                    )}
-                </div>
-                <div className="next">
-                    {episode?.siguiente && (
-                    <Link href={`/${episode?.siguiente?.anime?.slug}/${episode?.siguiente?.number}`} as={`/${episode?.siguiente?.anime?.slug}/${episode?.siguiente?.number}`}>
-                        <a>
-                            <RightIcon />
-                            <span>Episodio siguiente</span>
-                        </a>
-                    </Link>
-                    )}
-                </div>
-            </div>
-        </main>
+            </main>
+        </Layout>
     );
 }
 

@@ -6,20 +6,19 @@ import NProgress from "nprogress";
 import Head from "next/head"
 import Router from "next/router";
 
-
 Router.onRouteChangeStart = url => {
-    NProgress.start()
+    NProgress.start();
 }
-  
-Router.onRouteChangeComplete = () => NProgress.done()
-  
-Router.onRouteChangeError = () => NProgress.done()
+Router.onRouteChangeComplete = () => NProgress.done();
+Router.onRouteChangeError = () => NProgress.done();
 
 export default function MyApp({ Component, pageProps }) {
+
     if (typeof window !== "undefined") {
         const mode = localStorage.getItem("mode") ? localStorage.getItem("mode") : "light";
         document.documentElement.dataset.theme = mode;
     }
+    
     return (
         <>
             <Head>
