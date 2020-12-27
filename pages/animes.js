@@ -64,6 +64,7 @@ const AnimesContent = (props) => {
                 year: e.target.value,
                 type: router?.query?.type || '',
                 status: router?.query?.status || '',
+                page: router?.query?.page || ''
             },
         });
     }
@@ -74,6 +75,7 @@ const AnimesContent = (props) => {
                 year: router?.query?.year || '',
                 type: encodeURI(e.target.value),
                 status: router?.query?.status || '',
+                page: router?.query?.page || ''
             },
         });
     }
@@ -84,10 +86,32 @@ const AnimesContent = (props) => {
                 year: router?.query?.year || '',
                 type: router?.query?.type || '',
                 status: encodeURI(e.target.value),
+                page: router?.query?.page || ''
             },
         });
     }
 
+    const prevAnimes = () => {
+        Router.push({
+            query: {
+                year: router?.query?.year || '',
+                type: router?.query?.type || '',
+                status: router?.query?.status || '',
+                page: router?.query?.page ? parseInt(router?.query?.page) - 1 : 0
+            },
+        });
+    }
+
+    const nextAnimes = () => {
+        Router.push({
+            query: {
+                year: router?.query?.year || '',
+                type: router?.query?.type || '',
+                status: router?.query?.status || '',
+                page: router?.query?.page ? parseInt(router?.query?.page) + 1 : 2
+            },
+        });
+    }
 
     return (
         <Layout>
@@ -147,6 +171,20 @@ const AnimesContent = (props) => {
                     <AnimeCard anime={anime} key={idx} />
                 ))}
                 </div>
+                {animes?.data?.length > 0
+                ?   <div className="pagination">
+                        {animes?.prev_page_url && (
+                            <div className="prev" onClick={prevAnimes}>Anterior</div>
+                        )}
+                        {animes?.next_page_url && (
+                            <div className="next" onClick={nextAnimes}>Siguiente</div>
+                        )}
+                    </div>
+                    
+                :   <div className="NotFoundPage">
+                        <h3>No se encontraron animes</h3>
+                    </div>
+                }
             </main>
         </Layout>
     );
@@ -156,7 +194,8 @@ Animes.getInitialProps = async({query}) => {
     const defaultQuery = {
         type: query?.type || '',
         year: query?.year || '',
-        status: query?.status || ''
+        status: query?.status || '',
+        page: query?.page || ''
     };
     const queryString = (obj) => {
         return Object.entries(obj)
