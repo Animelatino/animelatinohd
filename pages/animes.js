@@ -35,14 +35,14 @@ const AnimesContent = (props) => {
     }
 
     const SEO = {
-        title: `Lista de animes mejores valorados • AnimeLatinoHD`,
-        description: `Lista de animes mejores valorados`,
+        title: `Lista de animes • AnimeLatinoHD`,
+        description: `Lista de animes`,
         openGraph: {
             type: 'website',
             locale: 'es_LA',
-            url: `${process.env.homePage}/popularanimes`,
-            title: `Lista de animes mejores valorados • AnimeLatinoHD`,
-            description: `Lista de animes mejores valorados`,
+            url: `${process.env.homePage}/animes`,
+            title: `Lista de animes • AnimeLatinoHD`,
+            description: `Lista de animes`,
             images: [{
                 url: `https://i.imgur.com/Iof3uSm.jpg`,
                 width: 640,
