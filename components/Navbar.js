@@ -16,12 +16,18 @@ export default function Navbar() {
                 </Link>
                 <form action="/search">
                     <input id="search-n" placeholder="Buscar..." name="q"/>
+                    <label htmlFor="search-n">Buscar</label>
                 </form>
                 <nav>
                     <ul>
                         <li>
                             <Link href="/">
                                 <a alt="Inicio" className={router.pathname == "/" ? "nav-active" : ""}>Inicio</a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/animes">
+                                <a alt="Animes" className={router.pathname == "/animes" ? "nav-active" : ""}>Animes</a>
                             </Link>
                         </li>
                         <li>

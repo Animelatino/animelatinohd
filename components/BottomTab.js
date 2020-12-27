@@ -1,7 +1,7 @@
 import React from "react";
 import Link from 'next/link';
 import { useRouter } from "next/router";
-import { PopularIcon, HomeIcon, TrendingIcon, SearchIcon } from './Icons';
+import { PopularIcon, HomeIcon, TrendingIcon, SearchIcon, ListIcon } from './Icons';
 import ToggleTheme from './ToggleTheme';
 
 export default function BottomTab() {
@@ -10,22 +10,27 @@ export default function BottomTab() {
         <div className="bottomTab">
             <Link href="/">
                 <a alt="Inicio" className={router.pathname == "/" ? "active" : ""}>
-                    <HomeIcon />
+                    <HomeIcon /> Inicio
+                </a>
+            </Link>
+            <Link href="/animes" activeClassName="active">
+                <a alt="Lista de animes" className={router.pathname == "/animes" ? "active" : ""}>
+                    <ListIcon /> Animes
                 </a>
             </Link>
             <Link href="/topanimes" activeClassName="active">
                 <a alt="Top Animes" className={router.pathname == "/topanimes" ? "active" : ""}>
-                    <TrendingIcon />
+                    <TrendingIcon /> Más vistos
                 </a>
             </Link>
             <Link href="/search" activeClassName="active">
                 <a alt="Search" className={router.pathname == "/search" ? "active" : ""}>
-                    <SearchIcon />
+                    <SearchIcon /> Busqueda
                 </a>
             </Link>
             <Link href="/popularanimes" activeClassName="active">
                 <a alt="Populares" className={router.pathname == "/popularanimes" ? "active" : ""}>
-                    <PopularIcon />
+                    <PopularIcon /> Populares
                 </a>
             </Link>
             <ToggleTheme />

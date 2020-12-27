@@ -21,10 +21,15 @@
     --border-color: #2f2f2f;
 }
 
-*, ::before, ::after {
+*, ::before, ::after, :focus {
     padding: 0px;
     margin: 0px;
     box-sizing: inherit;
+    outline: 0;
+}
+
+html {
+    height: 100%;
 }
 
 body {
@@ -35,7 +40,7 @@ body {
     overflow-x: hidden;
     height: 100%;
     background-color: var(--bg-color);
-    color: var(--primary-color)
+    color: var(--primary-color);
 }
 
 iframe { 
@@ -205,6 +210,10 @@ main {
     padding: 0 15px;
 }
 
+.navbar .container label {
+    font-size: 0;
+} 
+
 .navbar .container input {
     background-color: var(--bg-color);
     border: 1px solid;
@@ -337,6 +346,36 @@ main h2.titlePage{
     color: var(--primary-color);
 }
 
+
+/* Filter Animes */
+
+.filter {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 1rem;
+    grid-row-gap: 2rem;
+    margin-top: 1rem;
+}
+
+.filter div {
+    width: 100%;
+}
+
+.filter div select {
+    position: relative;
+    width: 100%;
+    border-radius: 4px;
+    background-color: var(--tertiary-color);
+    color: var(--primary-color);
+    border: 1px solid;
+    border-color: var(--border-color);
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box;
+    padding: 5px 10px;
+}
+
+
 /* Lista de animes */
 .listAnimes {
     display: grid;
@@ -379,8 +418,8 @@ main h2.titlePage{
     top: 5px;
     left: 5px;
     z-index: 1;
-    background-color: var(--orange);
-    color: var(--white);
+    background-color: var(--tertiary-color);
+    color: var(--primary-color);
     padding: 2px 5px;
     border-radius: 3px;
     text-transform: uppercase;
@@ -525,7 +564,6 @@ main h2.titlePage{
     border-color: var(--border-color);
 }
 
-
 @media screen and (max-width: 1024px) {
     .listEpisodes {
         grid-template-columns: repeat(4, 1fr);
@@ -598,6 +636,9 @@ main h2.titlePage{
         display: block;
         display: flex;
         justify-content: space-between;
+    }
+    .bottomTab a{
+        font-size: 0;
     }
     .listEpisodes {
         grid-template-columns: repeat(2, 1fr);
