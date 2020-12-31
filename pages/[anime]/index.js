@@ -16,6 +16,20 @@ const Index = (props) => {
         return <ErrorPage statusCode={404} />
     }
 
+    const getDateFormat = (date) => {
+        let dateFormat = new Date(date);
+        let year = dateFormat.getFullYear();
+        let month = dateFormat.toLocaleString('default', { month: 'long' });
+        let day = dateFormat.getDate();
+        if (day < 10) {
+            day = '0' + day;
+        }
+        if (month < 10) {
+            month = '0' + month;
+        }
+        return day + ' de ' + month + ' del ' + year
+    }
+
     const SEO = {
         title: `Ver ${anime?.title} Sub Español Latino en HD Online • AnimeLatinoHD`,
         description: `${(anime?.overview?.length > 165 ? (anime?.overview?.slice(0,165) + '...') : anime?.overview)}`,
@@ -54,7 +68,7 @@ const Index = (props) => {
                         </div>
                         <div className="info-tab-data">
                             <h2>{anime?.title}</h2>
-                            <div className="desc">{anime?.overview}</div>
+                            <div className="desc">{anime?.overview?.length > 0 ? anime?.overview : 'No hay sinopsis para este anime.' }</div>
                             <div className="tabs">
                                 <span className={tab === "watch" ? 'active' : '' } onClick={getWatch}> Lista de episodios </span>
                                 <span className={tab === "overview" ? 'active' : '' } onClick={getOverview}> Información </span>
@@ -65,7 +79,36 @@ const Index = (props) => {
                 <div className="bar-tab">
                     <div>
                     {tab === "overview" && (
-                        <span>Detalles</span>
+                        <div className="info-anime">
+                            <div className="box">
+                                <h2 className="title-box">Tipo</h2>
+                                <p className="content-box">{anime?.type === 'Tv' ? 'Anime' : (anime?.type === 'Movie' ? 'Película' : anime?.type)}</p>
+                            </div>
+                            <div className="box">
+                                <h2 className="title-box">Estado</h2>
+                                <p className="content-box">{anime?.statud === 0 ? 'Finalizado' : 'En emisión'}</p>
+                            </div>
+                            <div className="box">
+                                <h2 className="title-box">Estreno</h2>
+                                <p className="content-box">{ getDateFormat(anime?.aired) }</p>
+                            </div>
+                            <div className="box">
+                                <h2 className="title-box">Titulo Original</h2>
+                                <p className="content-box">{anime?.title_original}</p>
+                            </div>
+                            <div className="box">
+                                <h2 className="title-box">Clasificación</h2>
+                                <p className="content-box">{anime?.rating}</p>
+                            </div>
+                            <div className="box">
+                                <h2 className="title-box">Rating</h2>
+                                <p className="content-box">{anime?.vote_average+'/10'}</p>
+                            </div>
+                            <div className="box">
+                                <h2 className="title-box">Votos</h2>
+                                <p className="content-box">{anime?.popularity}</p>
+                            </div>
+                        </div>
                     )}
                     {tab === "watch" && (
                         <div className="episodes">

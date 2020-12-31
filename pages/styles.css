@@ -26,6 +26,9 @@
     margin: 0px;
     box-sizing: inherit;
     outline: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box; 
+    box-sizing: border-box; 
 }
 
 html {
@@ -294,6 +297,7 @@ main h2.titlePage{
     text-align: center;
 }
 
+
 /* Lista de episodios */
 .listEpisodes {
     display: grid;
@@ -532,8 +536,9 @@ main h2.titlePage{
 
 .PageAnime .info-tab .info-tab-content .info-tab-data {
     padding: 1rem 1rem 0 1rem;
-    margin: 1.4rem;
+    margin: 1.4rem auto;
     margin-top: -5px;
+    max-width: 80%;
 }
 
 .PageAnime .info-tab .info-tab-content .info-tab-data .desc {
@@ -563,6 +568,33 @@ main h2.titlePage{
     margin: 0 auto;
     border-radius: 4px;
 }
+
+/* Detalles anime */
+.PageAnime .bar-tab .info-anime {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-column-gap: 1rem;
+    grid-row-gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.PageAnime .bar-tab .info-anime .box {
+    position: relative;
+    border-radius: 4px;
+    background-color: var(--tertiary-color);
+    color: var(--primary-color);
+    border: 1px solid;
+    padding: 3px 15px;
+    text-align: center;
+    border-color: var(--border-color);
+    width: 100%;
+}
+
+.PageAnime .bar-tab .info-anime .box .title-box {
+    text-transform: uppercase;
+    color: var(--active);
+}
+
 
 .PageAnime .episodes {
     display: grid;
@@ -675,5 +707,14 @@ main h2.titlePage{
     }
     .SearchAnimesPage .serchBox {
         display: block;
+    }
+    .PageAnime .bar-tab .info-anime {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .PageAnime .bar-tab .info-anime .box .title-box {
+        font-size: 1rem;
+    }
+    .PageAnime .bar-tab .info-anime .box .content-box {
+        font-size: .8rem;
     }
 }
