@@ -4,6 +4,7 @@ import { NextSeo } from 'next-seo';
 import { PlayIcon, LeftIcon, ListIcon, RightIcon, CloseIcon } from '../../components/Icons';
 import ErrorPage from 'next/error';
 import Layout from '../../components/Layout';
+import Iframe from 'react-iframe'
 
 const Episode = (props) => {
     return <EpisodeContent key={props.data.id} initialEpisode={props.data} />;
@@ -57,7 +58,7 @@ const EpisodeContent = (props) => {
                 { iframe 
                 ?   <div className="videoPlayer">
                         <div className="video">
-                            <iframe src={iframe} allow="fullscreen" width="100%" height="100%"/>
+                            <Iframe url={iframe} allow="fullscreen" width="100%" height="100%" id="videoPlayer" className="iframePlayer" display="initial" position="relative"/>
                         </div>
                         <div className="backButton" onClick={() => backPressed()}>
                             <CloseIcon />

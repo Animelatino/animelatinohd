@@ -356,9 +356,9 @@ main h2.titlePage{
 
 .filter {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 1rem;
-    grid-row-gap: 2rem;
+    grid-row-gap: .5rem;
     margin-top: 1rem;
 }
 
@@ -661,10 +661,14 @@ main h2.titlePage{
     }
     .PageAnime .info-tab .info-tab-content .info-tab-data {
         padding: 1rem 0px 0px;
-        margin: 0px;    
+        margin: 0px;
+        max-width: 100%;
     }
     .PageAnime .info-tab .info-tab-content .info-tab-data .tabs {
         top: 0;
+    }
+    .navbar .container nav ul li {
+        margin-left: 1rem;
     }
 }
 
@@ -716,5 +720,12 @@ main h2.titlePage{
     }
     .PageAnime .bar-tab .info-anime .box .content-box {
         font-size: .8rem;
+    }
+    .filter {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .filter div select {
+        padding: 5px;
+        font-size: 12px;
     }
 }

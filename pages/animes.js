@@ -58,9 +58,23 @@ const AnimesContent = (props) => {
         }
     }
 
-    const changeYear = (e) => {
+    const changeGenre = (e) => {
         Router.push({
             query: { 
+                genre: encodeURI(e.target.value),
+                year: router?.query?.type || '',
+                type: router?.query?.type || '',
+                status: router?.query?.status || '',
+                page: router?.query?.page || ''
+            },
+        });
+    }
+    
+
+    const changeYear = (e) => {
+        Router.push({
+            query: {
+                genre: router?.query?.genre || '',
                 year: e.target.value,
                 type: router?.query?.type || '',
                 status: router?.query?.status || '',
@@ -71,7 +85,8 @@ const AnimesContent = (props) => {
     
     const changeType = (e) => {
         Router.push({
-            query: { 
+            query: {
+                genre: router?.query?.genre || '',
                 year: router?.query?.year || '',
                 type: encodeURI(e.target.value),
                 status: router?.query?.status || '',
@@ -82,7 +97,8 @@ const AnimesContent = (props) => {
 
     const changeStatus = (e) => {
         Router.push({
-            query: { 
+            query: {
+                genre: router?.query?.genre || '',
                 year: router?.query?.year || '',
                 type: router?.query?.type || '',
                 status: encodeURI(e.target.value),
@@ -94,6 +110,7 @@ const AnimesContent = (props) => {
     const prevAnimes = () => {
         Router.push({
             query: {
+                genre: router?.query?.genre || '',
                 year: router?.query?.year || '',
                 type: router?.query?.type || '',
                 status: router?.query?.status || '',
@@ -105,6 +122,7 @@ const AnimesContent = (props) => {
     const nextAnimes = () => {
         Router.push({
             query: {
+                genre: router?.query?.genre || '',
                 year: router?.query?.year || '',
                 type: router?.query?.type || '',
                 status: router?.query?.status || '',
@@ -113,12 +131,56 @@ const AnimesContent = (props) => {
         });
     }
 
+
     return (
         <Layout>
             <main className="TopAnimesPage">
                 <NextSeo {...SEO} />
                 <h2 className="titlePage">Lista de { getType(router?.query?.type) } { router?.query?.status ? (router?.query?.status == 0 ? 'finalizados' : 'en emisión') : '' }  { router?.query?.year ? 'del año '+router?.query?.year : '' }</h2>
                 <div className="filter">
+                    <div className="genres">
+                        <label htmlFor="genres">Por genero:</label>
+                        <select id="genres" value={router?.query?.genre} onChange={changeGenre}>
+                            <option value="">Todos</option>
+                            <option value="accion">Accion</option>
+                            <option value="artes-marciales">Artes Marciales</option>
+                            <option value="Ciencia Ficción">Ciencia Ficción</option>
+                            <option value="aventura">Aventura</option>
+                            <option value="colegial">Colegial</option>
+                            <option value="comedia">Comedia</option>
+                            <option value="cosas-de-la-vida">Cosas de la vida</option>
+                            <option value="demonios">Demonios</option>
+                            <option value="deportes">Deportes</option>
+                            <option value="drama">Drama</option>
+                            <option value="echi">Echi</option>
+                            <option value="espacial">Espacial</option>
+                            <option value="fantasia">Fantasía</option>
+                            <option value="harem">Harem</option>
+                            <option value="historico">Historico</option>
+                            <option value="josei">Josei</option>
+                            <option value="juegos">Juegos</option>
+                            <option value="magia">Magia</option>
+                            <option value="mecha">Mecha</option>
+                            <option value="militar">Militar</option>
+                            <option value="misterio">Misterio</option>
+                            <option value="musical">Musical</option>
+                            <option value="parodia">Parodia</option>
+                            <option value="policial">Policial</option>
+                            <option value="psicologico">Psicologico</option>
+                            <option value="romance">Romance</option>
+                            <option value="samurai">Samurai</option>
+                            <option value="seinen">Seinen</option>
+                            <option value="shoujo">Shoujo</option>
+                            <option value="shoujo-ai">Shoujo Ai</option>
+                            <option value="shounen">Shounen</option>
+                            <option value="shounen-ai">Shounen Ai</option>
+                            <option value="sobrenatural">SobreNatural</option>
+                            <option value="superpoderes">SuperPoderes</option>
+                            <option value="terror">Terror</option>
+                            <option value="thriller">Thriller</option>
+                            <option value="vampiros">Vampiros</option>
+                        </select>
+                    </div>
                     <div className="year">
                         <label htmlFor="year">Por año:</label>
                         <select id="year" value={router?.query?.year} onChange={changeYear}>
@@ -192,6 +254,7 @@ const AnimesContent = (props) => {
 
 Animes.getInitialProps = async({query}) => {
     const defaultQuery = {
+        genre: query?.genre || '',
         type: query?.type || '',
         year: query?.year || '',
         status: query?.status || '',

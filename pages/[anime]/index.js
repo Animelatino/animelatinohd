@@ -86,27 +86,27 @@ const Index = (props) => {
                             </div>
                             <div className="box">
                                 <h2 className="title-box">Estado</h2>
-                                <p className="content-box">{anime?.statud === 0 ? 'Finalizado' : 'En emisión'}</p>
+                                <p className="content-box">{anime?.status === 0 ? 'Finalizado' : 'En emisión'}</p>
                             </div>
                             <div className="box">
                                 <h2 className="title-box">Estreno</h2>
-                                <p className="content-box">{ getDateFormat(anime?.aired) }</p>
+                                <p className="content-box">{ getDateFormat(anime?.aired) || 'No definido' }</p>
                             </div>
                             <div className="box">
                                 <h2 className="title-box">Titulo Original</h2>
-                                <p className="content-box">{anime?.title_original}</p>
+                                <p className="content-box">{anime?.title_original || 'No definido'}</p>
                             </div>
                             <div className="box">
                                 <h2 className="title-box">Clasificación</h2>
-                                <p className="content-box">{anime?.rating}</p>
+                                <p className="content-box">{anime?.rating || 'No definido'}</p>
                             </div>
                             <div className="box">
                                 <h2 className="title-box">Rating</h2>
-                                <p className="content-box">{anime?.vote_average+'/10'}</p>
+                                <p className="content-box">{anime?.vote_average || '0'+'/10'}</p>
                             </div>
                             <div className="box">
                                 <h2 className="title-box">Votos</h2>
-                                <p className="content-box">{anime?.popularity}</p>
+                                <p className="content-box">{anime?.popularity || 'No definido'}</p>
                             </div>
                         </div>
                     )}
