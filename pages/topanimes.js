@@ -4,28 +4,28 @@ import { NextSeo } from 'next-seo';
 import Layout from '../components/Layout';
 
 const TopAnimes = (props) => {
-    const [animes, setAnimes] = useState(props.animes);
+    const [data, setData] = useState(props?.data);
 
     const SEO = {
-        title: `Lista de animes más vistos • AnimeLatinoHD`,
+        title: `Lista de animes más vistos • ${process.env.SITENAME}`,
         description: `Lista de animes más vistos`,
         openGraph: {
             type: 'website',
             locale: 'es_LA',
-            url: `${process.env.homePage}/topanimes`,
-            title: `Lista de animes más vistos • AnimeLatinoHD`,
+            url: `${process.env.URLPAGE}/topanimes`,
+            title: `Lista de animes más vistos • ${process.env.SITENAME}`,
             description: `Lista de animes más vistos`,
             images: [{
                 url: `https://i.imgur.com/Iof3uSm.jpg`,
                 width: 640,
                 height: 360,
-                alt: 'AnimeLHD',
+                title: `Lista de animes más vistos • ${process.env.SITENAME}`,
             }],
-            site_name: 'AnimeLHD',
+            site_name: `${process.env.SITENAME}`,
         },
         twitter: {
-            handle: '@animelatinohd',
-            site: '@animelatinohd',
+            handle: `@${process.env.SITENAME}`,
+            site: `@${process.env.SITENAME}`,
             cardType: 'summary_large_image',
         }
     }
@@ -36,8 +36,8 @@ const TopAnimes = (props) => {
                 <NextSeo {...SEO} />
                 <h2 className="titlePage">Animes más vistos</h2>
                 <div className="listAnimes">
-                {animes?.map((anime, idx) => (
-                    <AnimeCard anime={anime} key={idx} />
+                {data?.map((item, idx) => (
+                    <AnimeCard anime={item} key={idx} />
                 ))}
                 </div>
             </main>
@@ -46,9 +46,9 @@ const TopAnimes = (props) => {
 }
 
 TopAnimes.getInitialProps = async() => {
-    const dataAnimes = await fetch(`${process.env.apiPage}/web/home/animes`)
-    const animes = await dataAnimes.json();
-    return { animes: animes };
+    const response = await fetch(`${process.env.APIPAGE}/web/home/animes`)
+    const dataJson = await response.json();
+    return { data: dataJson };
 }
 
 export default TopAnimes

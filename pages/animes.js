@@ -6,12 +6,12 @@ import Layout from '../components/Layout';
 
 
 const Animes = (props) => {
-    return <AnimesContent key={Math.random()} initialAnimes={props?.animes} />;
+    return <AnimesContent key={Math.random()} initialData={props?.data} />;
 };
 
 const AnimesContent = (props) => {
     const router = useRouter();
-    const [animes, setAnimes] = useState(props?.initialAnimes);
+    const [data, setData] = useState(props?.initialData);
 
     const getType = (type) => {
         switch (type) {
@@ -35,25 +35,25 @@ const AnimesContent = (props) => {
     }
 
     const SEO = {
-        title: `Lista de animes • AnimeLatinoHD`,
+        title: `Lista de animes • ${process.env.SITENAME}`,
         description: `Lista de animes`,
         openGraph: {
             type: 'website',
             locale: 'es_LA',
-            url: `${process.env.homePage}/animes`,
-            title: `Lista de animes • AnimeLatinoHD`,
+            url: `${process.env.URLPAGE}/animes`,
+            title: `Lista de animes • ${process.env.SITENAME}`,
             description: `Lista de animes`,
             images: [{
                 url: `https://i.imgur.com/Iof3uSm.jpg`,
                 width: 640,
                 height: 360,
-                alt: 'AnimeLHD',
+                alt: `Lista de animes • ${process.env.SITENAME}`,
             }],
-            site_name: 'AnimeLHD',
+            site_name: `${process.env.SITENAME}`,
         },
         twitter: {
-            handle: '@animelatinohd',
-            site: '@animelatinohd',
+            handle: `@${process.env.SITENAME}`,
+            site: `@${process.env.SITENAME}`,
             cardType: 'summary_large_image',
         }
     }
@@ -70,7 +70,6 @@ const AnimesContent = (props) => {
         });
     }
     
-
     const changeYear = (e) => {
         Router.push({
             query: {
@@ -107,7 +106,7 @@ const AnimesContent = (props) => {
         });
     }
 
-    const prevAnimes = () => {
+    const prevData = () => {
         Router.push({
             query: {
                 genre: router?.query?.genre || '',
@@ -119,7 +118,7 @@ const AnimesContent = (props) => {
         });
     }
 
-    const nextAnimes = () => {
+    const nextData = () => {
         Router.push({
             query: {
                 genre: router?.query?.genre || '',
@@ -229,17 +228,17 @@ const AnimesContent = (props) => {
                     </div>
                 </div>
                 <div className="listAnimes">
-                {animes?.data?.map((anime, idx) => (
-                    <AnimeCard anime={anime} key={idx} />
+                {data?.data?.map((item, idx) => (
+                    <AnimeCard anime={item} key={idx} />
                 ))}
                 </div>
-                {animes?.data?.length > 0
+                {data?.data?.length > 0
                 ?   <div className="pagination">
-                        {animes?.prev_page_url && (
-                            <div className="prev" onClick={prevAnimes}>Anterior</div>
+                        {data?.prev_page_url && (
+                            <div className="prev" onClick={prevData}>Anterior</div>
                         )}
-                        {animes?.next_page_url && (
-                            <div className="next" onClick={nextAnimes}>Siguiente</div>
+                        {data?.next_page_url && (
+                            <div className="next" onClick={nextData}>Siguiente</div>
                         )}
                     </div>
                     
@@ -265,9 +264,9 @@ Animes.getInitialProps = async({query}) => {
             .map(([index, val]) => `${index}=${val}`)
             .join("&");
     };
-    const dataAnimes = await fetch(`${process.env.apiPage}/web/animes/list?${queryString({ ...defaultQuery })}`)
-    const animes = await dataAnimes.json();
-    return { animes: animes };
+    const response = await fetch(`${process.env.APIPAGE}/web/animes/list?${queryString({ ...defaultQuery })}`)
+    const dataJson = await response.json();
+    return { data: dataJson };
 }
 
 export default Animes

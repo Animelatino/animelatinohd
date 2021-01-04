@@ -6,9 +6,10 @@ const nextConfig = {
         domains: ['i.imgur.com','image.tmdb.org']
     },
     env: {
-        homePage: 'https://animelatinohd.com',
-        apiPage: 'https://api.animelatinohd.com/api',
-        streamPage: 'https://api.animelatinohd.com/stream',
+        SITENAME: 'AnimeLHD',
+        URLPAGE: 'https://www.animelatinohd.com',
+        APIPAGE: 'https://api.animelatinohd.com/api',
+        STREAMPAGE: 'https://api.animelatinohd.com/stream',
         GA_TRACKING_ID: 'UA-162278791-1'
     },
 }

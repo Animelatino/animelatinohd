@@ -1,11 +1,11 @@
 import React from "react";
 import Link from 'next/link';
 import Image from 'next/image';
-import { ViewIcon } from './Icons';
+import { ViewIcon, StarIcon } from './Icons';
 
 const AnimeCard = ({anime}) => {
     return (
-        <Link href={`/${anime?.slug}`}>
+        <Link href={`/anime/${anime?.slug}`}>
             <a className="anime">
                 <div className="anime-content">
                     <div className="anime-image">
@@ -13,12 +13,18 @@ const AnimeCard = ({anime}) => {
                         { anime?.status === 1 && (
                         <div className="estreno">Emisión</div>
                         )}
-			            { anime?.totalviews && (
-			        	<div className="views">
-			        		<ViewIcon />
-			        		<span>{ anime?.totalviews }</span>
-			        	</div>
-			            )}
+                        { anime?.totalviews 
+                        ?   <div className="views">
+			        		    <ViewIcon />
+			        		    <span>{ anime?.totalviews }</span>
+			        	    </div>
+                        :   <div className="anime-rating">
+                                <StarIcon />
+                                <span>{ anime?.vote_average?.toFixed(1) }</span>
+                            </div>
+			            }
+                        <div className={`anime-type type-${anime?.type?.toLowerCase()}`}>{anime?.type === 'Tv' ? 'Anime' : (anime?.type === 'Movie' ? 'Película' : anime?.type)}</div>
+                        <div className="anime-year">{anime?.aired?.slice(0,4)}</div>
                     </div>
                     <div className="anime-info">
                         <p className="anime-title">{ (anime?.title?.length > 55 ? (anime?.title?.slice(0,55) + '...') : anime?.title) }</p>

@@ -4,28 +4,28 @@ import { NextSeo } from 'next-seo';
 import Layout from '../components/Layout';
 
 const PopularAnimes = (props) => {
-    const [animes, setAnimes] = useState(props.animes);
+    const [data, setData] = useState(props?.data);
 
     const SEO = {
-        title: `Lista de animes mejores valorados • AnimeLatinoHD`,
+        title: `Lista de animes mejores valorados • ${process.env.SITENAME}`,
         description: `Lista de animes mejores valorados`,
         openGraph: {
             type: 'website',
             locale: 'es_LA',
-            url: `${process.env.homePage}/popularanimes`,
-            title: `Lista de animes mejores valorados • AnimeLatinoHD`,
+            url: `${process.env.URLPAGE}/popularanimes`,
+            title: `Lista de animes mejores valorados • ${process.env.SITENAME}`,
             description: `Lista de animes mejores valorados`,
             images: [{
                 url: `https://i.imgur.com/Iof3uSm.jpg`,
                 width: 640,
                 height: 360,
-                alt: 'AnimeLHD',
+                alt: `Lista de animes mejores valorados • ${process.env.SITENAME}`,
             }],
-            site_name: 'AnimeLHD',
+            site_name:  `${process.env.SITENAME}`,
         },
         twitter: {
-            handle: '@animelatinohd',
-            site: '@animelatinohd',
+            handle: `@${process.env.SITENAME}`,
+            site: `@${process.env.SITENAME}`,
             cardType: 'summary_large_image',
         }
     }
@@ -36,8 +36,8 @@ const PopularAnimes = (props) => {
                 <NextSeo {...SEO} />
                 <h2 className="titlePage">Animes mejores valorados</h2>
                 <div className="listAnimes">
-                {animes?.map((anime, idx) => (
-                    <AnimeCard anime={anime} key={idx} />
+                {data?.map((item, idx) => (
+                    <AnimeCard anime={item} key={idx} />
                 ))}
                 </div>
             </main>
@@ -46,9 +46,9 @@ const PopularAnimes = (props) => {
 }
 
 PopularAnimes.getInitialProps = async() => {
-    const dataAnimes = await fetch(`${process.env.apiPage}/web/animes/type/popular`)
-    const animes = await dataAnimes.json();
-    return { animes: animes };
+    const response = await fetch(`${process.env.APIPAGE}/web/animes/type/popular`)
+    const dataJson = await response.json();
+    return { data: dataJson };
 }
 
 export default PopularAnimes

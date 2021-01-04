@@ -4,28 +4,28 @@ import { NextSeo } from 'next-seo';
 import Layout from '../components/Layout';
 
 const Index = (props) => {
-    const [episodes, setEpisodes] = useState(props.episodes);
+    const [data, setEpisodes] = useState(props?.data);
     
     const SEO = {
-        title: `Ver Anime Online en HD Sub Español Latino Gratis • AnimeLHD`,
-        description: `Anime Online Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en AnimeLHD`,
+        title: `Ver Anime Online en HD Sub Español Latino Gratis • ${process.env.SITENAME}`,
+        description: `Anime Online Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.SITENAME}`,
         openGraph: {
             type: 'website',
             locale: 'es_LA',
-            url: `${process.env.homePage}`,
-            title: `Ver Anime Online en HD Sub Español Latino Gratis • AnimeLHD`,
-            description: `Anime Online Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en AnimeLHD`,
+            url: `${process.env.URLPAGE}`,
+            title: `Ver Anime Online en HD Sub Español Latino Gratis • ${process.env.SITENAME}`,
+            description: `Anime Online Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.SITENAME}`,
             images: [{
                 url: `https://i.imgur.com/Iof3uSm.jpg`,
                 width: 640,
                 height: 360,
-                alt: 'AnimeLHD',
+                alt: `Ver Anime Online en HD Sub Español Latino Gratis • ${process.env.SITENAME}`,
             }],
-            site_name: 'AnimeLHD',
+            site_name: `${process.env.SITENAME}`,
         },
         twitter: {
-            handle: '@animelatinohd',
-            site: '@animelatinohd',
+            handle: `@${process.env.SITENAME}`,
+            site: `@${process.env.SITENAME}`,
             cardType: 'summary_large_image',
         }
     }
@@ -36,8 +36,8 @@ const Index = (props) => {
                 <NextSeo {...SEO} />
                 <h2 className="titlePage">Últimos episodios</h2>
                 <div className="listEpisodes">
-                {episodes?.map((episode, idx) => (
-                    <EpisodeCard episode={episode} key={idx} />
+                {data?.map((item, idx) => (
+                    <EpisodeCard episode={item} key={idx} />
                 ))}
                 </div>
             </main>
@@ -46,9 +46,9 @@ const Index = (props) => {
 }
 
 Index.getInitialProps = async() => {
-    const dataEpisodes = await fetch(`${process.env.apiPage}/web/home/episodes`)
-    const episodes = await dataEpisodes.json();
-    return { episodes: episodes };
+    const response = await fetch(`${process.env.APIPAGE}/web/home/episodes`)
+    const dataJson = await response.json();
+    return { data: dataJson };
 }
 
 export default Index

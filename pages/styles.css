@@ -9,7 +9,11 @@
     --border-color: #e4e7ed;
     --white: #fff;
     --black: #000;
+    --yellow: #FFEB3B;
     --orange: #f44336;
+    --movie: #bf2121;
+    --tv: #166bf8;
+    --type: #f436eb;
 }
 
 [data-theme="dark"] {
@@ -56,7 +60,7 @@ a {
 }
 
 main {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 2rem auto;
     padding: 0px 15px 80px;
 }
@@ -209,7 +213,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     padding: 0 15px;
 }
@@ -315,6 +319,7 @@ main h2.titlePage{
     color: var(--primary-color);
     border: 1px solid;
     border-color: var(--border-color);
+    text-align: center;
 }
 
 .listEpisodes .episode .episode-content {
@@ -341,6 +346,17 @@ main h2.titlePage{
     height: 100%;
     object-fit: cover;
     border-radius: 3px 3px 0 0;
+}
+
+.listEpisodes .episode .episode-content .episode-number {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    padding: 2px 10px;
+    background: var(--tertiary-color);
+    color: var(--active);
+    border-radius: 12px;
+    font-size: 12px;
 }
 
 .listEpisodes .episode .episode-content .episode-info {
@@ -415,6 +431,7 @@ main h2.titlePage{
     color: var(--primary-color);
     border: 1px solid;
     border-color: var(--border-color);
+    text-align: center;
 }
 
 .listAnimes .anime .anime-content {
@@ -440,10 +457,10 @@ main h2.titlePage{
     top: 5px;
     left: 5px;
     z-index: 1;
-    background-color: var(--tertiary-color);
-    color: var(--primary-color);
-    padding: 2px 5px;
-    border-radius: 3px;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 2px 10px;
+    border-radius: 8px;
     text-transform: uppercase;
     font-weight: 700;
     font-size: 12px;
@@ -468,6 +485,58 @@ main h2.titlePage{
 .listAnimes .anime .anime-content .anime-image .views svg {
     fill: var(--white);
 	margin-right: 5px;
+}
+
+.listAnimes .anime .anime-content .anime-image .anime-rating {
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    z-index: 1;
+    background-color: var(--black);
+    color: var(--white);
+    padding: 3px 7px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.listAnimes .anime .anime-content .anime-image .anime-rating svg {
+    fill: var(--yellow);
+    margin-right: 5px;
+    width: 20px;
+}
+
+.listAnimes .anime .anime-content .anime-image .anime-type {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 2px 10px;
+    color: var(--white);
+    background: var(--tertiary-color);
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.listAnimes .anime .anime-content .anime-image .anime-year {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    padding: 2px 10px;
+    color: var(--white);
+    background: var(--orange);
+    border-radius: 12px;
+    font-size: 12px;
+}
+
+.type-tv {
+    background: var(--tv) !important;
+}
+
+.type-movie {
+    background: var(--movie) !important;
 }
 
 .listAnimes .anime .anime-content .anime-image .poster {

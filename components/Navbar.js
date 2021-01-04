@@ -11,7 +11,7 @@ export default function Navbar() {
             <div className="container">
                 <Link href="/">
                     <a>
-                        <span className="logo">AnimeLHD</span>
+                        <span className="logo">{ process.env.SITENAME }</span>
                     </a>
                 </Link>
                 <form action="/search">
