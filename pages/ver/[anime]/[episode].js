@@ -64,7 +64,7 @@ const EpisodeContent = (props) => {
                         <div className="video">
                             <Iframe url={iframe} allow="fullscreen" width="100%" height="100%" id="videoPlayer" className="iframePlayer" display="initial" position="relative"/>
                         </div>
-                        <div className="backButton" onClick={() => backPressed}>
+                        <div className="backButton" onClick={() => backPressed()}>
                             <CloseIcon />
                         </div>
                     </div>
