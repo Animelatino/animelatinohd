@@ -12,7 +12,7 @@ const EpisodeCard = ({episode}) => {
                         <div className="episode-number">{'Eps. '+episode?.number }</div>
                     </div>
                     <div className="episode-info">
-                        <p className="episode-title">{ (episode?.anime?.title?.length > 60 ? (episode?.anime?.title?.slice(0,60) + '...') : episode?.anime?.title)}</p>
+                        <p className="episode-title">{ episode?.anime?.title }</p>
                     </div>
                 </div>
             </a>

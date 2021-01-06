@@ -390,6 +390,11 @@ main h2.titlePage{
 
 .listEpisodes .episode .episode-content .episode-info .episode-title {
     color: var(--primary-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 
@@ -593,6 +598,11 @@ main h2.titlePage{
 
 .listAnimes .anime .anime-info .anime-title {
     color: var(--primary-color);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 
