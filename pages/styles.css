@@ -437,6 +437,7 @@ main h2.titlePage{
     border-color: var(--border-color);
     margin: 0 1rem;
     border-radius: 4px;
+    cursor: pointer;
 }
 
 /* Lista de animes */

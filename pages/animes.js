@@ -184,6 +184,7 @@ const AnimesContent = (props) => {
                         <label htmlFor="year">Por año:</label>
                         <select id="year" value={router?.query?.year} onChange={changeYear}>
                             <option value="">Todos</option>
+                            <option value="2021">2021</option>
                             <option value="2020">2020</option>
                             <option value="2019">2019</option>
                             <option value="2018">2018</option>
