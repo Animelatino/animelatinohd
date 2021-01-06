@@ -4,6 +4,15 @@ import Image from 'next/image';
 import { ViewIcon, StarIcon } from './Icons';
 
 const AnimeCard = ({anime}) => {
+    
+    const getEstreno = (date) => {
+        var d = new Date();
+        let dateAired = new Date(date);
+        const verifyDate = d.setDate(d.getDate() - 7);
+        const airedDate = dateAired.setDate(dateAired.getDate());
+        return verifyDate < airedDate;
+    }
+
     return (
         <Link href={`/anime/${anime?.slug}`}>
             <a className="anime">
@@ -11,7 +20,10 @@ const AnimeCard = ({anime}) => {
                     <div className="anime-image">
                         <Image className="poster" alt={anime?.title} height="auto" width="auto" layout="responsive" loading={"lazy"} src={'https://image.tmdb.org/t/p/w300'+anime?.poster}/>
                         { anime?.status === 1 && (
-                        <div className="estreno">Emisión</div>
+                        <div className="aired">Emisión</div>
+                        )}
+                        { getEstreno(anime?.aired) && (
+                        <div className="estreno">Estreno</div>
                         )}
                         { anime?.totalviews 
                         ?   <div className="views">
@@ -27,7 +39,7 @@ const AnimeCard = ({anime}) => {
                         <div className="anime-year">{anime?.aired?.slice(0,4)}</div>
                     </div>
                     <div className="anime-info">
-                        <p className="anime-title">{ (anime?.title?.length > 55 ? (anime?.title?.slice(0,55) + '...') : anime?.title) }</p>
+                        <p className="anime-title">{ anime?.title }</p>
                     </div>
                 </div>
             </a>

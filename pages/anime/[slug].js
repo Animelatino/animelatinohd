@@ -4,6 +4,9 @@ import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import ErrorPage from 'next/error';
 import Layout from '../../components/Layout';
+import { PlayIcon } from '../../components/Icons';
+import ShareButtons from "../../components/ShareButtons";
+import DisqusComments from "../../components/DisqusComments";
 
 const Index = (props) => {
     const [data, setData] = useState(props?.data);
@@ -67,7 +70,9 @@ const Index = (props) => {
                         </div>
                         <div className="info-tab-data">
                             <h2>{data?.title}</h2>
+                            <ShareButtons title={SEO?.title} url={SEO?.openGraph?.url} twitterHandle={SEO?.twitter?.handle}/>
                             <div className="desc">{data?.overview?.length > 0 ? data?.overview : 'No hay sinopsis para este anime.' }</div>
+                            
                             <div className="tabs">
                                 <span className={tab === "watch" ? 'active' : '' } onClick={getWatch}> Lista de episodios </span>
                                 <span className={tab === "overview" ? 'active' : '' } onClick={getOverview}> Información </span>
@@ -114,7 +119,11 @@ const Index = (props) => {
                         { data?.episodes?.map((item, idx) => (
                             <Link href={`/ver/${data?.slug}/${item?.number}`} key={idx}>
                                 <a className="episode">
-                                    <span>{item?.number}</span>
+                                    <span>
+                                        <b className="type">Episodio </b>
+                                        <span>{item?.number}</span>
+                                    </span>
+                                    <PlayIcon/>
                                 </a>
                             </Link>
                         ))
@@ -122,6 +131,7 @@ const Index = (props) => {
                         </div>
                     )}
                     </div>
+                    <DisqusComments/>
                 </div>
             </div>
         </Layout>

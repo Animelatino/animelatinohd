@@ -10,7 +10,8 @@ const nextConfig = {
         URLPAGE: 'https://www.animelatinohd.com',
         APIPAGE: 'https://api.animelatinohd.com/api',
         STREAMPAGE: 'https://api.animelatinohd.com/stream',
-        GA_TRACKING_ID: 'UA-162278791-1'
+        GA_TRACKING_ID: 'UA-162278791-1',
+        DISQUS_SHORTNAME: 'animelatinohd'
     },
 }
 

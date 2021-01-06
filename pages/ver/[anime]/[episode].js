@@ -4,13 +4,16 @@ import { NextSeo } from 'next-seo';
 import { PlayIcon, LeftIcon, ListIcon, RightIcon, CloseIcon } from '../../../components/Icons';
 import ErrorPage from 'next/error';
 import Layout from '../../../components/Layout';
-import Iframe from 'react-iframe'
+import Iframe from 'react-iframe';
+import ShareButtons from "../../../components/ShareButtons";
+import DisqusComments from "../../../components/DisqusComments";
 
 const Episode = (props) => {
     return <EpisodeContent key={props?.data?.id} initialData={props?.data} />;
 };
 
 const EpisodeContent = (props) => {
+
     const [data, setData] = useState(props?.initialData);
     const [iframe, setIframe] = useState(null);
 
@@ -59,6 +62,7 @@ const EpisodeContent = (props) => {
             <main className="EpisodePage">
                 <NextSeo {...SEO} />
                 <h1 className="episode-title">{`${data?.anime?.title} - ${data?.number}`}</h1>
+                <ShareButtons title={SEO?.title} url={SEO?.openGraph?.url} twitterHandle={SEO?.twitter?.handle}/>
                 { iframe 
                 ?   <div className="videoPlayer">
                         <div className="video">
@@ -117,6 +121,7 @@ const EpisodeContent = (props) => {
                         )}
                     </div>
                 </div>
+                <DisqusComments/>
             </main>
         </Layout>
     );
