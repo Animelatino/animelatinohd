@@ -27,7 +27,12 @@ export default function Navbar() {
                         </li>
                         <li>
                             <Link href="/animes">
-                                <a alt="Animes" className={router.pathname == "/animes" ? "nav-active" : ""}>Animes</a>
+                                <a alt="Animes" className={router.pathname == "/animes" ? "nav-active" : ""}>Directorio</a>
+                            </Link>
+                        </li>
+                        <li>
+                            <Link href="/animes/calendario">
+                                <a alt="Calendario de animes" className={router.pathname == "/animes/calendario" ? "nav-active" : ""}>Calendario</a>
                             </Link>
                         </li>
                         <li>

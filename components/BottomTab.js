@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from "next/router";
 import { PopularIcon, HomeIcon, TrendingIcon, SearchIcon, ListIcon } from './Icons';
 import ToggleTheme from './ToggleTheme';
+import ModalComponent from './ModalComponent';
 
 export default function BottomTab() {
     const router = useRouter();
@@ -13,22 +14,18 @@ export default function BottomTab() {
                     <HomeIcon /> Inicio
                 </a>
             </Link>
-            <Link href="/animes" activeClassName="active">
-                <a alt="Lista de animes" className={router.pathname == "/animes" ? "active" : ""}>
-                    <ListIcon /> Animes
-                </a>
-            </Link>
-            <Link href="/topanimes" activeClassName="active">
+            <ModalComponent/>
+            <Link href="/topanimes">
                 <a alt="Top Animes" className={router.pathname == "/topanimes" ? "active" : ""}>
                     <TrendingIcon /> Más vistos
                 </a>
             </Link>
-            <Link href="/search" activeClassName="active">
+            <Link href="/search">
                 <a alt="Search" className={router.pathname == "/search" ? "active" : ""}>
                     <SearchIcon /> Busqueda
                 </a>
             </Link>
-            <Link href="/popularanimes" activeClassName="active">
+            <Link href="/popularanimes">
                 <a alt="Populares" className={router.pathname == "/popularanimes" ? "active" : ""}>
                     <PopularIcon /> Populares
                 </a>
