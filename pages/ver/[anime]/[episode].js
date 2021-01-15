@@ -13,9 +13,9 @@ const Episode = (props) => {
 };
 
 const EpisodeContent = (props) => {
-
     const [data, setData] = useState(props?.initialData);
     const [iframe, setIframe] = useState(null);
+    const [ads, setAds] = useState(false);
 
     if(data?.msg) {
         return <ErrorPage statusCode={404} />
@@ -47,14 +47,17 @@ const EpisodeContent = (props) => {
 
     const optionPress = (player) => {
         if(player?.server?.type === 1){
+            setAds(true);
             setIframe(player?.server?.embed?.replace("{id}", player?.code));
         }else{
+            setAds(false);
             setIframe(`${process.env.STREAMPAGE}/${player?.id}`);
         }
     }
     
     const backPressed = async () => {
-		setIframe("");
+        setIframe("");
+        setAds(false);
 	}
 
     return (
@@ -64,14 +67,22 @@ const EpisodeContent = (props) => {
                 <h1 className="episode-title">{`${data?.anime?.title} - ${data?.number}`}</h1>
                 <ShareButtons title={SEO?.title} url={SEO?.openGraph?.url} twitterHandle={SEO?.twitter?.handle}/>
                 { iframe 
-                ?   <div className="videoPlayer">
-                        <div className="video">
-                            <Iframe url={iframe} allow="fullscreen" width="100%" height="100%" id="videoPlayer" className="iframePlayer" display="initial" position="relative"/>
+                ?   <>
+                        { ads && (
+                            <div className="BlockAds">
+                                <p>Está opcion puede contener anuncios, que son externos a nosotros. DISCUPEN LAS MOLESTIAS</p>
+                                <b>Se recomienda usar ADBLOCK</b>
+                            </div>
+                        )}
+                        <div className="videoPlayer">
+                            <div className="video">
+                                <Iframe url={iframe} allow="fullscreen" width="100%" height="100%" id="videoPlayer" className="iframePlayer" display="initial" position="relative"/>
+                            </div>
+                            <div className="backButton" onClick={() => backPressed()}>
+                                <CloseIcon />
+                            </div>
                         </div>
-                        <div className="backButton" onClick={() => backPressed()}>
-                            <CloseIcon />
-                        </div>
-                    </div>
+                    </>
                 :   <>
                         <span className="message">Seleccione una opción para reproducir</span>
                         <div className="options">

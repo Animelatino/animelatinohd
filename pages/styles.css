@@ -397,6 +397,13 @@ main h2.titlePage{
     -webkit-box-orient: vertical;
 }
 
+.BlockAds {
+    padding: 10px;
+    background-color: #bf2121;
+    color: #fff;
+    text-align: center;
+}
+
 
 /* Filter Animes */
 
