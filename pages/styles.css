@@ -104,7 +104,7 @@ main {
 .EpisodePage .options {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem 1rem;
+    gap: 1rem 1rem;
 }
 
 .EpisodePage .options .option {
