@@ -48,7 +48,7 @@ const EpisodeContent = (props) => {
     const optionPress = (player) => {
         if(player?.server?.type === 1){
             setAds(true);
-            setIframe(player?.server?.embed?.replace("{id}", player?.code));
+            setIframe(player?.server?.embed ? player?.server?.embed?.replace("{id}", player?.code) : player?.code);
         }else{
             setAds(false);
             setIframe(`${process.env.STREAMPAGE}/${player?.id}`);
