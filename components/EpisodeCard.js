@@ -3,8 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../styles/EpisodeCard.module.css';
 import { imageEpisode, slugEpisode } from '../helpers/Functions';
-import moment from 'moment';
-moment.locale('es');
+import { getFromNow } from '../helpers/Strings';
 
 const EpisodeCard = ({data, slugAnime, imageAnime}) => {
     return (
@@ -25,7 +24,7 @@ const EpisodeCard = ({data, slugAnime, imageAnime}) => {
                     <div className={styles.number}>{`Eps. ${data?.number}`}</div>
                     <div className={styles.extra}>
                         <span className={styles.views}>{`${data?.views} visualizaciones`}</span>
-                        <span className={styles.date}>{moment(data?.created_at?.slice(0,10)).fromNow()}</span>
+                        <span className={styles.date}>{getFromNow(data?.created_at)}</span>
                     </div>
                 </div>
             </a>

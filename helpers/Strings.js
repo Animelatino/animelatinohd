@@ -18,6 +18,10 @@ export const getTypeAnime = (type) => {
     }
 }
 
+export const getFromNow = (date) => {
+    return moment(date).fromNow();
+}
+
 export const getStatusAnime = (status) => {
     return status === 0 ? 'Finalizado' : 'En emisión';
 }
