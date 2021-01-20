@@ -1,46 +1,25 @@
 import React from "react";
 import Link from 'next/link';
 import Image from 'next/image';
-import { ViewIcon, StarIcon } from './Icons';
+import styles from '../styles/AnimeCard.module.css';
+import { posterAnime, slugAnime } from '../helpers/Functions';
 
-const AnimeCard = ({anime}) => {
-    
-    const getEstreno = (date) => {
-        var d = new Date();
-        let dateAired = new Date(date);
-        const verifyDate = d.setDate(d.getDate() - 7);
-        const airedDate = dateAired.setDate(dateAired.getDate());
-        return verifyDate < airedDate;
-    }
-
+const AnimeCard = ({data}) => {
     return (
-        <Link href={`/anime/${anime?.slug}`}>
-            <a className="anime">
-                <div className="anime-content">
-                    <div className="anime-image">
-                        <Image className="poster" alt={anime?.title} height="auto" width="auto" layout="responsive" loading={"lazy"} src={'https://image.tmdb.org/t/p/w300'+anime?.poster}/>
-                        { anime?.status === 1 && (
-                        <div className="aired">Emisión</div>
-                        )}
-                        { getEstreno(anime?.aired) && (
-                        <div className="estreno">Estreno</div>
-                        )}
-                        { anime?.totalviews 
-                        ?   <div className="views">
-			        		    <ViewIcon />
-			        		    <span>{ anime?.totalviews }</span>
-			        	    </div>
-                        :   <div className="anime-rating">
-                                <StarIcon />
-                                <span>{ anime?.vote_average?.toFixed(1) }</span>
-                            </div>
-			            }
-                        <div className={`anime-type type-${anime?.type?.toLowerCase()}`}>{anime?.type === 'Tv' ? 'Anime' : (anime?.type === 'Movie' ? 'Película' : anime?.type)}</div>
-                        <div className="anime-year">{anime?.aired?.slice(0,4)}</div>
-                    </div>
-                    <div className="anime-info">
-                        <p className="anime-title">{ anime?.title }</p>
-                    </div>
+        <Link href={slugAnime(data?.slug)}>
+            <a className={styles.container}>
+                <div className={styles.image}>
+                    <Image
+                        className="poster"
+                        alt={data?.title}
+                        height="auto"
+                        width="auto"
+                        layout="responsive"
+                        loading={"lazy"}
+                        src={posterAnime(data?.poster)}/>
+                </div>
+                <div className={styles.info}>
+                    <div className={styles.title}>{data?.title}</div>
                 </div>
             </a>
         </Link>

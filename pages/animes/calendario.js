@@ -1,46 +1,14 @@
 import React, { useState } from "react";
-import AnimeCard from '../../components/AnimeCard';
 import { NextSeo } from 'next-seo';
+import { api } from '../../lib/api';
 import Layout from '../../components/Layout';
 import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion';
+import { getDayName, getNowDay } from '../../helpers/Strings';
+import ListAnimes from "../../components/ListAnimes";
+import styles from '../../styles/Calendario.module.css';
 
 const Calendario = (props) => {
     const [data, setData] = useState(props?.data);
-    
-    const getNowDay = () => {
-        var d = new Date();
-        return d.getDay() + 1;
-    }
-
-    const getDay = (day) => {
-
-        switch (day) {
-            case '1':
-                    return 'Domingo'
-                break;
-            case '2':
-                    return 'Lunes'
-                break;
-            case '3':
-                    return 'Martes'
-                break;
-            case '4':
-                    return 'Miercoles'
-                break;
-            case '5':
-                    return 'Jueves'
-                break;
-            case '6':
-                    return 'Viernes'
-                break;
-            case '7':
-                    return 'Sábado'
-                break;
-            default:
-                return 'No definido'
-                break;
-        }
-    }
 
     const SEO = {
         title: `Calendario animes | Animes en emision • ${process.env.SITENAME}`,
@@ -68,23 +36,19 @@ const Calendario = (props) => {
 
     return (
         <Layout>
-            <main className="TopAnimesPage">
+            <main className={styles.container}>
                 <NextSeo {...SEO} />
-                <h2 className="titlePage">Calendario Anime</h2>
-                <Accordion allowMultipleExpanded allowZeroExpanded preExpanded={'d-'+getNowDay()}>
+                <h2 className={styles.title}>Calendario Anime</h2>
+                <Accordion preExpanded={'d-'+getNowDay()}>
                     {Object.entries(data)?.map((item, idx) => (
                     <AccordionItem uuid={'d-'+item[0]} key={idx}>
-                        <AccordionItemHeading>
-                            <AccordionItemButton>
-                                { getDay(item[0]) }
+                        <AccordionItemHeading className={styles.AccordionItem}>
+                            <AccordionItemButton className={styles.AccordionItemButton}>
+                                { getDayName(item[0]) }
                             </AccordionItemButton>
                         </AccordionItemHeading>
                         <AccordionItemPanel>
-                            <div className="listAnimes">
-                            {item[1]?.map((item, idx) => (
-                                <AnimeCard anime={item} key={idx} />
-                            ))}
-                            </div>
+                            <ListAnimes data={item[1]} />
                         </AccordionItemPanel>
                     </AccordionItem>
                     ))}
@@ -94,10 +58,14 @@ const Calendario = (props) => {
     );
 }
 
-Calendario.getInitialProps = async() => {
-    const response = await fetch(`${process.env.APIPAGE}/web/animes/simulcast`)
-    const dataJson = await response.json();
-    return { data: dataJson };
+export async function getServerSideProps() {
+    const res = await api.get(`animes/simulcast`);
+    return {
+        props: {
+            data: res.data
+        }
+    }
 }
+
 
 export default Calendario

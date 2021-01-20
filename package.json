@@ -1,29 +1,28 @@
 {
-  "name": "AnimeLHD",
-  "version": "1.0.0",
-  "description": "Stream Animes",
-  "main": "index.js",
-  "author": "DarkDeveloper",
-  "license": "MIT",
+  "name": "dbsuperlatinohd",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
   "dependencies": {
+    "axios": "^0.21.1",
     "disqus-react": "^1.0.10",
-    "next": "^10.0.4",
+    "moment": "^2.29.1",
+    "next": "10.0.5",
     "next-compose-plugins": "^2.2.1",
     "next-images": "^1.6.2",
     "next-seo": "^4.17.0",
     "nprogress": "^0.2.0",
-    "react": "^17.0.1",
+    "react": "17.0.1",
     "react-accessible-accordion": "^3.3.3",
-    "react-dom": "^17.0.1",
+    "react-dom": "17.0.1",
     "react-ga": "^3.3.0",
+    "react-icons": "^4.1.0",
     "react-iframe": "^1.8.0",
-    "react-modal": "^3.12.1",
     "react-share": "^4.3.1",
-    "use-dark-mode": "^2.3.1"
-  },
-  "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start"
+    "react-tabs": "^3.1.2"
   }
 }

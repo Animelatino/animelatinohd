@@ -1,9 +1,10 @@
 import React from 'react';
 import { DiscussionEmbed } from 'disqus-react';
+import styles from '../styles/Comments.module.css';
 
-const DisqusComments = ({title, url, id}) => {
+const Comments = ({title, url, id}) => {
     return(
-        <div className="Comments">
+        <div className={styles.container}>
             <DiscussionEmbed
                 shortname={process.env.DISQUS_SHORTNAME}
                 config={
@@ -17,4 +18,4 @@ const DisqusComments = ({title, url, id}) => {
         </div>
     )
 }
-export default DisqusComments
+export default Comments

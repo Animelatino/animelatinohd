@@ -1,0 +1,39 @@
+.container {
+    min-height: 100vh;
+    padding: 1rem;
+}
+
+.container h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 1rem 0;
+}
+
+.container h2:before,
+.container h2:after {
+    content: '';
+    border-top: .1rem solid;
+    margin: 0 1rem 0 0;
+    flex: 1 0 1rem;
+    border-color: var(--primary-color);
+}
+
+.container h2:after {
+    margin: 0 0 0 1rem;
+}
+
+.container .AccordionItemButton {
+    padding: 1rem 0;
+    background-color: var(--tertiary-color);
+    text-align: center;
+    margin-bottom: .5rem;
+    border-radius: .3rem;
+    cursor: pointer;
+}
+
+.container .AccordionItemButton[aria-expanded="true"] {
+    background-color: var(--primary-color);
+}

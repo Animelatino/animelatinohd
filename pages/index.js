@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import EpisodeCard from '../components/EpisodeCard';
-import AnimeCard from '../components/AnimeCard';
+import React from 'react';
 import { NextSeo } from 'next-seo';
+import { api } from '../lib/api';
+import styles from '../styles/Home.module.css';
+import ListEpisodes from '../components/ListEpisodes';
+import ListAnimes from '../components/ListAnimes';
 import Layout from '../components/Layout';
 
 const Index = (props) => {
-    const [data, setEpisodes] = useState(props?.data);
+    const [data, setData] = React.useState(props?.data);
 
     const SEO = {
         title: `Ver Anime Online en HD Sub Español Latino Gratis • ${process.env.SITENAME}`,
@@ -33,29 +35,22 @@ const Index = (props) => {
 
     return (
         <Layout>
-            <main className="homePage">
-                <NextSeo {...SEO} />
-                <h2 className="titlePage">Últimos episodios</h2>
-                <div className="listEpisodes">
-                {data?.episodes?.map((item, idx) => (
-                    <EpisodeCard episode={item} key={idx} />
-                ))}
-                </div>
-                <h2 className="titlePage">Últimos animes</h2>
-                <div className="listAnimes">
-                {data?.animes?.map((item, idx) => (
-                    <AnimeCard anime={item} key={idx} />
-                ))}
-                </div>
+            <NextSeo {...SEO} />
+            <main className={styles.container}>
+                <ListEpisodes title={'Episodios recientes'} data={data?.episodes}/>
+                <ListAnimes title={'Animes recientes'} data={data?.animes}/>
             </main>
         </Layout>
     );
 }
 
-Index.getInitialProps = async() => {
-    const response = await fetch(`${process.env.APIPAGE}/web/home`)
-    const dataJson = await response.json();
-    return { data: dataJson };
+export async function getServerSideProps() {
+    const res = await api.get(`home`);
+    return {
+        props: { 
+            data: res.data 
+        }
+    }
 }
 
 export default Index

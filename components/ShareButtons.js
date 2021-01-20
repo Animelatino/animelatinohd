@@ -11,12 +11,14 @@ import {
     WhatsappIcon,
     RedditShareButton,
     RedditIcon
-} from 'react-share'
+} from 'react-share';
+
+import styles from '../styles/ShareButtons.module.css';
 
 const ShareButtons = ({title, url, twitterHandle, tags}) => {
 
     return(
-        <div className="Share-buttons">
+        <div className={styles.container}>
             <FacebookShareButton url={url} >
                 <FacebookIcon  size={40} round={true}/>
             </FacebookShareButton>

@@ -1,0 +1,50 @@
+.container {
+    overflow: hidden;
+}
+
+.container .image {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.5%
+}
+
+.container .image div:first-child {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.container .info {
+    padding: .5rem;
+}
+
+.container .info .title {
+    font-weight: bold;
+    margin-bottom: .5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.container .info .number {
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin-bottom: .2rem;
+    font-weight: 600;
+}
+
+.container .info .number, .container .info .extra {
+    color: var(--gray-color);
+    font-size: .9rem;
+}
+
+.container .info .extra .views::after {
+    content: "•";
+    margin: 0 4px;
+}

@@ -1,0 +1,110 @@
+.container {
+    min-height: 100vh;
+    padding: 1rem;
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.container h2 {
+    margin: 1rem 0;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.container .tabContainer .tabList {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 4px;
+}
+
+.container .tabContainer .tabList .tab {
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    background-color: var(--tertiary-color);
+    border-top: 2px solid transparent;
+    border-right: 1px solid var(--border-color);
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.container .tabContainer .tabList .tab[aria-selected="true"]{
+    border-top: 2px solid var(--primary-color);
+}
+
+.container .tabContainer .tabList .tab:last-child {
+    border-right: none;
+}
+
+.container .tabContainer .tabPanel {
+    margin: 2rem 0;
+}
+
+.container .tabContainer .tabPanel .videoPlayer {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    background-color: var(--tertiary-color);
+    border-radius: .2rem;
+}
+
+.container .tabContainer .tabPanel .videoPlayer iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.container .tabContainer .tabPanel .option {
+    padding: 1rem .5rem;
+    background: var(--tertiary-color);
+    margin: 1rem 0;
+    border-radius: 1rem;
+    text-align: center;
+    cursor: pointer;
+}
+
+.container .navCaps {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: var(--tertiary-color);
+    border-radius: .2rem;
+}
+
+.container .navCaps .nav {
+    font-size: 1.5rem;
+}
+
+
+@media (max-width: 1440px) {
+   
+}
+
+@media (max-width: 1024px) {
+
+}
+
+@media (max-width: 768px) {
+
+}
+
+@media (max-width: 425px) {
+    .container .tabContainer .tabPanel .videoPlayer {
+        padding-bottom: 86.5%;
+    }
+    .container .navCaps a span {
+       font-size: 0;
+    }
+}

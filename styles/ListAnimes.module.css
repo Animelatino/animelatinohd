@@ -1,0 +1,56 @@
+.box  {
+    padding: 2rem 0;
+}
+
+.box h2 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 1rem 0;
+}
+
+.box h2:before,
+.box h2:after {
+    content: '';
+    border-top: .1rem solid;
+    margin: 0 1rem 0 0;
+    flex: 1 0 1rem;
+    border-color: var(--primary-color);
+}
+
+.box h2:after {
+    margin: 0 0 0 1rem;
+}
+
+.box .listAnimes {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+}
+
+@media (max-width: 1440px) {
+    .box .listAnimes {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .box .listAnimes {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .box .listAnimes {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 425px) {
+    .box .listAnimes {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
