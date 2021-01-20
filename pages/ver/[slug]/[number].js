@@ -12,10 +12,10 @@ import ShareButtons from "../../../components/ShareButtons";
 import Comments from "../../../components/Comments";
 
 const number = (props) => {
-    return <numberComponent key={Math.random()} {...props} />;
+    return <NumberComponent key={Math.random()} {...props} />;
 }
 
-const numberComponent = (props) => {
+const NumberComponent = (props) => {
     const [data, setData] = React.useState(props?.data);
     const [iframe, setIframe] = React.useState("");
     const [tabIndex, setTabIndex] = React.useState(0);
