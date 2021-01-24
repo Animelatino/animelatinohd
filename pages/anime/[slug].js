@@ -1,49 +1,24 @@
-import React from 'react';
-import { NextSeo } from 'next-seo';
+import React, { Component } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
 import Image from 'next/image';
 import { api } from '../../lib/api';
 import styles from '../../styles/Anime.module.css';
 import Layout from '../../components/Layout';
-import { bannerAnime, posterAnime, slugGenre } from '../../helpers/Functions';
+import { bannerAnime, posterAnime, slugAnime, slugGenre } from '../../helpers/Functions';
 import { getStatusAnime, getDateAiredAnime, getRatingAnime, getVoteAverageAnime } from '../../helpers/Strings';
 import Comments from "../../components/Comments";
 import AnimeEpisodeCard from '../../components/AnimeEpisodeCard';
-import Link from 'next/link';
 
-const slug = (props) => {
-    return <SlugComponent key={Math.random()} {...props} />;
-}
-
-const SlugComponent = (props) => {
-    const [data, setData] = React.useState(props?.data);
-    const [tab, setTab] = React.useState("episodes");
-
-    const SEO = {
-        title: `Ver ${data?.title} Sub Español Latino en HD Online • ${process.env.SITENAME}`,
-        description: `${(data?.overview?.length > 165 ? (data?.overview?.slice(0,165) + '...') : data?.overview)}`,
-        openGraph: {
-            type: 'website',
-            locale: 'es_LA',
-            url: `${process.env.URLPAGE}/anime/${data?.slug}`,
-            title: `Ver ${data?.title} Sub Español Latino en HD Online • ${process.env.SITENAME}`,
-            description: `${(data?.overview?.length > 165 ? (data?.overview?.slice(0,165) + '...') : data?.overview)}`,
-            images: [{
-                url: `https://image.tmdb.org/t/p/w500${data?.banner}`,
-                width: 640,
-                height: 360,
-                alt: `${process.env.SITENAME} • Animes Online HD Gratis`,
-            }],
-            site_name: `${process.env.SITENAME}`,
-        },
-        twitter: {
-            handle: `@${process.env.SITENAME}`,
-            site: `@${process.env.SITENAME}`,
-            cardType: 'summary_large_image',
-        }
+export default class slug extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+        };
     }
 
-
-    const Banner = ({data}) => {
+    banner = () => {
+        const { data } = this.props;
         return (
             <div className={styles.banner} style={{ backgroundImage: "url("+`${bannerAnime(data?.banner)}`+")"}}>
                 <div className={styles.content} >
@@ -63,7 +38,8 @@ const SlugComponent = (props) => {
         )
     }
 
-    const Info = ({data}) => {
+    info = () => {
+        const { data } = this.props;
         return(
             <div className={styles.info}>
                 <div className={styles.cover}>
@@ -114,7 +90,8 @@ const SlugComponent = (props) => {
         );
     }
 
-    const Details = ({data}) => {
+    details = () => {
+        const { data } = this.props;
         return (
             <div className={styles.details}>
                 <div className={styles.overview}>
@@ -129,19 +106,35 @@ const SlugComponent = (props) => {
             </div>
         );
     }
-    
-    return (
-        <Layout>
-            <NextSeo {...SEO} />
-            <main className={styles.container}>
-                <Banner data={data}/>
-                <div className={styles.contentAnime}>
-                    <Info data={data}/>
-                    <Details data={data}/>
-                </div>
-            </main>
-        </Layout>
-    );
+
+    render() {
+        const { data } = this.props;
+        return (
+            <Layout>
+                <Head>
+                    <title>{`Ver ${data?.title} Sub Español Latino en HD Online • ${process.env.NAME}`}</title>
+                    <meta name="description" content={`${(data?.overview?.length > 165 ? (data?.overview?.slice(0,165) + '...') : data?.overview)}`} />
+                    <link rel="canonical" href={`${process.env.URL}/${slugAnime(data?.slug)}`} />
+                    <meta name="og:title" content={`Ver ${data?.title} Sub Español Latino en HD Online • ${process.env.NAME}`} />
+                    <meta name="og:description" content={`${(data?.overview?.length > 165 ? (data?.overview?.slice(0,165) + '...') : data?.overview)}`} />
+                    <meta name="og:url" content={`${process.env.URL}/${slugAnime(data?.slug)}`} />
+                    <meta name="og:locale" content="es_LA" />
+                    <meta name="og:type" content="website" />
+                    <meta name="og:image" content={bannerAnime(data?.banner)} />
+                    <meta property="og:image:width" content="552" />
+			        <meta property="og:image:height" content="310" />
+                    <meta itemProp="image" content={bannerAnime(data?.banner)} />
+                </Head>
+                <main className={styles.container}>
+                    { this.banner() }
+                    <div className={styles.contentAnime}>
+                        { this.info() }
+                        { this.details() }
+                    </div>
+                </main>
+            </Layout>
+        );
+    }
 }
 
 export async function getServerSideProps(context) {
@@ -152,5 +145,3 @@ export async function getServerSideProps(context) {
         }
     }
 }
-
-export default slug
