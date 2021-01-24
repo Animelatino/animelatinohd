@@ -70,7 +70,7 @@ export const getNowDay = () => {
 }
 
 export const getUrlVideo = (video) => {
-    let url = video?.server?.type === 1 ? (video?.server?.embed ? video?.server?.embed?.replace('id',video?.code) : video?.code ) : process.env.STREAMURL+video.id;
+    let url = video?.server?.type === 1 ? (video?.server?.embed ? video?.server?.embed?.replace('{id}',video?.code) : video?.code ) : process.env.STREAMURL+video.id;
     return url;
 }
 
