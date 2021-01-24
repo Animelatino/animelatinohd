@@ -71,7 +71,7 @@ export default class number extends Component {
                 <div className={styles.options}>
                     <div className={styles.type}>
                         <label htmlFor={"languaje"}>Idioma</label>
-                        <select name={"languaje"} value={languaje} id={"languaje"} onChange={this.handleChange}>
+                        <select name={"languaje"} id={"languaje"} onChange={this.handleChange}>
                             {Object.keys(data?.players)?.map((item, idx) => (
                                 <option value={item} key={idx}>{getLanguajePlayer(item)}</option>
                             ))}
@@ -79,7 +79,7 @@ export default class number extends Component {
                     </div>
                     <div className={styles.type}>
                         <label htmlFor={"server"}>Servidor</label>
-                        <select name={"server"} value={server} id={"server"} onChange={this.handleChange}>
+                        <select name={"server"} id={"server"} onChange={this.handleChange}>
                             {data?.players[languaje]?.map((item, idx) => (
                                 <option value={idx} key={idx}>{item?.server?.title}</option>
                             ))}
