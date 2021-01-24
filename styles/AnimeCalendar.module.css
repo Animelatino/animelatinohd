@@ -36,6 +36,12 @@
     margin-bottom: .5rem;
 }
 
+
+.item > .content > .text > p > b {
+    margin-left: .2rem;
+    color: var(--white-color);
+}
+
 .item > .content > .text > h1 > .limit {
     font-size: .8rem;
     overflow: hidden;

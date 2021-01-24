@@ -10,7 +10,9 @@ const AnimeCalendar = ({data}) => {
             <a className={styles.item}>
                 <div className={styles.content} style={{ backgroundImage: "url("+`${bannerAnime(data?.banner)}`+")"}}>
                     <div className={styles.text}>
-                        <p>{ isNowEpisode(data?.date) ? `Episodio ${data?.lastEpisode} ${getFromNow(data?.date)}` : `Episodio ${parseInt(data?.lastEpisode + 1)}` }</p>
+                        <p>{ isNowEpisode(data?.date) ? `Episodio ${data?.lastEpisode}` : `Episodio ${parseInt(data?.lastEpisode + 1)}` }
+                            <b>{ isNowEpisode(data?.date) ? getFromNow(data?.date) : ''}</b>
+                        </p>
                         <h1>
                             <div className={styles.limit}>{ data?.title }</div>
                         </h1>

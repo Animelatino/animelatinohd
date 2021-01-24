@@ -14,7 +14,6 @@ export default class calendario extends Component {
 
     render() {
         const { simulcast } = this.props;
-        console.log(simulCast(simulcast))
         return (
             <Layout>
                 <Head>

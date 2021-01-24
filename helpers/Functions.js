@@ -54,9 +54,7 @@ export const simulCast = (object) => {
         }
         return fechas;
     };
-
     let days = diasEntreFechas(moment(),moment().add('6','day'));
-
     for (let index = 0; index < days.length; index++) {
         let dayName = moment(days[index]).calendar(formats);
         let dayNumber = moment(days[index]).isoWeekday();
@@ -67,7 +65,6 @@ export const simulCast = (object) => {
         }
         data.push(item);
     }
-
     return data;
 }
 
