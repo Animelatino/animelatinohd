@@ -114,7 +114,9 @@ export default class number extends Component {
                         <div className={styles.details}>
                             <div className={styles.info}>
                                 <h1>
-                                    <a href="https://masteranime.es/anime/info/World-Trigger-Season-2.68579">{data?.anime?.title}</a>
+                                    <Link href={slugAnime(data?.anime?.slug)}>
+                                        <a>{data?.anime?.title}</a>
+                                    </Link>
                                 </h1>
                                 <span className={styles.currentEp}>{`Episodio ${data?.number}`}</span>
                             </div>
