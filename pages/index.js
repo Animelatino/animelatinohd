@@ -1,56 +1,50 @@
-import React from 'react';
-import { NextSeo } from 'next-seo';
+import React, { Component } from 'react';
+import Head from 'next/head';
 import { api } from '../lib/api';
-import styles from '../styles/Home.module.css';
-import ListEpisodes from '../components/ListEpisodes';
-import ListAnimes from '../components/ListAnimes';
 import Layout from '../components/Layout';
+import ListEpisodes from '../components/ListEpisodes';
 
-const Index = (props) => {
-    const [data, setData] = React.useState(props?.data);
+import styles from '../styles/Home.module.css';
 
-    const SEO = {
-        title: `Ver Anime Online en HD Sub Español Latino Gratis • ${process.env.SITENAME}`,
-        description: `Anime Online Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.SITENAME}`,
-        openGraph: {
-            type: 'website',
-            locale: 'es_LA',
-            url: `${process.env.URLPAGE}`,
-            title: `Ver Anime Online en HD Sub Español Latino Gratis • ${process.env.SITENAME}`,
-            description: `Anime Online Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.SITENAME}`,
-            images: [{
-                url: `https://i.imgur.com/Iof3uSm.jpg`,
-                width: 640,
-                height: 360,
-                alt: `Ver Anime Online en HD Sub Español Latino Gratis • ${process.env.SITENAME}`,
-            }],
-            site_name: `${process.env.SITENAME}`,
-        },
-        twitter: {
-            handle: `@${process.env.SITENAME}`,
-            site: `@${process.env.SITENAME}`,
-            cardType: 'summary_large_image',
-        }
+export default class index extends Component {
+
+    constructor(props) {
+        super(props);
     }
 
-    return (
-        <Layout>
-            <NextSeo {...SEO} />
-            <main className={styles.container}>
-                <ListEpisodes title={'Episodios recientes'} data={data?.episodes}/>
-                <ListAnimes title={'Animes recientes'} data={data?.animes}/>
-            </main>
-        </Layout>
-    );
+    render() {
+        const { releases } = this.props;
+        return (
+            <Layout>
+                <Head>
+                    <title>{`Ver Anime Online en HD Sub Español Latino Gratis • ${process.env.NAME}`}</title>
+                    <meta name="description" content={`Anime Online Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.NAME}`} />
+                    <link rel="canonical" href={`${process.env.URL}`} />
+                    <meta name="og:title" content={`Ver Anime Online en HD Sub Español Latino Gratis • ${process.env.NAME}`} />
+                    <meta name="og:description" content={`Anime Online Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.NAME}`} />
+                    <meta name="og:url" content={`${process.env.URL}`} />
+                    <meta name="og:locale" content="es_LA" />
+                    <meta name="og:type" content="website" />
+                    <meta name="og:image" content="https://i.imgur.com/Iof3uSm.jpg" />
+                    <meta property="og:image:width" content="265" />
+			        <meta property="og:image:height" content="265" />
+                    <meta itemProp="image" content="https://i.imgur.com/Iof3uSm.jpg" />
+                </Head>
+                <main className={styles.container}>
+                    <ListEpisodes episodes={releases}/>
+                </main>
+            </Layout>
+        );
+    }
 }
 
 export async function getServerSideProps() {
-    const res = await api.get(`home`);
+    const releases = await api.get(`releases`);
+    const trending = await api.get(`anime/trending`);
     return {
         props: { 
-            data: res.data 
+            releases: releases.data,
+            trending: trending.data
         }
     }
 }
-
-export default Index

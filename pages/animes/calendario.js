@@ -1,71 +1,64 @@
-import React, { useState } from "react";
-import { NextSeo } from 'next-seo';
+import React, { Component } from 'react';
+import Head from 'next/head';
 import { api } from '../../lib/api';
 import Layout from '../../components/Layout';
-import { Accordion, AccordionItem, AccordionItemHeading, AccordionItemButton, AccordionItemPanel } from 'react-accessible-accordion';
-import { getDayName, getNowDay } from '../../helpers/Strings';
-import ListAnimes from "../../components/ListAnimes";
+import { simulCast } from '../../helpers/Functions';
+import AnimeCalendar from "../../components/AnimeCalendar";
+
 import styles from '../../styles/Calendario.module.css';
 
-const Calendario = (props) => {
-    const [data, setData] = useState(props?.data);
-
-    const SEO = {
-        title: `Calendario animes | Animes en emision • ${process.env.SITENAME}`,
-        description: `Calendario animes | Animes en emision`,
-        openGraph: {
-            type: 'website',
-            locale: 'es_LA',
-            url: `${process.env.URLPAGE}/animes`,
-            title: `Calendario animes | Animes en emision • ${process.env.SITENAME}`,
-            description: `Calendario animes | Animes en emision`,
-            images: [{
-                url: `https://i.imgur.com/Iof3uSm.jpg`,
-                width: 640,
-                height: 360,
-                alt: `Calendario animes | Animes en emision • ${process.env.SITENAME}`,
-            }],
-            site_name: `${process.env.SITENAME}`,
-        },
-        twitter: {
-            handle: `@${process.env.SITENAME}`,
-            site: `@${process.env.SITENAME}`,
-            cardType: 'summary_large_image',
-        }
+export default class calendario extends Component {
+    constructor(props) {
+        super(props);
     }
 
-    return (
-        <Layout>
-            <main className={styles.container}>
-                <NextSeo {...SEO} />
-                <h2 className={styles.title}>Calendario Anime</h2>
-                <Accordion preExpanded={'d-'+getNowDay()}>
-                    {Object.entries(data)?.map((item, idx) => (
-                    <AccordionItem uuid={'d-'+item[0]} key={idx}>
-                        <AccordionItemHeading className={styles.AccordionItem}>
-                            <AccordionItemButton className={styles.AccordionItemButton}>
-                                { getDayName(item[0]) }
-                            </AccordionItemButton>
-                        </AccordionItemHeading>
-                        <AccordionItemPanel>
-                            <ListAnimes data={item[1]} />
-                        </AccordionItemPanel>
-                    </AccordionItem>
+    render() {
+        const { simulcast } = this.props;
+        console.log(simulCast(simulcast))
+        return (
+            <Layout>
+                <Head>
+                    <title>{`Calendario de animes • ${process.env.NAME}`}</title>
+                    <meta name="description" content={`Anime Online Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.NAME}`} />
+                    <link rel="canonical" href={`${process.env.URL}/animes/calendario`} />
+                    <meta name="og:title" content={`Calendario de animes • ${process.env.NAME}`} />
+                    <meta name="og:description" content={`Anime Online Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.NAME}`} />
+                    <meta name="og:url" content={`${process.env.URL}/animes/calendario`} />
+                    <meta name="og:locale" content="es_LA" />
+                    <meta name="og:type" content="website" />
+                    <meta name="og:image" content="https://i.imgur.com/Iof3uSm.jpg" />
+                    <meta property="og:image:width" content="265" />
+                    <meta property="og:image:height" content="265" />
+                    <meta itemProp="image" content="https://i.imgur.com/Iof3uSm.jpg" />
+                </Head>
+                <main className={styles.container}>
+                    <h1 className={styles.title}>
+                        <span className={styles.border}>Calendario Anime</span>
+                    </h1>
+                    {simulCast(simulcast)?.map((item, idx) => (
+                        <div key={idx} className={styles.calendar}>
+                            <div className={styles.date}>
+                                <h3 className={styles.day}>{item?.dayName}</h3>
+                                <span className={styles.split}></span>
+                            </div>
+                            <div className={styles.data}>
+                                {item?.data?.map((i, idx) => (
+                                    <AnimeCalendar key={idx} data={i}/>
+                                ))}
+                            </div>
+                        </div>
                     ))}
-                </Accordion>
-            </main>
-        </Layout>
-    );
+                </main>
+            </Layout>
+        );
+    }
 }
 
 export async function getServerSideProps() {
-    const res = await api.get(`animes/simulcast`);
+    const res = await api.get(`anime/simulcast`);
     return {
         props: {
-            data: res.data
+            simulcast: res.data
         }
     }
 }
-
-
-export default Calendario

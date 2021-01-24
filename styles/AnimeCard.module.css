@@ -1,31 +1,68 @@
-.container {
+.anime {
     overflow: hidden;
 }
 
-.container .image {
+.anime > .cover {
     position: relative;
-    width: 100%;
-    height: 0;
-    padding-bottom: 135%
+    margin-bottom: .5em;
 }
 
-.container .image div:first-child {
-    position: absolute !important;
-    top: 0;
-    bottom: 0;
-    width: 100%;
+.anime > .cover > .score {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: .75em;
+    left: .3875em;
+    font-weight: 700;
+    font-size: .7rem;
+    background-color: rgba(0, 0, 0, .5);
+    min-width: 5em;
+    text-align: center;
+    border-radius: 5em;
+    line-height: 1.4285em;
+    padding: .2rem;
 }
 
-.container .info {
-    padding: .5rem;
+.anime > .cover > .score > b {
+    margin-left: 3px;
+    color: #EABE3F;
 }
 
-.container .info .title {
-    font-weight: bold;
-    margin-bottom: .5rem;
+.anime > .cover > a > .image {
+    position: relative;
     overflow: hidden;
+    line-height: 0;
+    width: 100%;
+    padding-bottom: 142.85%;
+}
+
+.anime > .cover > a > .image div:first-child {
+    position: absolute!important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.anime > .info > h3  {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.anime > .info > h3 > a > span {
+    overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    width: 100%;
+    position: relative;
+    float: left;
+    font-size: .8rem;
+}
+
+.anime > .info > .year {
+    font-size: .6rem;
+    color: #b9b9b9;
 }

@@ -1,35 +1,58 @@
-import React from "react";
+import React, { Component } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from '../styles/EpisodeCard.module.css';
-import { imageEpisode, slugEpisode } from '../helpers/Functions';
+import { imageEpisode, posterAnime, slugEpisode, slugAnime } from '../helpers/Functions';
 import { getFromNow } from '../helpers/Strings';
 
-const EpisodeCard = ({data, slugAnime, imageAnime}) => {
-    return (
-        <Link href={slugEpisode(data?.anime?.slug || slugAnime, data?.number)}>
-            <a className={styles.container}>
-                <div className={styles.image}>
+export default class EpisodeCard extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const { episode } = this.props;
+        return (
+            <div className={styles.container}>
+                <div className={styles.holder}>
+                    <div className={styles.overlay}>
+                        <span className={styles.time}>{ getFromNow(episode?.created_at) }</span>
+                        <Link href={slugEpisode(episode?.anime?.slug, episode?.number)}>
+                            <a className={styles.play}>
+                                <svg viewBox="0 0 24 24"><path d="M8,5.14V19.14L19,12.14L8,5.14Z"></path></svg>
+                            </a>
+                        </Link>
+                        <Link href={slugAnime(episode?.anime?.slug)}>
+                            <a className={styles.cover}>
+                                <Image
+                                    alt={episode?.anime?.title}
+                                    height="auto"
+                                    width="auto"
+                                    layout="responsive"
+                                    loading={"lazy"}
+                                    style={"position:aboslute"}
+                                    src={posterAnime(episode?.anime?.poster) }/>
+                            </a>
+                        </Link>
+                    </div>
                     <Image 
                         className="poster"
-                        alt={`${data?.anime?.title} ${data?.number}`}
+                        alt={`${episode?.anime?.title} ${episode?.number}`}
                         height="auto"
                         width="auto"
                         layout="responsive"
                         loading={"lazy"}
-                        src={imageEpisode(data?.anime?.banner || imageAnime) }/>
+                        src={imageEpisode(episode?.anime?.banner) }/>
                 </div>
-                <div className={styles.info}>
-                    <div className={styles.title}>{data?.anime?.title}</div>
-                    <div className={styles.number}>{`Eps. ${data?.number}`}</div>
-                    <div className={styles.extra}>
-                        <span className={styles.views}>{`${data?.views} visualizaciones`}</span>
-                        <span className={styles.date}>{getFromNow(data?.created_at)}</span>
-                    </div>
+                <div className={styles.text}>
+                    <Link href={slugEpisode(episode?.anime?.slug, episode?.number)}>
+                        <a className={styles.title}>
+                            <div className={styles.limit}>{episode?.anime?.title}</div>
+                            <span className={styles.episode}>{`Ep. ${episode?.number}`}</span>
+                        </a>
+                    </Link>
                 </div>
-            </a>
-        </Link>
-    );
-};
-
-export default EpisodeCard;
+            </div>
+        );
+    }
+}

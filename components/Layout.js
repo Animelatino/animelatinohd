@@ -1,6 +1,7 @@
 import React from 'react';
 import { initGA, logPageView } from '../lib/ga';
-import Header from './Header';
+import HeaderNavigation from './HeaderNavigation';
+import BottomNavigation from './BottomNavigation';
 
 export default class Layout extends React.Component {
 
@@ -15,8 +16,9 @@ export default class Layout extends React.Component {
     render () {
         return (
             <>
-                <Header/>
+                <HeaderNavigation/>
                 {this.props.children}
+                <BottomNavigation/>
             </>
         )
     }

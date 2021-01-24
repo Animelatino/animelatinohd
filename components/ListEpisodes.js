@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styles from '../styles/ListEpisodes.module.css';
 import EpisodeCard from './EpisodeCard';
 
-const ListEpisodes = ({data, title, slugAnime, imageAnime }) => {
-    return (
-        <div className={styles.box}>
-            { title && (
-                <h2>{title}</h2>
-            )}
-            <div className={styles.listEpisodes}>
-                {data?.map((item, idx) => (
-                    <EpisodeCard slugAnime={slugAnime} imageAnime={imageAnime} data={item} key={idx} />
-                ))}
-            </div>
-        </div>
-    );
-}
+export default class ListEpisodes extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-export default ListEpisodes
+    render() {
+        const { episodes } = this.props;
+        return (
+            <div className={styles.box}>
+                <h1>
+                    <span className={styles.border}>Episodios recientes</span>
+                </h1>
+                <div className={styles.listEpisodes}>
+                {episodes?.map((episode, idx) => (
+                    <EpisodeCard episode={episode} key={idx} />
+                ))}
+                </div>
+            </div>
+        );
+    }
+}

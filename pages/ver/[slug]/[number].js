@@ -1,136 +1,188 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Link from 'next/link';
-import { NextSeo } from 'next-seo';
+import Head from 'next/head';
+import Image from 'next/image';
 import Iframe from 'react-iframe';
 import { api } from '../../../lib/api';
-import styles from '../../../styles/Episode.module.css';
 import Layout from '../../../components/Layout';
-import { slugEpisode, slugAnime } from '../../../helpers/Functions';
-import { getLanguajePlayer, getStreamPlayer } from '../../../helpers/Strings';
-import { Tab, Tabs, TabList, TabPanel, resetIdCounter } from 'react-tabs';
-import ShareButtons from "../../../components/ShareButtons";
 import Comments from "../../../components/Comments";
+import { slugEpisode, slugAnime, imageAnimeSearch, imageEpisode} from '../../../helpers/Functions';
+import { getLanguajePlayer, getUrlVideo } from '../../../helpers/Strings';
 
-const number = (props) => {
-    return <NumberComponent key={Math.random()} {...props} />;
-}
+import styles from '../../../styles/Episode.module.css';
 
-const NumberComponent = (props) => {
-    const [data, setData] = React.useState(props?.data);
-    const [iframe, setIframe] = React.useState("");
-    const [tabIndex, setTabIndex] = React.useState(0);
+export default class number extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            iframe: null,
+            languaje: this.props.data?.players[0] == undefined ? 1 : 0,
+            server: 0,
+            random: 0,
+            id: this.props.data.id
+        };
+    }
 
-    resetIdCounter();
+    static getDerivedStateFromProps(nextProps, prevState){
+        let defaultLang = nextProps.data?.players[0] == undefined ? 1 : 0;
+        if(nextProps.data.id !== prevState.id){
+            return {
+                iframe: getUrlVideo(nextProps.data?.players[defaultLang][0]),
+                languaje: nextProps.data?.players[0] == undefined ? 1 : 0,
+                server: 0,
+                random: prevState.random + 1,
+                id: nextProps.data.id
+            }
+        }else{
+            if(prevState.iframe == null){
+                return {
+                    iframe: getUrlVideo(nextProps.data?.players[defaultLang][0]),
+                }
+            }else{
+                return prevState;
+            }
+        }
+        
+    }
 
-    const SEO = {
-        title: `Ver ${data?.anime?.title} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.SITENAME}`,
-        description: `Anime ${data?.anime?.title} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`,
-        openGraph: {
-            type: 'website',
-            locale: 'es_LA',
-            url: `${process.env.URLPAGE}/ver/${data?.anime?.slug}/${data?.number}`,
-            title: `Ver ${data?.anime?.title} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.SITENAME}`,
-            description: `Anime ${data?.anime?.title} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`,
-            images: [{
-                url: `https://image.tmdb.org/t/p/w500${data?.anime?.banner}`,
-                width: 640,
-                height: 360,
-                alt: `Ver ${data?.anime?.title} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.SITENAME}`,
-            }],
-            site_name: `${process.env.SITENAME}`,
-        },
-        twitter: {
-            handle: `@${process.env.SITENAME}`,
-            site: `@${process.env.SITENAME}`,
-            cardType: 'summary_large_image',
+    handleChange = (e) => {
+        const { data } = this.props;
+        const { languaje } = this.state;
+        if(e.target.name === 'languaje'){
+            this.setState({
+                languaje: e.target.value,
+                server: e.target.value,
+                iframe: getUrlVideo(data?.players[e.target.value][0])
+            })
+        }
+        if(e.target.name === 'server'){
+            this.setState({
+                server: e.target.value,
+                iframe: getUrlVideo(data?.players[languaje][e.target.value])
+            })
         }
     }
 
-    const VideoIframe = () => {
+    videoPlayer = () => {
+        const { data } = this.props;
+        const { iframe, server, languaje, random } = this.state;
         return(
             <div className={styles.videoPlayer}>
-                <Iframe allow={"fullscreen"} url={iframe} display="initial"/>
+                <div className={styles.options}>
+                    <div className={styles.type}>
+                        <label htmlFor={"languaje"}>Idioma</label>
+                        <select name={"languaje"} value={languaje} id={"languaje"} onChange={this.handleChange}>
+                            {Object.keys(data?.players)?.map((item, idx) => (
+                                <option value={item} key={idx}>{getLanguajePlayer(item)}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className={styles.type}>
+                        <label htmlFor={"server"}>Servidor</label>
+                        <select name={"server"} value={server} id={"server"} onChange={this.handleChange}>
+                            {data?.players[languaje]?.map((item, idx) => (
+                                <option value={idx} key={idx}>{item?.server?.title}</option>
+                            ))}
+                        </select>
+                    </div>
+                </div>
+                <div className={styles.video}>
+                    <Iframe key={random} allow={"fullscreen"} url={iframe} display="initial"/>
+                </div>
             </div>
         )
     }
 
-    const ListOptions = ({data}) => {
-        return(
-            <>
-                { data?.map((item, idx) => (
-                    <div key={idx} className={styles.option} onClick={() => {setIframe(getStreamPlayer(item))} }>
-                        <p>{item?.server?.title}</p>
-                    </div>
-                ))}
-            </>
-        )
-    }
-
-    const VideoPlayer = ({data}) => {
-        return(
-            <Tabs
-                className={styles.tabContainer}
-                selectedIndex={tabIndex}
-                onSelect={index => { setIframe(""), setTabIndex(index) }}>
-                    <TabList className={styles.tabList}>
-                    {Object.entries(data)?.map((item, idx) =>(
-                        <Tab key={idx} className={styles.tab}>{getLanguajePlayer(item[0])}</Tab>
-                    ))}
-                    </TabList>
-                    { Object.entries(data)?.map((item, idx) =>(
-                        <TabPanel key={idx} className={styles.tabPanel}>
-                            { iframe
-                            ?   <VideoIframe/>
-                            :   <ListOptions data={item[1]}/>
-                            }
-                        </TabPanel>
-                    ))}
-            </Tabs>
-        )
-    }
-
-    const NavCaps = ({data}) => {
+    navCaps = () => {
+        const { data } = this.props;
         return (
             <div className={styles.navCaps}>
-                <div className={styles.nav}>
-                { data?.anterior && (
-                    <Link href={slugEpisode(data?.anime?.slug, data?.anterior?.number)}>
-                        <a className={styles.link}>&#8592; <span>Anterior</span></a>
-                    </Link>
-                )}
-                </div>
-                <div className={styles.nav}>
-                { data?.anime && (
-                    <Link href={slugAnime(data?.anime?.slug)}>
-                        <a className={styles.link}>&#9776;</a>
-                    </Link>
-                )}
-                </div>
-                <div className={styles.nav}>
-                { data?.siguiente && (
-                    <Link href={slugEpisode(data?.anime?.slug, data?.siguiente?.number)}>
-                        <a className={styles.link}><span>Siguiente</span> &#8594;</a>
-                    </Link>
-                )}
+                <div className={styles.column}>
+                    <div className={styles.info}>
+                        <Link href={slugAnime(data?.anime?.slug)}>
+                        <a className={styles.cover}>
+                            <Image 
+                                className={styles.cover}
+                                alt={`${data?.anime?.title} ${data?.number}`}
+                                height="auto"
+                                width="auto"
+                                layout="responsive"
+                                loading={"lazy"}
+                                src={imageAnimeSearch(data?.anime?.poster) }/>
+                        </a> 
+                        </Link>
+                        <div className={styles.details}>
+                            <div className={styles.info}>
+                                <h1>
+                                    <a href="https://masteranime.es/anime/info/World-Trigger-Season-2.68579">{data?.anime?.title}</a>
+                                </h1>
+                                <span className={styles.currentEp}>{`Episodio ${data?.number}`}</span>
+                            </div>
+                            <p className={styles.desc}>{data?.anime?.overview?.slice(0,50)}</p>
+                        </div>
+                    </div>
+                    <div className={styles.actions}>
+                        { data?.anterior && (
+                            <Link href={slugEpisode(data?.anime?.slug, data?.anterior?.number)}>
+                                <a className={styles.button}>
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+                                    </svg>
+                                    Ant.
+                                </a>
+                            </Link>
+                        )}
+                        { data?.anime && (
+                            <Link href={slugAnime(data?.anime?.slug)}>
+                                <a className={styles.button}>
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M7,13H21V11H7M7,19H21V17H7M7,7H21V5H7M2,11H3.8L2,13.1V14H5V13H3.2L5,10.9V10H2M3,8H4V4H2V5H3M2,17H4V17.5H3V18.5H4V19H2V20H5V16H2V17Z"></path>
+                                    </svg>
+                                </a>
+                            </Link>
+                        )}
+                        { data?.siguiente && (
+                            <Link href={slugEpisode(data?.anime?.slug, data?.siguiente?.number)}>
+                                <a className={styles.button}>
+                                    Sig. 
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                                    </svg>
+                                </a>
+                            </Link>
+                        )}
+                    </div>
                 </div>
             </div>
         )
     }
 
-    return (
-        <Layout>
-            <NextSeo {...SEO} />
-            <main className={styles.container}>
-                <h2>
-                    {data?.anime?.title} - {data?.number}
-                </h2>
-                <ShareButtons title={SEO?.title} url={SEO?.openGraph?.url} twitterHandle={SEO?.twitter?.handle}/>
-                <VideoPlayer data={data?.players}/>
-                <NavCaps data={data}/>
-                <Comments/>
-            </main>
-        </Layout>
-    );
+    render() {
+        const { data } = this.props;
+        return (
+            <Layout>
+                <Head>
+                    <title>{`Ver ${data?.anime?.title} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.NAME}`}</title>
+                    <meta name="description" content={`Anime ${data?.anime?.title} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`} />
+                    <link rel="canonical" href={`${process.env.URL}/${slugEpisode(data?.anime?.slug,data?.number)}`} />
+                    <meta name="og:title" content={`Ver ${data?.anime?.title} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.NAME}`} />
+                    <meta name="og:description" content={`Anime ${data?.anime?.title} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`} />
+                    <meta name="og:url" content={`${process.env.URL}/${slugEpisode(data?.anime?.slug,data?.number)}`} />
+                    <meta name="og:locale" content="es_LA" />
+                    <meta name="og:type" content="video.episode" />
+                    <meta name="og:image" content={imageEpisode(data?.anime?.banner)} />
+                    <meta property="og:image:width" content="552" />
+			        <meta property="og:image:height" content="310" />
+                    <meta itemProp="image" content={imageEpisode(data?.anime?.banner)} />
+                </Head>
+                <main className={styles.container}>
+                    { this.videoPlayer() }
+                    { this.navCaps() }
+                    <Comments/>
+                </main>
+            </Layout>
+        );
+    }
 }
 
 export async function getServerSideProps(context) {
@@ -141,5 +193,3 @@ export async function getServerSideProps(context) {
         }
     }
 }
-
-export default number

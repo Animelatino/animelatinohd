@@ -2,26 +2,19 @@
     padding: 2rem 0;
 }
 
-.box h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+.box h1 {
+    border: 0;
+    margin: calc(2rem - .14285em) 0 1rem;
+    padding: .25em 0;
+    font-weight: 700;
+    line-height: 1.2857em;
+    font-size: 1rem;
     text-transform: uppercase;
-    margin: 1rem 0;
 }
 
-.box h2:before,
-.box h2:after {
-    content: '';
-    border-top: .1rem solid;
-    margin: 0 2rem 0 0;
-    flex: 1 0 2rem;
-    border-color: var(--primary-color);
-}
-
-.box h2:after {
-    margin: 0 0 0 2rem;
+.box h1 > .border {
+    padding-bottom: .3em;
+    border-bottom: solid 1px #e50914;
 }
 
 .box .listEpisodes {
@@ -51,6 +44,6 @@
 
 @media (max-width: 425px) {
     .box .listEpisodes {
-        grid-template-columns: repeat(1, 1fr);
+        grid-template-columns: repeat(2, 1fr);
     }
 }

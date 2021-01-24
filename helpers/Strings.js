@@ -26,6 +26,10 @@ export const getStatusAnime = (status) => {
     return status === 0 ? 'Finalizado' : 'En emisión';
 }
 
+export const getYear = (date) => {
+    return moment(date).format('YYYY');
+}
+
 export const getDateAiredAnime = (date) => {
     return moment(date).format('LL');
 }
@@ -64,3 +68,11 @@ export const getNowDay = () => {
     var d = new Date();
     return d.getDay() + 1;
 }
+
+
+export const getUrlVideo = (video) => {
+    let url = video?.server?.type === 1 ? (video?.server?.embed ? video?.server?.embed?.replace('id',video?.code) : video?.code ) : process.env.STREAMURL+video.id;
+    return url;
+}
+
+
