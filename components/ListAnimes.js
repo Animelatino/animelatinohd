@@ -9,9 +9,14 @@ export default class ListAnimes extends Component {
     }
 
     render() {
-        const { animes, filters, paginate } = this.props;
+        const { animes, title, filters, paginate } = this.props;
         return (
             <div className={styles.box}>
+                {title && (
+                    <h1>
+                        <span className={styles.border}>{title}</span>
+                    </h1>
+                )}
                 { filters }
                 { animes?.length > 0 
                 ?   <div className={styles.listAnimes}>
