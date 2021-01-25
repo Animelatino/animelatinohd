@@ -26,10 +26,9 @@ export default class number extends Component {
     static getDerivedStateFromProps(nextProps, prevState){
         let defaultLang = nextProps.data?.players[0] == undefined ? 1 : 0;
         if(nextProps.data.id !== prevState.id){
-            defaultLang = prevState.languaje;
             return {
-                iframe: getUrlVideo(nextProps.data?.players[defaultLang][0]),
-                languaje: nextProps.data?.players[0] == undefined ? 1 : 0,
+                iframe: getUrlVideo(nextProps.data?.players[prevState.languaje][0]),
+                languaje: prevState.languaje,
                 server: 0,
                 random: prevState.random + 1,
                 id: nextProps.data.id
@@ -37,7 +36,7 @@ export default class number extends Component {
         }else{
             if(prevState.iframe == null){
                 return {
-                    iframe: getUrlVideo(nextProps.data?.players[defaultLang][0]),
+                    iframe: nextProps.data?.players[defaultLang] ? getUrlVideo(nextProps.data?.players[defaultLang][0]) : null,
                 }
             }else{
                 return prevState;
@@ -66,7 +65,7 @@ export default class number extends Component {
 
     videoPlayer = () => {
         const { data } = this.props;
-        const { iframe, server, languaje, random } = this.state;
+        const { iframe, languaje, random, msg } = this.state;
         return(
             <div className={styles.videoPlayer}>
                 { getCheckLatino(data?.players) && (
@@ -74,27 +73,31 @@ export default class number extends Component {
                         <span>Este capítulo está disponible en <b>Español Latino</b></span>
                     </div>
                 )}
-                <div className={styles.options}>
-                    <div className={styles.type}>
-                        <label htmlFor={"languaje"}>Idioma</label>
-                        <select name={"languaje"} id={"languaje"} onChange={this.handleChange}>
-                            {Object.keys(data?.players)?.map((item, idx) => (
-                                <option value={item} key={idx}>{getLanguajePlayer(item)}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className={styles.type}>
-                        <label htmlFor={"server"}>Servidor</label>
-                        <select name={"server"} id={"server"} onChange={this.handleChange}>
-                            {data?.players[languaje]?.map((item, idx) => (
-                                <option value={idx} key={idx}>{item?.server?.title}</option>
-                            ))}
-                        </select>
-                    </div>
-                </div>
-                <div className={styles.video}>
-                    <Iframe key={random} allow={"fullscreen"} url={iframe} display="initial"/>
-                </div>
+                { iframe && (
+                    <>
+                        <div className={styles.options}>
+                            <div className={styles.type}>
+                                <label htmlFor={"languaje"}>Idioma</label>
+                                <select name={"languaje"} id={"languaje"} onChange={this.handleChange}>
+                                    {Object.keys(data?.players)?.map((item, idx) => (
+                                        <option value={item} key={idx}>{getLanguajePlayer(item)}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className={styles.type}>
+                                <label htmlFor={"server"}>Servidor</label>
+                                <select name={"server"} id={"server"} onChange={this.handleChange}>
+                                    {data?.players[languaje]?.map((item, idx) => (
+                                        <option value={idx} key={idx}>{item?.server?.title}</option>
+                                    ))}
+                                </select>
+                            </div>
+                        </div>
+                        <div className={styles.video}>
+                            <Iframe key={random} allow={"fullscreen"} url={iframe} display="initial"/>
+                        </div>
+                    </>
+                )}
             </div>
         )
     }

@@ -3,9 +3,7 @@ import AnimeCard from './AnimeCard';
 
 import styles from '../styles/ListAnimes.module.css';
 
-
 export default class ListAnimes extends Component {
-
     constructor(props) {
         super(props);
     }

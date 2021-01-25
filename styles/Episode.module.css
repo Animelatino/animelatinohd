@@ -161,6 +161,7 @@
     .container .videoPlayer .options {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 1rem;
     }
     
     .container .videoPlayer .options .type {
@@ -173,5 +174,6 @@
         min-width: 0;
         font-size: .7rem;
         padding: .5rem 0.3rem;
+        width: 100%;
     }
 }

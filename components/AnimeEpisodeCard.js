@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../styles/EpisodeCard.module.css';
 import { imageEpisode, slugEpisode } from '../helpers/Functions';
 
-export default class AnimeEpisodeCard extends Component {
+import styles from '../styles/EpisodeCard.module.css';
 
+export default class AnimeEpisodeCard extends Component {
     constructor(props) {
         super(props);
     }
 
     render() {
         const { anime, episode } = this.props;
-
         return (
             <div className={styles.container}>
                 <div className={styles.holder}>

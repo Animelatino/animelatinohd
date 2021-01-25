@@ -1,27 +1,33 @@
-import React from "react";
+import React, { Component } from 'react';
 import Link from 'next/link';
-import styles from '../styles/AnimeCalendar.module.css';
 import { bannerAnime, slugAnime, isNowEpisode } from '../helpers/Functions';
 import { getFromNow } from '../helpers/Strings';
 
-const AnimeCalendar = ({data}) => {
-    return (
-        <Link href={slugAnime(data?.slug)}>
-            <a className={styles.item}>
-                <div className={styles.content} style={{ backgroundImage: "url("+`${bannerAnime(data?.banner)}`+")"}}>
-                    <div className={styles.text}>
-                        <p>{ isNowEpisode(data?.date) ? `Episodio ${data?.lastEpisode}` : `Episodio ${parseInt(data?.lastEpisode + 1)}` }
-                            <b>{ isNowEpisode(data?.date) ? getFromNow(data?.date) : ''}</b>
-                        </p>
-                        <h1>
-                            <div className={styles.limit}>{ data?.title }</div>
-                        </h1>
-                    </div>
-                    <div className={styles.overlay}></div>
-                </div>
-            </a>
-        </Link>
-    );
-};
+import styles from '../styles/AnimeCalendar.module.css';
 
-export default AnimeCalendar;
+export default class AnimeCalendar extends Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        const { data } = this.props;
+        return (
+            <Link href={slugAnime(data?.slug)}>
+                <a className={styles.item}>
+                    <div className={styles.content} style={{ backgroundImage: "url("+`${bannerAnime(data?.banner)}`+")"}}>
+                        <div className={styles.text}>
+                            <p>{ isNowEpisode(data?.date) ? `Episodio ${data?.lastEpisode}` : `Episodio ${parseInt(data?.lastEpisode + 1)}` }
+                                <b>{ isNowEpisode(data?.date) ? getFromNow(data?.date) : ''}</b>
+                            </p>
+                            <h1>
+                                <div className={styles.limit}>{ data?.title }</div>
+                            </h1>
+                        </div>
+                        <div className={styles.overlay}></div>
+                    </div>
+                </a>
+            </Link>
+        );
+    }
+}

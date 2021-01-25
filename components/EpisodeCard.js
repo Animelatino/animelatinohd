@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import styles from '../styles/EpisodeCard.module.css';
 import { imageEpisode, posterAnime, slugEpisode, slugAnime } from '../helpers/Functions';
 import { getFromNow } from '../helpers/Strings';
+
+import styles from '../styles/EpisodeCard.module.css';
 
 export default class EpisodeCard extends Component {
     constructor(props) {

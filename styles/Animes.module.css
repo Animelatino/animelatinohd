@@ -89,15 +89,22 @@
 }
 
 @media (max-width: 768px) {
+    .container .filter {
+        margin-bottom: 1rem;
+    }
     .container .filter .ListTypes {
         padding: 0;
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         grid-column-gap: 1rem;
         grid-row-gap: 1rem;
     }
     .container .filter .ListTypes .type {
         margin: 0;
+    }
+    .container .filter .ListTypes .type select {
+        width: 100%;
+        min-width: 0;
     }
 }
 
@@ -118,5 +125,6 @@
         border: 0;
         padding: .7rem .5rem;
         font-size: .6rem;
+        width: 100%;
     }
 }

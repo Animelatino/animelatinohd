@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import styles from '../styles/ListEpisodes.module.css';
 import EpisodeCard from './EpisodeCard';
+
+import styles from '../styles/ListEpisodes.module.css';
 
 export default class ListEpisodes extends Component {
     constructor(props) {
