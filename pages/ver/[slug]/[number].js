@@ -6,8 +6,8 @@ import Iframe from 'react-iframe';
 import { api } from '../../../lib/api';
 import Layout from '../../../components/Layout';
 import Comments from "../../../components/Comments";
-import { slugEpisode, slugAnime, imageAnimeSearch, imageEpisode} from '../../../helpers/Functions';
-import { getLanguajePlayer, getUrlVideo } from '../../../helpers/Strings';
+import { slugEpisode, slugAnime, imageAnimeSearch, imageEpisode } from '../../../helpers/Functions';
+import { getLanguajePlayer, getUrlVideo, getCheckLatino } from '../../../helpers/Strings';
 
 import styles from '../../../styles/Episode.module.css';
 
@@ -68,6 +68,11 @@ export default class number extends Component {
         const { iframe, server, languaje, random } = this.state;
         return(
             <div className={styles.videoPlayer}>
+                { getCheckLatino(data?.players) && (
+                    <div className={styles.msg}>
+                        <span>Este capítulo está disponible en <b>Español Latino</b></span>
+                    </div>
+                )}
                 <div className={styles.options}>
                     <div className={styles.type}>
                         <label htmlFor={"languaje"}>Idioma</label>

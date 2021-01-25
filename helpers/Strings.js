@@ -74,4 +74,10 @@ export const getUrlVideo = (video) => {
     return url;
 }
 
+export const getCheckLatino = (players) => {
+    return 1 in players ? true : false;
+}
+
+
+
 
