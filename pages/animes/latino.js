@@ -17,10 +17,10 @@ class index extends Component {
         return (
             <Layout>
                 <Head>
-                    <title>{`Lista de animes en Español LAtino • ${process.env.NAME}`}</title>
+                    <title>{`Lista de animes en Español Latino • ${process.env.NAME}`}</title>
                     <meta name="description" content={`Anime Online en Español Latino Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.NAME}`} />
                     <link rel="canonical" href={`${process.env.URL}/animes`} />
-                    <meta name="og:title" content={`Lista de animes en Español LAtino • ${process.env.NAME}`} />
+                    <meta name="og:title" content={`Lista de animes en Español Latino • ${process.env.NAME}`} />
                     <meta name="og:description" content={`Anime Online en Español Latino Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.NAME}`} />
                     <meta name="og:url" content={`${process.env.URL}/animes`} />
                     <meta name="og:locale" content="es_LA" />
