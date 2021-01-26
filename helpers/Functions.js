@@ -23,6 +23,11 @@ export const bannerAnime = (image) => {
     return pathTmdb+size+image;
 }
 
+export const bannerAnimeCalendar = (image) => {
+    const size = 'w300';
+    return pathTmdb+size+image;
+}
+
 export const slugAnime = (slug) => {
     return `/anime/${slug}`;
 }

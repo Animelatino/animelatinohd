@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
-import { bannerAnime, slugAnime, isNowEpisode } from '../helpers/Functions';
+import { bannerAnimeCalendar, slugAnime, isNowEpisode } from '../helpers/Functions';
 import { getFromNow } from '../helpers/Strings';
 
 import styles from '../styles/AnimeCalendar.module.css';
@@ -15,7 +15,7 @@ export default class AnimeCalendar extends Component {
         return (
             <Link href={slugAnime(data?.slug)}>
                 <a className={styles.item}>
-                    <div className={styles.content} style={{ backgroundImage: "url("+`${bannerAnime(data?.banner)}`+")"}}>
+                    <div className={styles.content} style={{ backgroundImage: "url("+`${bannerAnimeCalendar(data?.banner)}`+")"}}>
                         <div className={styles.text}>
                             <p>{ isNowEpisode(data?.date) ? `Episodio ${data?.lastEpisode}` : `Episodio ${parseInt(data?.lastEpisode + 1)}` }
                                 <b>{ isNowEpisode(data?.date) ? getFromNow(data?.date) : ''}</b>
