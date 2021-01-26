@@ -26,7 +26,7 @@ export default class number extends Component {
     static getDerivedStateFromProps(nextProps, prevState){
         let defaultLang = prevState.languaje;
         if(nextProps.data.id !== prevState.id){
-            defaultLang = nextProps.data?.players[defaultLang] == undefined ? defaultLang : 0 ;
+            defaultLang = nextProps.data?.players[defaultLang] == undefined ? 0 : defaultLang;
             return {
                 iframe: nextProps.data?.players[defaultLang] ? getUrlVideo(nextProps.data?.players[defaultLang][0]) : null,
                 languaje: defaultLang,
