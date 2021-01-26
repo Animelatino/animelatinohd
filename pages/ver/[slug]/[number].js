@@ -24,11 +24,12 @@ export default class number extends Component {
     }
 
     static getDerivedStateFromProps(nextProps, prevState){
-        let defaultLang = nextProps.data?.players[0] == undefined ? 1 : 0;
+        let defaultLang = prevState.languaje;
         if(nextProps.data.id !== prevState.id){
+            defaultLang = nextProps.data?.players[defaultLang] == undefined ? defaultLang : 0 ;
             return {
-                iframe: getUrlVideo(nextProps.data?.players[prevState.languaje][0]),
-                languaje: prevState.languaje,
+                iframe: nextProps.data?.players[defaultLang] ? getUrlVideo(nextProps.data?.players[defaultLang][0]) : null,
+                languaje: defaultLang,
                 server: 0,
                 random: prevState.random + 1,
                 id: nextProps.data.id
