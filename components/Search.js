@@ -78,7 +78,7 @@ export default class Search extends Component {
                                         )   
                                     })
                                 )}
-                                <div className={styles.empty}>{ !query || query?.length < 3 ? `Max. 3 caracteres` : ( animes.length > 0 ? `Resultados para ${query}` : `No hay resultados`) }</div>
+                                <div className={styles.empty}>{ !query || query?.length < 3 ? `Min. 3 caracteres` : ( animes.length > 0 ? `Resultados para ${query}` : `No hay resultados`) }</div>
                             </>
                     }
                 </div>
