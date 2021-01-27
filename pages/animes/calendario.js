@@ -31,22 +31,24 @@ export default class calendario extends Component {
                     <meta itemProp="image" content="https://i.imgur.com/Iof3uSm.jpg" />
                 </Head>
                 <main className={styles.container}>
-                    <h1 className={styles.title}>
-                        <span className={styles.border}>Calendario Anime</span>
-                    </h1>
-                    {simulCast(simulcast)?.map((item, idx) => (
-                        <div key={idx} className={styles.calendar}>
-                            <div className={styles.date}>
-                                <h3 className={styles.day}>{item?.dayName}</h3>
-                                <span className={styles.split}></span>
+                    <div className={styles.listCalendar}>
+                        <h1 className={styles.title}>
+                            <span className={styles.border}>Calendario Anime</span>
+                        </h1>
+                        {simulCast(simulcast)?.map((item, idx) => (
+                            <div key={idx} className={styles.calendar}>
+                                <div className={styles.date}>
+                                    <h3 className={styles.day}>{item?.dayName}</h3>
+                                    <span className={styles.split}></span>
+                                </div>
+                                <div className={styles.data}>
+                                    {item?.data?.map((i, idx) => (
+                                        <AnimeCalendar key={idx} data={i}/>
+                                    ))}
+                                </div>
                             </div>
-                            <div className={styles.data}>
-                                {item?.data?.map((i, idx) => (
-                                    <AnimeCalendar key={idx} data={i}/>
-                                ))}
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </main>
             </Layout>
         );

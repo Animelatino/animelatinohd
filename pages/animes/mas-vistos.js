@@ -17,11 +17,11 @@ class index extends Component {
         return (
             <Layout>
                 <Head>
-                    <title>{`Lista de animes en Español Latino • ${process.env.NAME}`}</title>
-                    <meta name="description" content={`Anime Online en Español Latino Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.NAME}`} />
+                    <title>{`Lista de animes más vistos • ${process.env.NAME}`}</title>
+                    <meta name="description" content={`Anime Online Sub Español y Español Latino Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.NAME}`} />
                     <link rel="canonical" href={`${process.env.URL}/animes`} />
-                    <meta name="og:title" content={`Lista de animes en Español Latino • ${process.env.NAME}`} />
-                    <meta name="og:description" content={`Anime Online en Español Latino Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.NAME}`} />
+                    <meta name="og:title" content={`Lista de animes más vistos • ${process.env.NAME}`} />
+                    <meta name="og:description" content={`Anime Online Sub Español y Español Latino Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.NAME}`} />
                     <meta name="og:url" content={`${process.env.URL}/animes`} />
                     <meta name="og:locale" content="es_LA" />
                     <meta name="og:type" content="website" />
@@ -31,7 +31,7 @@ class index extends Component {
                     <meta itemProp="image" content="https://i.imgur.com/Iof3uSm.jpg" />
                 </Head>
                 <main className={styles.container}>
-                    <ListAnimes title={'Animes en Español Latino'} animes={Object.values(data)}/>
+                    <ListAnimes title={'Animes más vistos'} animes={data?.being_watched}/>
                 </main>
             </Layout>
         );
@@ -39,7 +39,7 @@ class index extends Component {
 }
 
 export async function getServerSideProps() {
-    const res = await api.get(`anime/latino`);
+    const res = await api.get(`anime/trending`);
     return {
         props: {
             data: res.data

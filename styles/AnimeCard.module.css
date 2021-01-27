@@ -24,6 +24,16 @@
     padding: .2rem;
 }
 
+.anime > .cover > .score > span {
+    display: flex;
+    margin-right: .2rem;
+}
+
+.anime > .cover > .score > span > svg{
+    fill: #EABE3F;
+    width: .8rem;
+}
+
 .anime > .cover > .score > b {
     margin-left: 3px;
     color: #EABE3F;

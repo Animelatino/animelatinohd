@@ -83,6 +83,26 @@ export const isNowEpisode = (date_now) => {
     }
 }
 
+export const nFormatter = (num, digits) => {
+    var si = [
+        { value: 1, symbol: "" },
+        { value: 1E3, symbol: "K" },
+        { value: 1E6, symbol: "M" },
+        { value: 1E9, symbol: "G" },
+        { value: 1E12, symbol: "T" },
+        { value: 1E15, symbol: "P" },
+        { value: 1E18, symbol: "E" }
+    ];
+    var rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+    var i;
+    for (i = si.length - 1; i > 0; i--) {
+        if (Math.abs(num) >= si[i].value) {
+            break;
+        }
+    }
+    return (num / si[i].value).toFixed(digits).replace(rx, "$1") + si[i].symbol;
+}
+
 export const menuItems = () => {
     const items = [
         {
@@ -99,6 +119,16 @@ export const menuItems = () => {
             link: '/animes/latino',
             name: 'Latino',
             icon: '<path d="M9,5V9H21V5M9,19H21V15H9M9,14H21V10H9M4,9H8V5H4M4,19H8V15H4M4,14H8V10H4V14Z"></path>'
+        },
+        {
+            link: '/animes/mas-vistos',
+            name: 'Más vistos',
+            icon: '<g data-name="Layer 2"><path d="M12 5C5 5 2 11 2 12s3 7 10 7 10-6 10-7-3-7-10-7zm0 12c-4 0-7-4-8-5 1-1 4-5 8-5s7 4 8 5c-1 1-4 5-8 5z"/><path d="M12 8a4 4 0 104 4 4 4 0 00-4-4zm0 6a2 2 0 112-2 2 2 0 01-2 2z"/></g>'
+        },
+        {
+            link: '/animes/populares',
+            name: 'Populares',
+            icon: '<path d="M8 24h1c-1-2-2-4-1-6l4-7s0 3 2 5 3 5 1 8c2-1 4-3 4-7v-4l-3-4c0-1 0 0 0 0l-1 2-1-3c0-3 0-5-2-7l-1-1h-1c1 2 0 6-3 11-4 5-2 8-2 9l3 4zm0 0"/>'
         }
     ]
     return items;
