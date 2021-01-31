@@ -37,7 +37,7 @@ export default class number extends Component {
         }else{
             if(prevState.iframe == null){
                 return {
-                    iframe: nextProps.data?.players[defaultLang] ? getUrlVideo(nextProps.data?.players[defaultLang][0]) : null,
+                    iframe: nextProps.data?.players[defaultLang] ? getUrlVideo(nextProps.data?.players[defaultLang][0]) : null
                 }
             }else{
                 return prevState;
@@ -66,7 +66,7 @@ export default class number extends Component {
 
     videoPlayer = () => {
         const { data } = this.props;
-        const { iframe, languaje, random, msg } = this.state;
+        const { iframe, languaje, random, server } = this.state;
         return(
             <div className={styles.videoPlayer}>
                 { getCheckLatino(data?.players) && (
@@ -87,7 +87,7 @@ export default class number extends Component {
                             </div>
                             <div className={styles.type}>
                                 <label htmlFor={"server"}>Servidor</label>
-                                <select name={"server"} id={"server"} onChange={this.handleChange}>
+                                <select name={"server"} value={server} id={"server"} onChange={this.handleChange}>
                                     {data?.players[languaje]?.map((item, idx) => (
                                         <option value={idx} key={idx}>{item?.server?.title}</option>
                                     ))}
@@ -140,7 +140,7 @@ export default class number extends Component {
                                     <svg viewBox="0 0 24 24">
                                         <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
                                     </svg>
-                                    Ant.
+                                    Ep. Anterior
                                 </a>
                             </Link>
                         )}
@@ -156,7 +156,7 @@ export default class number extends Component {
                         { data?.siguiente && (
                             <Link href={slugEpisode(data?.anime?.slug, data?.siguiente?.number)}>
                                 <a className={styles.button}>
-                                    Sig. 
+                                    Ep. Siguiente
                                     <svg viewBox="0 0 24 24">
                                         <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
                                     </svg>
@@ -198,9 +198,10 @@ export default class number extends Component {
 }
 
 export async function getServerSideProps(context) {
-    const res = await api.get(`episodes/${context.params.slug}/${context.params.number}`)
+    const res = await api.get(`episodes/${context.params.slug}/${context.params.number}`);
     return {
-        props: { 
+        notFound: res.status !== 200 ? true : false,
+        props: {
             data: res.data 
         }
     }
