@@ -201,7 +201,7 @@ export async function getServerSideProps(context) {
         const res = await api.get(`episodes/${context.params.slug}/${context.params.number}`);
         return {
             props: { 
-                data: res.data 
+                data: res.data
             }
         }
     } catch (error) {

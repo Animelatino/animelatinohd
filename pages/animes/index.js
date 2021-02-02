@@ -21,11 +21,12 @@ class index extends Component {
         this.setState({
             filter: {
                 ...filter,
-                [e.target.name]: e.target.value
+                [e.target.name]: e.target.value,
             }
         }, () => router.push({
             query: {
                 ...router.query,
+                page: 1,
                 [e.target.name]: e.target.value
             }
         }))
