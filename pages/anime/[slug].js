@@ -23,11 +23,11 @@ export default class slug extends Component {
             <div className={styles.banner} style={{ backgroundImage: "url("+`${bannerAnime(data?.banner)}`+")"}}>
                 <div className={styles.content} >
                     <div className={styles.column}>
-                        <h1>{data?.title}</h1>
+                        <h1>{data?.name}</h1>
                         <div className={styles.genres}>
                             { data?.genres && data?.genres?.split(',')?.map((genre, idx) => (
                                 <Link key={idx} href={slugGenre(genre)}>
-                                    <a className={styles.item}  title={genre}>{genre}</a>
+                                    <a className={styles.item} title={genre.replace(/-/g,' ')}>{genre.replace(/-/g,' ')}</a>
                                 </Link>
                             ))} 
                         </div>
@@ -45,7 +45,7 @@ export default class slug extends Component {
                 <div className={styles.cover}>
                     <Image
                         className="poster"
-                        alt={data?.title}
+                        alt={data?.name}
                         height="auto"
                         width="auto"
                         layout="responsive"
@@ -65,7 +65,7 @@ export default class slug extends Component {
                                 <svg viewBox="0 0 24 24">
                                     <path d="M20,12A8,8 0 0,1 12,20A8,8 0 0,1 4,12A8,8 0 0,1 12,4C12.76,4 13.5,4.11 14.2,4.31L15.77,2.74C14.61,2.26 13.34,2 12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12M7.91,10.08L6.5,11.5L11,16L21,6L19.59,4.58L11,13.17L7.91,10.08Z"></path>
                                 </svg>
-                                { data?.popularity }
+                                {data?.popularity}
                             </div>
                         </div>
                     </div>
@@ -74,16 +74,19 @@ export default class slug extends Component {
                         <svg viewBox="0 0 24 24" className={styles.gold}>
                             <path d="M12,17.27L18.18,21L16.54,13.97L22,9.24L14.81,8.62L12,2L9.19,8.62L2,9.24L7.45,13.97L5.82,21L12,17.27Z"></path>
                         </svg>
-                        { getVoteAverageAnime(data?.vote_average) }
+                        {getVoteAverageAnime(data?.vote_average)}
                     </div>
                     <div className={styles.item}>
-                        <small>Estado</small> { getStatusAnime(data?.status) }
+                        <small>Estado</small> {getStatusAnime(data?.status)}
                     </div>
                     <div className={styles.item}>
-                        <small>Clasificación</small> { getRatingAnime(data?.rating) }
+                        <small>Clasificación</small> {getRatingAnime(data?.rating)}
                     </div>
                     <div className={styles.item}>
-                        <small>Estreno</small> { getDateAiredAnime(data?.aired) }
+                        <small>Estreno</small> {getDateAiredAnime(data?.aired)}
+                    </div>
+                    <div className={styles.item}>
+                        <small>Titulos Alternativos</small> {data?.name_alternative}
                     </div>
                 </div>
             </div>
@@ -112,10 +115,10 @@ export default class slug extends Component {
         return (
             <Layout>
                 <Head>
-                    <title>{`Ver ${data?.title} Sub Español Latino en HD Online • ${process.env.NAME}`}</title>
+                    <title>{`Ver ${data?.name} Sub Español Latino en HD Online • ${process.env.NAME}`}</title>
                     <meta name="description" content={`${(data?.overview?.length > 165 ? (data?.overview?.slice(0,165) + '...') : data?.overview)}`} />
                     <link rel="canonical" href={`${process.env.URL}/${slugAnime(data?.slug)}`} />
-                    <meta name="og:title" content={`Ver ${data?.title} Sub Español Latino en HD Online • ${process.env.NAME}`} />
+                    <meta name="og:title" content={`Ver ${data?.name} Sub Español Latino en HD Online • ${process.env.NAME}`} />
                     <meta name="og:description" content={`${(data?.overview?.length > 165 ? (data?.overview?.slice(0,165) + '...') : data?.overview)}`} />
                     <meta name="og:url" content={`${process.env.URL}/${slugAnime(data?.slug)}`} />
                     <meta name="og:locale" content="es_LA" />
@@ -138,11 +141,16 @@ export default class slug extends Component {
 }
 
 export async function getServerSideProps(context) {
-    const res = await api.get(`anime/${context.params.slug}`)
-    return {
-        notFound: res.status !== 200 ? true : false,
-        props: { 
-            data: res.data 
+    try {
+        const res = await api.get(`anime/${context.params.slug}`);
+        return {
+            props: { 
+                data: res.data 
+            }
+        }
+    } catch (error) {
+        return {
+            notFound: true
         }
     }
 }

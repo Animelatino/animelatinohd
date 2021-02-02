@@ -17,14 +17,14 @@ export default class AnimeEpisodeCard extends Component {
                 <div className={styles.holder}>
                     <div className={styles.overlay}>
                         <Link href={slugEpisode(anime?.slug, episode?.number)}>
-                            <a className={styles.play}>
+                            <a className={styles.play} alt={`${anime?.name} ${episode?.number}`} title={`${anime?.name} ${episode?.number}`}>
                                 <svg viewBox="0 0 24 24"><path d="M8,5.14V19.14L19,12.14L8,5.14Z"></path></svg>
                             </a>
                         </Link>
                     </div>
                     <Image 
                         className="poster"
-                        alt={`${anime?.title} ${episode?.number}`}
+                        alt={`${anime?.name} ${episode?.number}`}
                         height="auto"
                         width="auto"
                         layout="responsive"
@@ -33,8 +33,8 @@ export default class AnimeEpisodeCard extends Component {
                 </div>
                 <div className={styles.text}>
                     <Link href={slugEpisode(anime?.slug, episode?.number)}>
-                        <a className={styles.title}>
-                            <div className={styles.limit}>{anime?.title}</div>
+                        <a className={styles.title} alt={`${anime?.name} ${episode?.number}`} title={`${anime?.name} ${episode?.number}`}>
+                            <div className={styles.limit}>{anime?.name}</div>
                             <span className={styles.episode}>{`Ep. ${episode?.number}`}</span>
                         </a>
                     </Link>

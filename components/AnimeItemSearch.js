@@ -14,11 +14,11 @@ export default class AnimeItemSearch extends Component {
         const { data } = this.props;
         return (
             <Link href={slugAnime(data?.slug)}>
-                <a className={styles.result}>
+                <a className={styles.result} alt={data?.name} title={data?.name}>
                     <div className={styles.image}>
                         <Image 
                             className="poster"
-                            alt={data?.title}
+                            alt={data?.name}
                             height="auto"
                             width="auto"
                             layout="responsive"
@@ -26,7 +26,7 @@ export default class AnimeItemSearch extends Component {
                             src={imageAnimeSearch(data?.poster) }/>
                     </div>
                     <div className={styles.content}>
-                        <p className={styles.title}>{data?.title}</p>
+                        <p className={styles.title}>{data?.name}</p>
                         <p className={styles.type}>{data?.type}</p>
                     </div>
                 </a>

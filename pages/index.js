@@ -40,11 +40,9 @@ export default class index extends Component {
 
 export async function getServerSideProps() {
     const releases = await api.get(`releases`);
-    const trending = await api.get(`anime/trending`);
     return {
         props: { 
-            releases: releases.data,
-            trending: trending.data
+            releases: releases.data
         }
     }
 }

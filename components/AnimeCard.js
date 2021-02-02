@@ -17,11 +17,11 @@ export default class AnimeCard extends Component {
             <div className={styles.anime}>
                 <div className={styles.cover}>
                     <Link href={slugAnime(data?.slug)}>
-                        <a title={data?.title}>
+                        <a title={data?.name} alt={data?.name}>
                             <div className={styles.image}>
                                 <Image
                                     className="poster"
-                                    alt={data?.title}
+                                    alt={data?.name}
                                     height="auto"
                                     width="auto"
                                     layout="responsive"
@@ -35,8 +35,8 @@ export default class AnimeCard extends Component {
                 <div className={styles.info}>
                     <h3>
                         <Link href={slugAnime(data?.slug)}>
-                            <a className={styles.title} title={data?.title}>
-                                <span className={styles.limit}>{data?.title}</span>
+                            <a className={styles.title} alt={data?.name} title={data?.name}>
+                                <span className={styles.limit}>{data?.name}</span>
                             </a>
                         </Link>
                     </h3>

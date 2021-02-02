@@ -112,7 +112,7 @@ export default class number extends Component {
                         <a className={styles.cover}>
                             <Image 
                                 className={styles.cover}
-                                alt={`${data?.anime?.title} ${data?.number}`}
+                                alt={`${data?.anime?.name} ${data?.number}`}
                                 height="auto"
                                 width="auto"
                                 layout="responsive"
@@ -124,7 +124,7 @@ export default class number extends Component {
                             <div className={styles.info}>
                                 <h1>
                                     <Link href={slugAnime(data?.anime?.slug)}>
-                                        <a>{data?.anime?.title}</a>
+                                        <a>{data?.anime?.name}</a>
                                     </Link>
                                 </h1>
                                 <span className={styles.currentEp}>{`Episodio ${data?.number}`}</span>
@@ -173,11 +173,11 @@ export default class number extends Component {
         return (
             <Layout>
                 <Head>
-                    <title>{`Ver ${data?.anime?.title} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.NAME}`}</title>
-                    <meta name="description" content={`Anime ${data?.anime?.title} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`} />
+                    <title>{`Ver ${data?.anime?.name} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.NAME}`}</title>
+                    <meta name="description" content={`Anime ${data?.anime?.name} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`} />
                     <link rel="canonical" href={`${process.env.URL}/${slugEpisode(data?.anime?.slug,data?.number)}`} />
-                    <meta name="og:title" content={`Ver ${data?.anime?.title} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.NAME}`} />
-                    <meta name="og:description" content={`Anime ${data?.anime?.title} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`} />
+                    <meta name="og:title" content={`Ver ${data?.anime?.name} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.NAME}`} />
+                    <meta name="og:description" content={`Anime ${data?.anime?.name} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`} />
                     <meta name="og:url" content={`${process.env.URL}/${slugEpisode(data?.anime?.slug,data?.number)}`} />
                     <meta name="og:locale" content="es_LA" />
                     <meta name="og:type" content="video.episode" />
@@ -197,11 +197,16 @@ export default class number extends Component {
 }
 
 export async function getServerSideProps(context) {
-    const res = await api.get(`episodes/${context.params.slug}/${context.params.number}`);
-    return {
-        notFound: res.status !== 200 ? true : false,
-        props: {
-            data: res.data 
+    try {
+        const res = await api.get(`episodes/${context.params.slug}/${context.params.number}`);
+        return {
+            props: { 
+                data: res.data 
+            }
+        }
+    } catch (error) {
+        return {
+            notFound: true
         }
     }
 }

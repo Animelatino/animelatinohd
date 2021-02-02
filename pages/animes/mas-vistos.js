@@ -39,7 +39,7 @@ class index extends Component {
 }
 
 export async function getServerSideProps() {
-    const res = await api.get(`anime/trending`);
+    const res = await api.get(`anime/more-view`);
     return {
         props: {
             data: res.data

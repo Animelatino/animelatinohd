@@ -31,7 +31,7 @@ class index extends Component {
                     <meta itemProp="image" content="https://i.imgur.com/Iof3uSm.jpg" />
                 </Head>
                 <main className={styles.container}>
-                    <ListAnimes title={'Animes en Español Latino'} animes={Object.values(data)}/>
+                    <ListAnimes title={'Animes en Español Latino'} animes={data}/>
                 </main>
             </Layout>
         );
