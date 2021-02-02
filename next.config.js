@@ -8,8 +8,8 @@ const nextConfig = {
     env: {
         NAME: 'AnimeLHD',
         URL: 'https://www.animelatinohd.com/',
-        APIURL: 'http://apijson.test/api/',
-        STREAMURL: 'http://apijson.test/stream/',
+        APIURL: 'https://www.animelatinohd.com/api/',
+        STREAMURL: 'https://www.animelatinohd.com/stream/',
         GA_TRACKING_ID: 'UA-162278791-1',
         DISQUS_SHORTNAME: 'animelatinohd'
     },
