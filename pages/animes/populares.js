@@ -38,13 +38,13 @@ class index extends Component {
     }
 }
 
-export async function getServerSideProps() {
+export const getStaticProps = async () => {
     const res = await api.get(`anime/trending`);
     return {
-        props: {
+        props: { 
             data: res.data
         }
-    }
-}
+    };
+};
 
 export default withRouter(index);

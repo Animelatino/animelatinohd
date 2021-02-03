@@ -38,11 +38,11 @@ export default class index extends Component {
     }
 }
 
-export async function getServerSideProps() {
+export const getStaticProps = async () => {
     const releases = await api.get(`releases`);
     return {
         props: { 
-            releases: releases.data
+            releases: releases.data 
         }
-    }
-}
+    };
+};
