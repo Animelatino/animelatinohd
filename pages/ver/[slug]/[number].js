@@ -175,10 +175,10 @@ export default class number extends Component {
                 <Head>
                     <title>{`Ver ${data?.anime?.name} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.NAME}`}</title>
                     <meta name="description" content={`Anime ${data?.anime?.name} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`} />
-                    <link rel="canonical" href={`${process.env.URL}/${slugEpisode(data?.anime?.slug,data?.number)}`} />
+                    <link rel="canonical" href={`${process.env.URL}${slugEpisode(data?.anime?.slug,data?.number)}`} />
                     <meta name="og:title" content={`Ver ${data?.anime?.name} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.NAME}`} />
                     <meta name="og:description" content={`Anime ${data?.anime?.name} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`} />
-                    <meta name="og:url" content={`${process.env.URL}/${slugEpisode(data?.anime?.slug,data?.number)}`} />
+                    <meta name="og:url" content={`${process.env.URL}${slugEpisode(data?.anime?.slug,data?.number)}`} />
                     <meta name="og:locale" content="es_LA" />
                     <meta name="og:type" content="video.episode" />
                     <meta name="og:image" content={imageEpisode(data?.anime?.banner)} />
@@ -189,7 +189,7 @@ export default class number extends Component {
                 <main className={styles.container}>
                     { this.videoPlayer() }
                     { this.navCaps() }
-                    <Comments/>
+                    <Comments title={`${data?.anime?.slug} Episodio ${data?.number}`} url={`${process.env.URL}${slugEpisode(data?.anime?.slug,data?.number)}`} id={`${data?.anime?.slug}-${data?.number}`}/>
                 </main>
             </Layout>
         );

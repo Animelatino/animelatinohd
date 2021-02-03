@@ -105,7 +105,7 @@ export default class slug extends Component {
                         <AnimeEpisodeCard anime={data} episode={episode} key={idx} />
                     ))}
                 </div>
-                <Comments/>
+                <Comments title={data?.name} url={`${process.env.URL}${slugAnime(data?.slug)}`} id={data?.slug}/>
             </div>
         );
     }
@@ -117,10 +117,10 @@ export default class slug extends Component {
                 <Head>
                     <title>{`Ver ${data?.name} Sub Español Latino en HD Online • ${process.env.NAME}`}</title>
                     <meta name="description" content={`${(data?.overview?.length > 165 ? (data?.overview?.slice(0,165) + '...') : data?.overview)}`} />
-                    <link rel="canonical" href={`${process.env.URL}/${slugAnime(data?.slug)}`} />
+                    <link rel="canonical" href={`${process.env.URL}${slugAnime(data?.slug)}`} />
                     <meta name="og:title" content={`Ver ${data?.name} Sub Español Latino en HD Online • ${process.env.NAME}`} />
                     <meta name="og:description" content={`${(data?.overview?.length > 165 ? (data?.overview?.slice(0,165) + '...') : data?.overview)}`} />
-                    <meta name="og:url" content={`${process.env.URL}/${slugAnime(data?.slug)}`} />
+                    <meta name="og:url" content={`${process.env.URL}${slugAnime(data?.slug)}`} />
                     <meta name="og:locale" content="es_LA" />
                     <meta name="og:type" content="website" />
                     <meta name="og:image" content={bannerAnime(data?.banner)} />
