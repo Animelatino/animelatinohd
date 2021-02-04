@@ -38,13 +38,14 @@ class index extends Component {
     }
 }
 
-export const getStaticProps = async () => {
+export async function getStaticProps() {
     const res = await api.get(`anime/more-view`);
     return {
-        props: { 
-            data: res.data
-        }
-    };
-};
+        props: {
+            data: res.data,
+        },
+        revalidate: 1
+    }
+}
 
 export default withRouter(index);
