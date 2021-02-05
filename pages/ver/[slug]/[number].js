@@ -189,7 +189,7 @@ export default class number extends Component {
                 <main className={styles.container}>
                     { this.videoPlayer() }
                     { this.navCaps() }
-                    <Comments title={`${data?.anime?.slug} Episodio ${data?.number}`} url={`${process.env.URL}${slugEpisode(data?.anime?.slug,data?.number)}`} id={`${data?.anime?.slug}-${data?.number}`}/>
+                    <Comments title={`${data?.anime?.name} Episodio ${data?.number}`} url={`${process.env.URL}${slugEpisode(data?.anime?.slug,data?.number)}`} id={`${data?.anime?.slug}-${data?.number}`}/>
                 </main>
             </Layout>
         );
