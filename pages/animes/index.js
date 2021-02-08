@@ -4,6 +4,7 @@ import { withRouter } from 'next/router';
 import { api } from '../../lib/api';
 import ListAnimes from '../../components/ListAnimes';
 import Layout from '../../components/Layout';
+import { filterAnime } from '../../helpers/Functions';
 
 import styles from '../../styles/Animes.module.css';
 
@@ -43,7 +44,7 @@ class index extends Component {
     }
 
     filterAnimes = () => {
-        const { filter, filterings } = this.props;
+        const { filter } = this.state;
         return (
             <div className={styles.filter}>
                 <div className={styles.ListTypes}>
@@ -51,7 +52,7 @@ class index extends Component {
                         <label htmlFor={"type"}>Tipo</label>
                         <select name={"type"} value={filter?.type} id={"type"} onChange={this.handleChange}>
                             <option value="">Todos</option>
-                            {filterings?.types?.map((item, idx) => (
+                            {filterAnime()?.types?.map((item, idx) => (
                                 <option value={item?.type?.toLowerCase()} key={idx}>{item?.type}</option>
                             ))}
                         </select>
@@ -60,7 +61,7 @@ class index extends Component {
                         <label htmlFor={"status"}>Estado</label>
                         <select name={"status"} value={filter?.status} id={"status"} onChange={this.handleChange}>
                             <option value="">Todos</option>
-                            {filterings?.status?.map((item, idx) => (
+                            {filterAnime()?.status?.map((item, idx) => (
                                 <option value={item?.status} key={idx}>{item?.status === 0 ? "Finalizado" : "En emisión"}</option>
                             ))}
                         </select>
@@ -69,7 +70,7 @@ class index extends Component {
                         <label htmlFor={"year"}>Año</label>
                         <select name={"year"} value={filter?.year} id={"year"} onChange={this.handleChange}>
                             <option value="">Todos</option>
-                            {filterings?.years?.map((item, idx) => (
+                            {filterAnime()?.years?.map((item, idx) => (
                                 <option value={item?.year} key={idx}>{item?.year}</option>
                             ))}
                         </select>
@@ -78,7 +79,7 @@ class index extends Component {
                         <label htmlFor={"genre"}>Genero</label>
                         <select name={"genre"} value={filter?.genre} id={"genre"} onChange={this.handleChange}>
                             <option value="">Todos</option>
-                            {filterings?.genres?.map((item, idx) => (
+                            {filterAnime()?.genres?.map((item, idx) => (
                                 <option value={item?.slug} key={idx}>{item?.title}</option>
                             ))}
                         </select>
@@ -146,10 +147,8 @@ index.getInitialProps = async (context) => {
             .join("&");
     };
     const res = await api.get(`anime/list?${queryString({ ...context?.query })}`);
-    const filters = await api.get(`filterings`);
     return { 
-        data: res.data,
-        filterings: filters.data
+        data: res.data
     }
 }
 

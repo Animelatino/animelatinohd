@@ -133,3 +133,87 @@ export const menuItems = () => {
     ]
     return items;
 }
+
+export const filterAnime = () => {
+    return {
+        years:[
+            {year:2021},
+            {year:2020},
+            {year:2019},
+            {year:2018},
+            {year:2017},
+            {year:2016},
+            {year:2015},
+            {year:2014},
+            {year:2013},
+            {year:2012},
+            {year:2009},
+            {year:2008},
+            {year:2007},
+            {year:2006},
+            {year:2004},
+            {year:2000},
+            {year:1999},
+            {year:1996},
+            {year:1989},
+            {year:1986}
+        ],
+        genres:[
+            {title:"Acción",slug:"accion"},
+            {title:"Aliens",slug:"aliens"},
+            {title:"Artes Marciales",slug:"artes-marciales"},
+            {title:"Aventura",slug:"aventura"},
+            {title:"Ciencia Ficción",slug:"ciencia-ficcion"},
+            {title:"Comedia",slug:"comedia"},
+            {title:"Cyberpunk",slug:"cyberpunk"},
+            {title:"Demonios",slug:"demonios"},
+            {title:"Deportes",slug:"deportes"},
+            {title:"Detectives",slug:"detectives"},
+            {title:"Drama",slug:"drama"},
+            {title:"Ecchi",slug:"ecchi"},
+            {title:"Escolar",slug:"escolar"},
+            {title:"Espacio",slug:"espacio"},
+            {title:"Fantasía",slug:"fantasia"},
+            {title:"Gore",slug:"gore"},
+            {title:"Harem",slug:"harem"},
+            {title:"Histórico",slug:"historico"},
+            {title:"Horror",slug:"horror"},
+            {title:"Josei",slug:"josei"},
+            {title:"Juegos",slug:"juegos"},
+            {title:"Kodomo",slug:"kodomo"},
+            {title:"Magia",slug:"magia"},
+            {title:"Maho Shoujo",slug:"maho-shoujo"},
+            {title:"Mecha",slug:"mecha"},
+            {title:"Militar",slug:"militar"},
+            {title:"Misterio",slug:"misterio"},
+            {title:"Musica",slug:"musica"},
+            {title:"Parodia",slug:"parodia"},
+            {title:"Policial",slug:"policial"},
+            {title:"Psicológico",slug:"psicologico"},
+            {title:"Recuentos De La Vida",slug:"recuentos-de-la-vida"},
+            {title:"Romance",slug:"romance"},
+            {title:"Samurais",slug:"samurais"},
+            {title:"Seinen",slug:"seinen"},
+            {title:"Shoujo",slug:"shoujo"},
+            {title:"Shoujo Ai",slug:"shoujo-ai"},
+            {title:"Shounen",slug:"shounen"},
+            {title:"Shounen Ai",slug:"shounen-ai"},
+            {title:"Sobrenatural",slug:"sobrenatural"},
+            {title:"Soft Hentai",slug:"soft-hentai"},
+            {title:"Super Poderes",slug:"super-poderes"},
+            {title:"Suspenso",slug:"suspenso"},
+            {title:"Terror",slug:"terror"},
+            {title:"Vampiros",slug:"vampiros"},
+            {title:"Yaoi",slug:"yaoi"},
+            {title:"Yuri",slug:"yuri"}
+        ],
+        types:[
+            {type:"Tv"},
+            {type:"Movie"}
+        ],
+        status:[
+            {status:0},
+            {status:1}
+        ]
+    };
+}
