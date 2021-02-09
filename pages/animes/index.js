@@ -53,7 +53,7 @@ class index extends Component {
                         <select name={"type"} value={filter?.type} id={"type"} onChange={this.handleChange}>
                             <option value="">Todos</option>
                             {filterAnime()?.types?.map((item, idx) => (
-                                <option value={item?.type?.toLowerCase()} key={idx}>{item?.type}</option>
+                                <option value={item?.slug} key={idx}>{item?.type}</option>
                             ))}
                         </select>
                     </div>
@@ -62,7 +62,7 @@ class index extends Component {
                         <select name={"status"} value={filter?.status} id={"status"} onChange={this.handleChange}>
                             <option value="">Todos</option>
                             {filterAnime()?.status?.map((item, idx) => (
-                                <option value={item?.status} key={idx}>{item?.status === 0 ? "Finalizado" : "En emisión"}</option>
+                                <option value={item?.slug} key={idx}>{item?.status}</option>
                             ))}
                         </select>
                     </div>

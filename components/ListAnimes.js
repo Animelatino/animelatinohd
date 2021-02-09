@@ -24,7 +24,7 @@ export default class ListAnimes extends Component {
                             <AnimeCard data={item} key={idx} />
                         ))}
                     </div>
-                :   <div className={styles.message}>No se encontraron animes</div>
+                :   <div className={styles.message}>Sin resultados</div>
                 }
                 { paginate }
             </div>

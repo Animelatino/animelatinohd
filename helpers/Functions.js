@@ -147,15 +147,31 @@ export const filterAnime = () => {
             {year:2014},
             {year:2013},
             {year:2012},
+            {year:2011},
+            {year:2010},
             {year:2009},
             {year:2008},
             {year:2007},
             {year:2006},
+            {year:2005},
             {year:2004},
+            {year:2003},
+            {year:2002},
+            {year:2001},
             {year:2000},
             {year:1999},
+            {year:1998},
+            {year:1997},
             {year:1996},
+            {year:1995},
+            {year:1994},
+            {year:1993},
+            {year:1992},
+            {year:1991},
+            {year:1990},
             {year:1989},
+            {year:1988},
+            {year:1987},
             {year:1986}
         ],
         genres:[
@@ -208,12 +224,15 @@ export const filterAnime = () => {
             {title:"Yuri",slug:"yuri"}
         ],
         types:[
-            {type:"Tv"},
-            {type:"Movie"}
+            {type:"Anime",slug:"tv"},
+            {type:"Pelicula",slug:"movie"},
+            {type:"Especial",slug:"special"},
+            {type:"Ova",slug:"ova"},
+            {type:"Ona",slug:"ona"}
         ],
         status:[
-            {status:0},
-            {status:1}
+            {status:'Finalizado',slug:0},
+            {status:'En emisión',slug:1}
         ]
     };
 }
