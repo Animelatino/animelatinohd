@@ -204,7 +204,7 @@ export async function getServerSideProps(context) {
             : navigator.userAgent
         ).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
         if(Boolean(isMobileView) === false){
-            res.data.players.forEach((element, index) => 
+            Object.values(res.data.players).forEach((element, index) => 
                 res.data.players[index] = element.filter(function(item){
                     if(item.server.title === 'Archive'){
                         return false;
@@ -214,7 +214,6 @@ export async function getServerSideProps(context) {
                 })
             )
         }
-
         return {
             props: { 
                 data: res.data
