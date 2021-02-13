@@ -10,10 +10,56 @@ import styles from '../../styles/Animes.module.css';
 class index extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            data: this.props.data,
+            perPage: 28
+        }
+    }
+
+    changePage = (type) => {
+        const page = this.props.router.query.page ? this.props.router.query.page : 1;
+        const { router } = this.props;
+        if(type === 'prev' && parseInt(page - 1) === 1){
+            router.push({
+                query: null
+            })
+        }else{
+            router.push({
+                query: {
+                    page: type === 'next' ? parseInt(parseInt(page) + 1) : parseInt(parseInt(page) - 1)
+                }
+            })
+        }
+    }
+
+    paginationAnimes = () => {
+        const page = this.props.router.query.page ? this.props.router.query.page : 1;
+        const { data, perPage } = this.state;
+        return (
+            <div className={styles.paginate}>
+                { data[(page-1)*perPage-1] && (
+                <a className={styles.item} onClick={() => this.changePage('prev')}>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+                    </svg>
+                </a>
+                )}
+                <a className={`${styles.item} ${styles.active}`}>{page}</a>
+                { data[page*perPage+1] && (
+                <a className={styles.item} onClick={() => this.changePage('next')}>
+                    <svg viewBox="0 0 24 24">
+                        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                    </svg>
+                </a>
+                )}
+            </div>
+        )
     }
 
     render() {
-        const { data } = this.props;
+        let { page } = this.props.router.query;
+        page = page ? page : 1;
+        const { data, perPage } = this.state;
         return (
             <Layout>
                 <Head>
@@ -31,7 +77,7 @@ class index extends Component {
                     <meta itemProp="image" content="https://i.imgur.com/Iof3uSm.jpg" />
                 </Head>
                 <main className={styles.container}>
-                    <ListAnimes title={'Animes en Español Latino'} animes={data}/>
+                    <ListAnimes title={'Animes en Español Latino'} animes={data.slice(((page-1)*perPage),(page*perPage))} paginate={this.paginationAnimes()}/>
                 </main>
             </Layout>
         );
