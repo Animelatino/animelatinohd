@@ -123,10 +123,10 @@ export default class slug extends Component {
                     <meta name="og:url" content={`${process.env.URL}${slugAnime(data?.slug)}`} />
                     <meta name="og:locale" content="es_LA" />
                     <meta name="og:type" content="website" />
-                    <meta name="og:image" content={bannerAnime(data?.banner)} />
-                    <meta property="og:image:width" content="552" />
-			        <meta property="og:image:height" content="310" />
-                    <meta itemProp="image" content={bannerAnime(data?.banner)} />
+                    <meta name="og:image" content={posterAnime(data?.poster)} />
+                    <meta property="og:image:width" content="310" />
+			        <meta property="og:image:height" content="440" />
+                    <meta itemProp="image" content={posterAnime(data?.poster)} />
                 </Head>
                 <main className={styles.container}>
                     { this.banner() }

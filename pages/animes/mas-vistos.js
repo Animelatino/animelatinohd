@@ -19,10 +19,10 @@ class index extends Component {
                 <Head>
                     <title>{`Lista de animes más vistos • ${process.env.NAME}`}</title>
                     <meta name="description" content={`Anime Online Sub Español y Español Latino Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.NAME}`} />
-                    <link rel="canonical" href={`${process.env.URL}/animes`} />
+                    <link rel="canonical" href={`${process.env.URL}/animes/mas-vistos`} />
                     <meta name="og:title" content={`Lista de animes más vistos • ${process.env.NAME}`} />
                     <meta name="og:description" content={`Anime Online Sub Español y Español Latino Gratis, mira los últimos capitulos de los animes del momento sin ninguna restriccion subtitulados al español latino en ${process.env.NAME}`} />
-                    <meta name="og:url" content={`${process.env.URL}/animes`} />
+                    <meta name="og:url" content={`${process.env.URL}/animes/mas-vistos`} />
                     <meta name="og:locale" content="es_LA" />
                     <meta name="og:type" content="website" />
                     <meta name="og:image" content="https://i.imgur.com/Iof3uSm.jpg" />
