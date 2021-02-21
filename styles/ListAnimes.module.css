@@ -38,13 +38,22 @@
 
 @media (max-width: 1024px) {
     .box .listAnimes {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
 }
 
 @media (max-width: 768px) {
     .box .listAnimes {
         grid-template-columns: repeat(4, 1fr);
+    }
+    .box {
+        padding-bottom: 5rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .box .listAnimes {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 

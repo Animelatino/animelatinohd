@@ -61,6 +61,9 @@
     .container .listCalendar > .calendar > .data {
         grid-template-columns: repeat(3, 1fr);
     }
+    .container {
+        padding-bottom: 2rem;
+    }
 }
 
 @media (max-width: 425px) {

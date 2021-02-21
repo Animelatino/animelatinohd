@@ -16,9 +16,16 @@
     flex-direction: column;
     align-items: center;
     padding: 1rem;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: var(--gray-color);
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .container .menu .item svg {
+    margin-bottom: .2rem;
     width: 1.5rem;
     fill: var(--gray-color);
 }
@@ -31,5 +38,35 @@
         position: fixed;
         bottom: 0;
         background: var(--tertiary-color);
+    }
+    .container .menu .item {
+        font-size: .8rem;
+    }
+    .container .menu .item svg {
+        width: 1.4rem;
+    }
+}
+
+@media only screen and (max-width: 500px){
+    .container .menu .item {
+        font-size: .7rem;
+    }
+    .container .menu .item svg {
+        width: 1.3rem;
+    }
+}
+
+@media only screen and (max-width: 425px){
+    .container .menu .item {
+        font-size: .6rem;
+    }
+    .container .menu .item svg {
+        width: 1.2rem;
+    }
+}
+
+@media only screen and (max-width: 375px){
+    .container .menu .item svg {
+        width: 1rem;
     }
 }

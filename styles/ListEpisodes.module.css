@@ -40,6 +40,9 @@
     .box .listEpisodes {
         grid-template-columns: repeat(3, 1fr);
     }
+    .box  {
+        padding-bottom: 5rem;
+    }
 }
 
 @media (max-width: 425px) {

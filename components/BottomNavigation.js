@@ -17,6 +17,7 @@ export default class BottomNavigation extends Component {
                     <Link key={i} href={item?.link}>
                         <a alt={item?.name} className={styles.item}>
                             <svg viewBox="0 0 24 24" className={styles.n} dangerouslySetInnerHTML={{ __html: item?.icon }}></svg>
+                            {item?.name}
                         </a>
                     </Link>
                 )})
