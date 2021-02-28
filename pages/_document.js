@@ -11,6 +11,7 @@ class MyDocument extends Document {
                     <meta name="robots" content="index, follow"/>
                     <link rel="preconnect" href="https://fonts.gstatic.com"/>
                     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet"/>
+                    <script type="module" src='/pwabuilder-sw-register.js'></script>
                 </Head>
                 <body>
                     <Main />
@@ -18,7 +19,6 @@ class MyDocument extends Document {
                 </body>
                 <footer>
                     <script id="chatBroEmbedCode" src="/chat.js"></script>
-                    <script async src="https://arc.io/widget.min.js#R2yjvhvV"></script>
                 </footer>
             </Html>
         )
