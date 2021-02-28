@@ -3,4 +3,4 @@ User-agent: *
 Disallow: /admin
 Disallow: /stream/
 
-sitemap: https://api.animelatinohd.com/sitemap.xml
+sitemap: https://www.animelatinohd.com/sitemap.xml
