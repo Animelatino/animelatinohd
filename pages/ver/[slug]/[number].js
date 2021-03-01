@@ -205,15 +205,17 @@ export async function getServerSideProps(context) {
             : navigator.userAgent
         ).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
         if(Boolean(isMobileView) === false){
-            Object.values(res.data.players).forEach((element, index) => 
-                res.data.players[index] = element.filter(function(item){
-                    if(item.server.title === 'Archive'){
-                        return false;
-                    }else{
-                        return true;
-                    }
-                })
-            )
+            Object.values(res.data.players).forEach((element, index) => {
+                if(element[index].length > 0){
+                    res.data.players[index] = element.filter(function(item){
+                        if(item.server.title === 'Archive'){
+                            return false;
+                        }else{
+                            return true;
+                        }
+                    })
+                }
+            })
         }
         return {
             props: { 
