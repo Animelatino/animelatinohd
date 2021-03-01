@@ -205,9 +205,9 @@ export async function getServerSideProps(context) {
             : navigator.userAgent
         ).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
         if(Boolean(isMobileView) === false){
-            Object.values(res.data.players).forEach((element, index) => {
-                if(res.data.players[index]){
-                    res.data.players[index] = element.filter(function(item){
+            Object.values(res.data.players).forEach((element, i) => {
+                if(res.data.players[i]){
+                    res.data.players[i] = element.filter(function(item){
                         if(item.server.title === 'Archive'){
                             return false;
                         }else{
