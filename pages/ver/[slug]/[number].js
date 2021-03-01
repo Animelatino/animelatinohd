@@ -6,7 +6,7 @@ import Iframe from 'react-iframe';
 import { api } from '../../../lib/api';
 import Layout from '../../../components/Layout';
 import Comments from "../../../components/Comments";
-import { slugEpisode, slugAnime, imageAnimeSearch, imageEpisode } from '../../../helpers/Functions';
+import { slugEpisode, slugAnime, posterAnime, bannerAnime } from '../../../helpers/Functions';
 import { getLanguajePlayer, getUrlVideo, getCheckLatino } from '../../../helpers/Strings';
 
 import styles from '../../../styles/Episode.module.css';
@@ -113,11 +113,12 @@ export default class number extends Component {
                             <Image 
                                 className={styles.cover}
                                 alt={`${data?.anime?.name} ${data?.number}`}
-                                height="auto"
-                                width="auto"
-                                layout="responsive"
+                                height={68}
+								width={48}
+								quality={95}
+								layout="intrinsic"
                                 loading={"lazy"}
-                                src={imageAnimeSearch(data?.anime?.poster) }/>
+                                src={posterAnime(data?.anime?.poster) }/>
                         </a> 
                         </Link>
                         <div className={styles.details}>
@@ -181,10 +182,10 @@ export default class number extends Component {
                     <meta name="og:url" content={`${process.env.URL}${slugEpisode(data?.anime?.slug,data?.number)}`} />
                     <meta name="og:locale" content="es_LA" />
                     <meta name="og:type" content="video.episode" />
-                    <meta name="og:image" content={imageEpisode(data?.anime?.banner)} />
+                    <meta name="og:image" content={bannerAnime(data?.anime?.banner)} />
                     <meta property="og:image:width" content="552" />
 			        <meta property="og:image:height" content="310" />
-                    <meta itemProp="image" content={imageEpisode(data?.anime?.banner)} />
+                    <meta itemProp="image" content={bannerAnime(data?.anime?.banner)} />
                 </Head>
                 <main className={styles.container}>
                     { this.videoPlayer() }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { imageAnimeSearch, slugAnime } from '../helpers/Functions';
+import { posterAnime, slugAnime } from '../helpers/Functions';
 
 import styles from '../styles/AnimeItemSearch.module.css';
 
@@ -19,11 +19,12 @@ export default class AnimeItemSearch extends Component {
                         <Image 
                             className="poster"
                             alt={data?.name}
-                            height="auto"
-                            width="auto"
-                            layout="responsive"
+                            height={50}
+                            width={40}
+							quality={95}
+                            layout={"intrinsic"}
                             loading={"lazy"}
-                            src={imageAnimeSearch(data?.poster) }/>
+                            src={posterAnime(data?.poster) }/>
                     </div>
                     <div className={styles.content}>
                         <p className={styles.title}>{data?.name}</p>

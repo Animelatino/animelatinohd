@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { imageEpisode, slugEpisode } from '../helpers/Functions';
+import { bannerAnime, slugEpisode } from '../helpers/Functions';
 
 import styles from '../styles/EpisodeCard.module.css';
 
@@ -22,14 +22,19 @@ export default class AnimeEpisodeCard extends Component {
                             </a>
                         </Link>
                     </div>
-                    <Image 
-                        className="poster"
+                    <Image
                         alt={`${anime?.name} ${episode?.number}`}
-                        height="auto"
-                        width="auto"
-                        layout="responsive"
-                        loading={"lazy"}
-                        src={imageEpisode(anime?.banner) }/>
+                        src={bannerAnime(anime?.banner) }
+						layout="responsive"
+						width="auto"
+						height="auto"
+						quality={95}
+						loading={"lazy"}
+						sizes="(max-width: 360px) 22vw,
+							   (max-width: 640px) 15vw,
+							   (max-width: 1024px) 11.5vw,
+							   (max-width: 1280px) 11vw,
+							   (max-width: 800px) 192px"/>
                 </div>
                 <div className={styles.text}>
                     <Link href={slugEpisode(anime?.slug, episode?.number)}>

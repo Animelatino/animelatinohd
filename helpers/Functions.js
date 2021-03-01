@@ -1,31 +1,14 @@
 import moment from 'moment';
 moment.locale('es');
 
-const pathTmdb = 'https://www.themoviedb.org/t/p/';
-
-export const imageEpisode = (image) => {
-    const size = 'w500';
-    return pathTmdb+size+image;
-}
-
-export const imageAnimeSearch = (image) => {
-    const size = 'w154';
-    return pathTmdb+size+image;
-}
+const pathTmdb = 'https://www.themoviedb.org/t/p/original';
 
 export const posterAnime = (image) => {
-    const size = 'w300';
-    return pathTmdb+size+image;
+    return pathTmdb+image;
 }
 
 export const bannerAnime = (image) => {
-    const size = 'w1280';
-    return pathTmdb+size+image;
-}
-
-export const bannerAnimeCalendar = (image) => {
-    const size = 'w300';
-    return pathTmdb+size+image;
+    return pathTmdb+image;
 }
 
 export const slugAnime = (slug) => {

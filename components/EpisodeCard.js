@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { imageEpisode, posterAnime, slugEpisode, slugAnime } from '../helpers/Functions';
+import { bannerAnime, posterAnime, slugEpisode, slugAnime } from '../helpers/Functions';
 import { getFromNow } from '../helpers/Strings';
 
 import styles from '../styles/EpisodeCard.module.css';
@@ -27,23 +27,30 @@ export default class EpisodeCard extends Component {
                             <a className={styles.cover} alt={episode?.anime?.name} title={episode?.anime?.name}>
                                 <Image
                                     alt={episode?.anime?.name}
-                                    height="auto"
-                                    width="auto"
-                                    layout="responsive"
+                                    height={73}
+									width={53}
+									quality={95}
+									layout="intrinsic"
                                     loading={"lazy"}
-                                    style={"position:aboslute"}
                                     src={posterAnime(episode?.anime?.poster) }/>
                             </a>
                         </Link>
                     </div>
-                    <Image 
-                        className="poster"
+                    <Image
                         alt={`${episode?.anime?.name} ${episode?.number}`}
-                        height="auto"
-                        width="auto"
-                        layout="responsive"
-                        loading={"lazy"}
-                        src={imageEpisode(episode?.anime?.banner) }/>
+                        src={bannerAnime(episode?.anime?.banner) }
+						layout="responsive"
+						width="auto"
+						height="auto"
+						quality={95}
+						loading={"lazy"}
+						sizes="(max-width: 360px) 22vw,
+							   (max-width: 640px) 15vw,
+							   (max-width: 800px) 12vw,
+							   (max-width: 1024px) 11vw,
+							   (max-width: 1280px) 9vw,
+							   (max-width: 800px) 192px,
+							   (max-width: 1366px) 250px"/>
                 </div>
                 <div className={styles.text}>
                     <Link href={slugEpisode(episode?.anime?.slug, episode?.number)}>

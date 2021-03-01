@@ -50,7 +50,9 @@ export default class slug extends Component {
                         width="auto"
                         layout="responsive"
                         loading={"lazy"}
-                        src={posterAnime(data?.poster)}/>
+                        src={posterAnime(data?.poster)}
+                        quality={95}
+						sizes="(max-width: 800px) 188px"/>
                 </div>
                 <div className={styles.list}>
                     <div className={styles.item}>
