@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Head from 'next/head';
-import Layout from '../components/Layout';
 
 import styles from '../styles/Offline.module.css';
 
