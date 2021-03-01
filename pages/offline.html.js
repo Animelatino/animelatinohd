@@ -7,7 +7,7 @@ import styles from '../styles/Offline.module.css';
 export default class componentName extends Component {
     render() {
         return (
-            <Layout>
+            <div>
                 <Head>
                     <title>Sin Conexion a Internet</title>
                 </Head>
@@ -15,7 +15,7 @@ export default class componentName extends Component {
                     <h1>Esta es la página de respaldo sin conexión</h1>
                     <h2>Cuando esté desconectado, cualquier ruta recurrirá a esta página.</h2>
                 </main>
-            </Layout>
+            </div>
         );
     }
 }
