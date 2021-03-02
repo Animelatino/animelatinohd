@@ -67,6 +67,8 @@ export default class number extends Component {
     videoPlayer = () => {
         const { data } = this.props;
         const { iframe, languaje, random, server } = this.state;
+        let seversandbox = ['gphotos','degoo','beta','videos','zplayer','evo','sendvid']
+        let checkSandbox = seversandbox.includes(data?.players[languaje][server]?.server?.title?.toLowerCase());
         return(
             <div className={styles.videoPlayer}>
                 { getCheckLatino(data?.players) && (
@@ -95,7 +97,10 @@ export default class number extends Component {
                             </div>
                         </div>
                         <div className={styles.video}>
-                            <Iframe key={random} allowfullscreen={true} allow={"fullscreen"} url={iframe} display="initial"/>
+                            { checkSandbox
+                            ?   <Iframe sandbox="allow-scripts allow-same-origin" key={random} allowfullscreen={true} allow={"fullscreen"} url={iframe} display="initial"/>
+                            :   <Iframe key={random} allowfullscreen={true} allow={"fullscreen"} url={iframe} display="initial"/>
+                            }
                         </div>
                     </>
                 )}
@@ -216,7 +221,7 @@ export async function getServerSideProps(context) {
                     case 'videos':
                         el.position = 3;
                         break;
-                    case 'evo':
+                    case 'zplayer':
                         el.position = 4;
                         break;
                     case 'gocdn':
