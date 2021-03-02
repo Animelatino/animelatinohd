@@ -52,7 +52,8 @@ export default class number extends Component {
         if(e.target.name === 'languaje'){
             this.setState({
                 languaje: e.target.value,
-                iframe: getUrlVideo(data?.players[e.target.value][0])
+                iframe: getUrlVideo(data?.players[e.target.value][0]),
+                server: 0
             })
         }
         if(e.target.name === 'server'){
@@ -94,7 +95,7 @@ export default class number extends Component {
                             </div>
                         </div>
                         <div className={styles.video}>
-                            <Iframe key={random} allow={"fullscreen"} url={iframe} display="initial"/>
+                            <Iframe sandbox="allow-scripts allow-same-origin" key={random} allow={"fullscreen"} url={iframe} display="initial"/>
                         </div>
                     </>
                 )}
