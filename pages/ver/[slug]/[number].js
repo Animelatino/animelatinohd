@@ -213,6 +213,24 @@ export async function getServerSideProps(context) {
                     case 'beta':
                         el.position = 2;
                         break;
+                    case 'videos':
+                        el.position = 3;
+                        break;
+                    case 'evo':
+                        el.position = 4;
+                        break;
+                    case 'mega':
+                        el.position = 9;
+                        break;
+                    case 'gocdn':
+                        el.position = 10;
+                        break;
+                    case 'fembed':
+                        el.position = 11;
+                        break;
+                    case 'okru':
+                        el.position = 12;
+                        break;
                     default:
                         el.position = 99;
                         break;
