@@ -95,7 +95,7 @@ export default class number extends Component {
                             </div>
                         </div>
                         <div className={styles.video}>
-                            <Iframe key={random} allow={"fullscreen"} url={iframe} display="initial"/>
+                            <Iframe key={random} allowfullscreen={true} allow={"fullscreen"} url={iframe} display="initial"/>
                         </div>
                     </>
                 )}

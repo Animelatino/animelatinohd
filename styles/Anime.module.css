@@ -185,12 +185,9 @@
     .container .banner .content .column .genres {
         display: none;
     }
-
     .container .contentAnime {
         flex-direction: column;
     }
-
-
     .container .contentAnime .info, .container .contentAnime .details{
         margin: 0;
     }
@@ -200,7 +197,6 @@
     .container .contentAnime .info, .container .contentAnime .details {
         width: 100%;
     }
-    
 }
 
 @media (max-width: 425px) {

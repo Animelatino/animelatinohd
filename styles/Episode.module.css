@@ -151,6 +151,12 @@
     border: 0;
 }
 
+@media (max-width: 728px) {
+    .container {
+        padding-bottom: 4rem;
+    }
+}
+
 @media (max-width: 600px) {
     .container .navCaps .column {
         flex-direction: column;
@@ -173,7 +179,6 @@
         width: 100%;
     }
 }
-
 
 @media (max-width: 425px) {
     .container .videoPlayer .video {
