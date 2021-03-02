@@ -201,6 +201,25 @@ export default class number extends Component {
 export async function getServerSideProps(context) {
     try {
         const res = await api.get(`episodes/${context.params.slug}/${context.params.number}`);
+        Object.values(res.data.players).forEach((element) => {
+            element.forEach((el) => {
+                switch (el.server.title.toLowerCase()) {
+                    case 'gphotos':
+                        el.position = 0;
+                        break;
+                    case 'degoo':
+                        el.position = 1;
+                        break;
+                    case 'beta':
+                        el.position = 2;
+                        break;
+                    default:
+                        el.position = 99;
+                        break;
+                }
+            })
+            element.sort((a,b)=> (a.position > b.position ? 1 : -1))
+        })
         let isMobileView = (context.req 
             ? context.req.headers['user-agent']
             : navigator.userAgent
