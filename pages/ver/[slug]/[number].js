@@ -219,10 +219,10 @@ export async function getServerSideProps(context) {
                     case 'evo':
                         el.position = 4;
                         break;
-                    case 'mega':
+                    case 'gocdn':
                         el.position = 9;
                         break;
-                    case 'gocdn':
+                    case 'mega':
                         el.position = 10;
                         break;
                     case 'fembed':
