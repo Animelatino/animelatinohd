@@ -67,8 +67,11 @@ export default class number extends Component {
     videoPlayer = () => {
         const { data } = this.props;
         const { iframe, languaje, random, server } = this.state;
-        let seversandbox = ['gphotos','degoo','beta','videos','zplayer','evo','sendvid']
-        let checkSandbox = seversandbox.includes(data?.players[languaje][server]?.server?.title?.toLowerCase());
+        let checkSandbox = false;
+        if(data.players[languaje]){
+            let seversandbox = ['gphotos','degoo','beta','videos','zplayer','evo','sendvid']
+            checkSandbox = seversandbox.includes(data?.players[languaje][server]?.server?.title?.toLowerCase());
+        }
         return(
             <div className={styles.videoPlayer}>
                 { getCheckLatino(data?.players) && (
