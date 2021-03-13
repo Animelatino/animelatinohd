@@ -28,8 +28,8 @@ class DetectAdBlock extends Component {
                         <div className={styles.contentMessage}>
                             <img src="https://i.imgur.com/cyL3MvS.png" height={180}/>
                             <div className={styles.info}>
-                                <p>{process.env.NAME.toUpperCase()} es un sitio sin fines de lucro y se basa en el programa ARC.IO para costear hosting y dominio.</p>
-                                <p>Por favor considera deshabilitar el bloqueador de publicidad en {process.env.URL}</p>
+                                <p>{process.env.NAME.toUpperCase()}  somos un sitio que gusta brindar un buen servicio por tanto no usamos publicidad, si se usa sera muy poca como banner que no afecten tu experiencia.</p>
+                                <p>Por tanto te agradeceriamos muchos que desactivaras tu bloqueador de anuncios, asi podremos seguir brindandote un buen servicio.</p>
                             </div>
                         </div>
                     </div>
