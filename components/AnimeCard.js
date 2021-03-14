@@ -34,6 +34,9 @@ export default class AnimeCard extends Component {
 										   (max-width: 1280px) 6vw,
                                            (max-width: 800px) 140px,
 										   (max-width: 1366px) 182px, 250px"/>
+                                {data?.number && (
+                                    <div className={styles.numCountLat}>{`${data?.number} ${data?.number > 1 ? 'Episodios'  : 'Episodio'}`}</div>
+                                )}
                             </div>
                         </a>
                     </Link>
