@@ -18,10 +18,10 @@ export default class Layout extends Component {
     render () {
         return (
             <>
+                <DetectAdBlock />
                 <HeaderNavigation/>
                 {this.props.children}
                 <BottomNavigation/>
-                <DetectAdBlock />
             </>
         )
     }
