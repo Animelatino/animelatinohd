@@ -5,6 +5,7 @@ class MyDocument extends Document {
         return (
             <Html lang="es">
                 <Head>
+                    <meta http-equiv="X-Frame-Options" content="deny"/>
                     <link rel="icon" href="/favicon.ico"/>
                     <meta name="theme-color" content="#000000"/>
                     <link rel="manifest" href="/manifest.json"/>
