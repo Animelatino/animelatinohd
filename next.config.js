@@ -1,5 +1,15 @@
 const nextConfig = {
-    mode: 'production',
+    async headers() {
+        return [{
+            source: "/(.*)",
+            headers: [
+                {
+                    key: 'X-Frame-Options',
+                    value: 'DENY',
+                }
+            ]
+        }];
+    },
     images: {
         domains: ['i.imgur.com','*.tmdb.org','www.themoviedb.org'],
         deviceSizes: [40, 53, 140, 162, 182, 192, 236, 250, 280],
