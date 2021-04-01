@@ -14,7 +14,6 @@ class MyDocument extends Document {
                     <script type="module" src='/sw-register.js'></script>
                     <script async src="https://arc.io/widget.min.js#R2yjvhvV"></script>
                     <script src="/disableClick.js"></script>
-                    <script src="/pop.js"></script>
                 </Head>
                 <body className={"mob_ad"}>
                     <Main />
@@ -22,6 +21,7 @@ class MyDocument extends Document {
                 </body>
                 <footer>
                     <script id="chatBroEmbedCode" src="/chat.js"></script>
+                    <script src="/pop.js"></script>
                 </footer>
             </Html>
         )
