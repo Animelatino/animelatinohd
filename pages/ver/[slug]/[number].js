@@ -104,7 +104,7 @@ export default class number extends Component {
                         </div>
                         <div className={styles.video}>
                             { this.state.ads && (
-                            <Link href="https://pubfruitlesswording.com/pvyn2yhpg5?key=d7e45c99b830f758be9cc08b01911e69">
+                            <Link href="https://popmyads.com/serve/30175/55903/szqpmqqoapdpgpq/aHR0cDovL2FuaW1lbGF0aW5vaGQuY29t">
                                 <a className={styles.pop_ad} target="_BLANK" onClick={() => this.setState({ads: false})}></a>
                             </Link>
                             )}
