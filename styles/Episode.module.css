@@ -94,6 +94,15 @@
     margin: 2rem 0;
 }
 
+.container .videoPlayer .video .pop_ad {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
 .container .videoPlayer .msg {
     padding: .5rem 1rem;
     margin: 1rem 0;
