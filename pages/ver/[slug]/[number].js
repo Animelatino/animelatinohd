@@ -19,8 +19,7 @@ export default class number extends Component {
             languaje: this.props.data?.players[0] == undefined ? 1 : 0,
             server: 0,
             random: 0,
-            id: this.props.data.id,
-            ads: true
+            id: this.props.data.id
         };
     }
 
@@ -54,15 +53,13 @@ export default class number extends Component {
             this.setState({
                 languaje: e.target.value,
                 iframe: getUrlVideo(data?.players[e.target.value][0]),
-                server: 0,
-                ads: true
+                server: 0
             })
         }
         if(e.target.name === 'server'){
             this.setState({
                 server: e.target.value,
-                iframe: getUrlVideo(data?.players[languaje][e.target.value]),
-                ads: true
+                iframe: getUrlVideo(data?.players[languaje][e.target.value])
             })
         }
     }
@@ -103,11 +100,6 @@ export default class number extends Component {
                             </div>
                         </div>
                         <div className={styles.video}>
-                            { this.state.ads && (
-                            <Link href="https://popmyads.com/serve/30175/55903/szqpmqqoapdpgpq/aHR0cDovL2FuaW1lbGF0aW5vaGQuY29t">
-                                <a className={styles.pop_ad} target="_BLANK" onClick={() => this.setState({ads: false})}></a>
-                            </Link>
-                            )}
                             { checkSandbox
                             ?   <Iframe sandbox="allow-scripts allow-same-origin" key={random} allowfullscreen={true} allow={"fullscreen"} url={iframe} display="initial"/>
                             :   <Iframe key={random} allowfullscreen={true} allow={"fullscreen"} url={iframe} display="initial"/>
