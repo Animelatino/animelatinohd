@@ -1,10 +1,12 @@
 .box  {
     padding: 2rem 0;
 }
-
+.box .ads {
+    margin-top: 2.5rem;
+}
 .box h1 {
     border: 0;
-    margin: calc(2rem - .14285em) 0 1rem;
+    margin-bottom: 1.5rem;
     padding: .25em 0;
     font-weight: 700;
     line-height: 1.2857em;

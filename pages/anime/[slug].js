@@ -3,12 +3,14 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import { api } from '../../lib/api';
-import styles from '../../styles/Anime.module.css';
 import Layout from '../../components/Layout';
-import { bannerAnime, posterAnime, slugAnime, slugGenre, nFormatter } from '../../helpers/Functions';
-import { getStatusAnime, getDateAiredAnime, getRatingAnime, getVoteAverageAnime } from '../../helpers/Strings';
 import Comments from "../../components/Comments";
 import AnimeEpisodeCard from '../../components/AnimeEpisodeCard';
+import AdsScript from '../../components/AdsScript'
+import { bannerAnime, posterAnime, slugAnime, slugGenre, nFormatter } from '../../helpers/Functions';
+import { getStatusAnime, getDateAiredAnime, getRatingAnime, getVoteAverageAnime } from '../../helpers/Strings';
+;
+import styles from '../../styles/Anime.module.css';
 
 export default class slug extends Component {
     constructor(props) {
@@ -102,6 +104,7 @@ export default class slug extends Component {
                 <div className={styles.overview}>
                   <p>{data?.overview ? data?.overview : 'No hay sinopsis para este anime'}</p>
                 </div>
+                <AdsScript/>
                 <div className={styles.listEpisodes}>
                     {data?.episodes?.map((episode, idx) => (
                         <AnimeEpisodeCard anime={data} episode={episode} key={idx} />

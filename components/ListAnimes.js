@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AnimeCard from './AnimeCard';
+import AdsScript from './AdsScript';
 
 import styles from '../styles/ListAnimes.module.css';
 
@@ -12,6 +13,7 @@ export default class ListAnimes extends Component {
         const { animes, title, filters, paginate } = this.props;
         return (
             <div className={styles.box}>
+                <AdsScript className={styles.ads}/>
                 {title && (
                     <h1>
                         <span className={styles.border}>{title}</span>

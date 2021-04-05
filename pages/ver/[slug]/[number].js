@@ -6,6 +6,7 @@ import Iframe from 'react-iframe';
 import { api } from '../../../lib/api';
 import Layout from '../../../components/Layout';
 import Comments from "../../../components/Comments";
+import AdsScript from '../../../components/AdsScript';
 import { slugEpisode, slugAnime, posterAnime, bannerAnime } from '../../../helpers/Functions';
 import { getLanguajePlayer, getUrlVideo, getCheckLatino } from '../../../helpers/Strings';
 
@@ -74,6 +75,7 @@ export default class number extends Component {
         }
         return(
             <div className={styles.videoPlayer}>
+                <AdsScript className={styles.ads}/>
                 { getCheckLatino(data?.players) && (
                     <div className={styles.msg}>
                         <span>Este capítulo está disponible en <b>Español Latino</b></span>

@@ -2,7 +2,8 @@
     margin: 0;
     position: fixed;
     width: 100%;
-    z-index: 2;
+    z-index: 99;
+    top: 0;
 }
 
 .container .menu {

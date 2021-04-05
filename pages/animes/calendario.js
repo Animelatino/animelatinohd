@@ -6,6 +6,7 @@ import { simulCast } from '../../helpers/Functions';
 import AnimeCalendar from "../../components/AnimeCalendar";
 
 import styles from '../../styles/Calendario.module.css';
+import AdsScript from '../../components/AdsScript';
 
 export default class calendario extends Component {
     constructor(props) {
@@ -32,6 +33,7 @@ export default class calendario extends Component {
                 </Head>
                 <main className={styles.container}>
                     <div className={styles.listCalendar}>
+                        <AdsScript className={styles.ads}/>
                         <h1 className={styles.title}>
                             <span className={styles.border}>Calendario Anime</span>
                         </h1>

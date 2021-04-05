@@ -2,7 +2,6 @@
     padding: 2rem 0;
     padding-bottom: 4rem;
 }
-
 .box h1 {
     border: 0;
     margin: calc(2rem - .14285em) 0 1rem;
@@ -12,12 +11,14 @@
     font-size: 1rem;
     text-transform: uppercase;
 }
-
+.box .ads {
+    margin-top: 2.5rem;
+    margin-bottom: -1rem;
+}
 .box h1 > .border {
     padding-bottom: .3em;
     border-bottom: solid 1px #e50914;
 }
-
 .box .listAnimes {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
