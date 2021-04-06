@@ -33,6 +33,10 @@
     align-items: center;
 }
 
+.message .contentMessage .info{
+    overflow: hidden;
+}
+
 .message .contentMessage .info p {
     margin-bottom: 1.6rem;
     font-size: 1.2rem;
@@ -41,16 +45,18 @@
 .message .contentMessage .info .buttons {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     padding-right: 2rem;
     padding-left: 2rem;
     margin-top: 1rem;
 }
 
 .message .contentMessage .info .buttons .button {
-    padding: .5rem 1rem;
-    border-radius: .4rem;
-    margin-right: 1rem;
+    padding: .5rem .4rem;
+    border-radius: .2rem;
+    margin: .2rem;
+    font-size: .8rem;
+    min-width: 33%;
 }
 
 .success {
