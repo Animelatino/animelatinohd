@@ -18,6 +18,12 @@
     text-align: center;
     max-width: 80%;
 }
+.app{
+    padding-bottom: 2rem;
+}
+.app a:hover{
+    color: inherit
+}
 .message h2 {
     margin-bottom: 1rem;
     font-weight: bold;
@@ -28,8 +34,35 @@
 }
 
 .message .contentMessage .info p {
-    margin-bottom: 1rem;
+    margin-bottom: 1.6rem;
     font-size: 1.2rem;
+}
+
+.message .contentMessage .info .buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    margin-top: 1rem;
+}
+
+.message .contentMessage .info .buttons .button {
+    padding: .5rem 1rem;
+    border-radius: .4rem;
+    margin-right: 1rem;
+}
+
+.success {
+    background-color: rgb(17, 126, 17);
+}
+
+.infob {
+    background-color: rgb(15, 134, 150);
+}
+
+.danger {
+    background-color: rgb(185, 41, 16);
 }
 
 @media (min-width: 1024px) {
@@ -38,7 +71,7 @@
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
     .message img {
         display: none;
     }
