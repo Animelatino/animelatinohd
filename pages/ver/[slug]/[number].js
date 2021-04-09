@@ -107,7 +107,7 @@ export default class number extends Component {
                         )}
                         <div className={styles.video}>
                             { ads && (
-                                <Link href="https://pubfruitlesswording.com/pvyn2yhpg5?key=0f22c1fd609f13cb7947c8cabfe1a90d&submetric=15281709">
+                                <Link href="https://pubfruitlesswording.com/pvyn2yhpg5?key=d7e45c99b830f758be9cc08b01911e69">
                                     <a onClick={() => this.setState({ads:false})} className={styles.adsP} target="_BLANK"></a>
                                 </Link>
                             )}
