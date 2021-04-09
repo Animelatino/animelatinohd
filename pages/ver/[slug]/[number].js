@@ -20,7 +20,8 @@ export default class number extends Component {
             languaje: this.props.data?.players[0] == undefined ? 1 : 0,
             server: 0,
             random: 0,
-            id: this.props.data.id
+            id: this.props.data.id,
+            ads: true
         };
     }
 
@@ -67,7 +68,7 @@ export default class number extends Component {
 
     videoPlayer = () => {
         const { data } = this.props;
-        const { iframe, languaje, random, server } = this.state;
+        const { iframe, languaje, random, server, ads } = this.state;
         let checkSandbox = false;
         if(data.players[languaje]){
             let seversandbox = ['gphotos','degoo','beta','videos','zplayer','evo','sendvid']
@@ -101,7 +102,15 @@ export default class number extends Component {
                                 </select>
                             </div>
                         </div>
+                        { ads && (
+                            <p className={styles.message}>ADS | Max. 1 ventana de publicidad</p>
+                        )}
                         <div className={styles.video}>
+                            { ads && (
+                                <Link href="https://pubfruitlesswording.com/pvyn2yhpg5?key=0f22c1fd609f13cb7947c8cabfe1a90d&submetric=15281709">
+                                    <a onClick={() => this.setState({ads:false})} className={styles.adsP} target="_BLANK"></a>
+                                </Link>
+                            )}
                             { checkSandbox
                             ?   <Iframe sandbox="allow-scripts allow-same-origin" key={random} allowfullscreen={true} allow={"fullscreen"} url={iframe} display="initial"/>
                             :   <Iframe key={random} allowfullscreen={true} allow={"fullscreen"} url={iframe} display="initial"/>
