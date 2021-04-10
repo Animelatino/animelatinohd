@@ -20,8 +20,7 @@ export default class number extends Component {
             languaje: this.props.data?.players[0] == undefined ? 1 : 0,
             server: 0,
             random: 0,
-            id: this.props.data.id,
-            ads: true
+            id: this.props.data.id
         };
     }
 
@@ -106,11 +105,6 @@ export default class number extends Component {
                             <p className={styles.message}>ADS | Max. 1 ventana de publicidad</p>
                         )}
                         <div className={styles.video}>
-                            { ads && (
-                                <Link href="https://pubfruitlesswording.com/pvyn2yhpg5?key=d7e45c99b830f758be9cc08b01911e69">
-                                    <a onClick={() => this.setState({ads:false})} className={styles.adsP} target="_BLANK"></a>
-                                </Link>
-                            )}
                             { checkSandbox
                             ?   <Iframe sandbox="allow-scripts allow-same-origin" key={random} allowfullscreen={true} allow={"fullscreen"} url={iframe} display="initial"/>
                             :   <Iframe key={random} allowfullscreen={true} allow={"fullscreen"} url={iframe} display="initial"/>
