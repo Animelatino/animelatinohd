@@ -39,18 +39,11 @@ export default class index extends Component {
 }
 
 export async function getStaticProps() {
-    try {
-        const res = await api.get(`releases`);
-        return {
-            props: {
-                releases: res.data,
-            },
-            revalidate: 1
-        }
-    } catch (error) {
-        return {
-            props: {},
-            revalidate: 1
-        }
+    const res = await api.get(`releases`);
+    return {
+        props: {
+            releases: res.data,
+        },
+        revalidate: 1
     }
 }

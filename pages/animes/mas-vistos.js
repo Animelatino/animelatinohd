@@ -39,18 +39,10 @@ class index extends Component {
 }
 
 export async function getStaticProps() {
-    try {
-        const res = await api.get(`anime/more-view`);
+    const res = await api.get(`anime/more-view`);
         return {
             props: {
                 data: res.data,
-            },
-            revalidate: 1
-        }
-    } catch (error) {
-        return {
-            props: {
-                data: []
             },
             revalidate: 1
         }

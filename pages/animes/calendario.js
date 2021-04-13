@@ -58,18 +58,11 @@ export default class calendario extends Component {
 }
 
 export async function getStaticProps() {
-    try {
-        const res = await api.get(`anime/simulcast`);
-        return {
-            props: {
-                simulcast: res.data,
-            },
-            revalidate: 1
-        }
-    } catch (error) {
-        return {
-            props: {},
-            revalidate: 1
-        }
+    const res = await api.get(`anime/simulcast`);
+    return {
+        props: {
+            simulcast: res.data,
+        },
+        revalidate: 1
     }
 }
