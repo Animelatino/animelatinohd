@@ -86,7 +86,7 @@ class index extends Component {
 
 export async function getStaticProps() {
     try {
-        const res = await api.get(`anime/latino`,{timeout: 1500});
+        const res = await api.get(`anime/latino`);
         return {
             props: {
                 data: res.data,

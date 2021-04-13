@@ -147,7 +147,7 @@ index.getInitialProps = async (context) => {
                 .map(([index, val]) => `${index}=${val}`)
                 .join("&");
         };
-        const res = await api.get(`anime/list?${queryString({ ...context?.query })}`,{timeout: 2000});
+        const res = await api.get(`anime/list?${queryString({ ...context?.query })}`);
         return { 
             data: res.data
         }

@@ -40,7 +40,7 @@ export default class index extends Component {
 
 export async function getStaticProps() {
     try {
-        const res = await api.get(`releases`,{timeout: 1500});
+        const res = await api.get(`releases`);
         return {
             props: {
                 releases: res.data,

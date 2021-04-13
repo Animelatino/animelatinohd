@@ -40,7 +40,7 @@ class index extends Component {
 
 export async function getStaticProps() {
     try {
-        const res = await api.get(`anime/trending`,{timeout: 1500});
+        const res = await api.get(`anime/trending`);
         return {
             props: {
                 data: res.data,

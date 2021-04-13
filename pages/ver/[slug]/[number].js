@@ -213,7 +213,7 @@ export default class number extends Component {
 
 export async function getServerSideProps(context) {
     try {
-        const res = await api.get(`episodes/${context.params.slug}/${context.params.number}`,{timeout: 2000});
+        const res = await api.get(`episodes/${context.params.slug}/${context.params.number}`);
         Object.values(res.data.players).forEach((element) => {
             element.forEach((el) => {
                 switch (el.server.title.toLowerCase()) {

@@ -147,7 +147,7 @@ export default class slug extends Component {
 
 export async function getServerSideProps(context) {
     try {
-        const res = await api.get(`anime/${context.params.slug}`,{timeout: 2000});
+        const res = await api.get(`anime/${context.params.slug}`);
         return {
             props: { 
                 data: res.data 
