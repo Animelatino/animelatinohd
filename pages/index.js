@@ -49,7 +49,8 @@ export async function getStaticProps() {
         }
     } catch (error) {
         return {
-            props: {}
+            props: {},
+            revalidate: 1
         }
     }
 }
