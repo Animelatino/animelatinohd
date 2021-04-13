@@ -77,7 +77,7 @@ class index extends Component {
                     <meta itemProp="image" content="https://i.imgur.com/Iof3uSm.jpg" />
                 </Head>
                 <main className={styles.container}>
-                    <ListAnimes title={'Animes en Español Latino'} animes={data.slice(((page-1)*perPage),(page*perPage))} paginate={this.paginationAnimes()}/>
+                    <ListAnimes title={'Animes en Español Latino'} animes={data?.slice(((page-1)*perPage),(page*perPage))} paginate={this.paginationAnimes()}/>
                 </main>
             </Layout>
         );
@@ -85,13 +85,22 @@ class index extends Component {
 }
 
 export async function getStaticProps() {
-    const res = await api.get(`anime/latino`);
-    return {
-        props: {
-            data: res.data,
-        },
-        revalidate: 1
+    try {
+        const res = await api.get(`anime/latino`,{timeout: 1500});
+        return {
+            props: {
+                data: res.data,
+            },
+            revalidate: 1
+        }
+    } catch (error) {
+        return {
+            props: {
+                data: []
+            }
+        }
     }
 }
+
 
 export default withRouter(index);

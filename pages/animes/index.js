@@ -141,14 +141,20 @@ class index extends Component {
 }
 
 index.getInitialProps = async (context) => {
-    const queryString = (obj) => {
-        return Object.entries(obj)
-            .map(([index, val]) => `${index}=${val}`)
-            .join("&");
-    };
-    const res = await api.get(`anime/list?${queryString({ ...context?.query })}`);
-    return { 
-        data: res.data
+    try {
+        const queryString = (obj) => {
+            return Object.entries(obj)
+                .map(([index, val]) => `${index}=${val}`)
+                .join("&");
+        };
+        const res = await api.get(`anime/list?${queryString({ ...context?.query })}`,{timeout: 2000});
+        return { 
+            data: res.data
+        }
+    } catch (error) {
+        return { 
+            data: []
+        }
     }
 }
 
