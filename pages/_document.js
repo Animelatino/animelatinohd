@@ -13,6 +13,7 @@ class MyDocument extends Document {
                     <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet"/>
                     <script async src="https://arc.io/widget.min.js#R2yjvhvV"></script>
                     <script src="/disableClick.js"></script>
+                    <meta name="a.validate.01" content="2b3c17a8e30e0b1b3cc73fdc65cd650ef821" />
                 </Head>
                 <body className={"mob_ad"}>
                     <Main />
