@@ -220,19 +220,19 @@ export async function getServerSideProps(context) {
                     case 'alpha':
                         el.position = 0;
                         break;
-                    case 'degoo':
-                        el.position = 1;
-                        break;
                     case 'beta':
+                        el.position = 1;
+			break;
+		    case 'degoo':
+                        el.position = 3;
+                        break;
+                    case 'gocdn':
                         el.position = 2;
                         break;
                     case 'videos':
-                        el.position = 3;
-                        break;
-                    case 'zplayer':
                         el.position = 4;
                         break;
-                    case 'gocdn':
+                    case 'zplayer':
                         el.position = 9;
                         break;
                     case 'mega':
