@@ -38,7 +38,10 @@ export default class Search extends Component {
         }
         this.cancel = axios.CancelToken.source();
         axios.get(`${process.env.APIURL}anime/search?search=${q}`,{
-            cancelToken: this.cancel.token
+            cancelToken: this.cancel.token,
+            headers: {
+                key: process.env.APIKEY
+            }
         }).then(res => {
             this.setState({
                 animes: res.data,
