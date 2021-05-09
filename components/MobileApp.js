@@ -17,7 +17,7 @@ class MobileApp extends PureComponent {
     componentDidMount = () => {
         this.setState({
             isOpen: localStorage.getItem('isModalApp') === "false" ? false : true
-        }, () => console.log(this.state.isOpen));
+        });
     }
 
     salir = () => {
