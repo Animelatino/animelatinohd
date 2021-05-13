@@ -222,8 +222,8 @@ export async function getServerSideProps(context) {
                         break;
                     case 'beta':
                         el.position = 1;
-			break;
-		    case 'degoo':
+			        break;
+		            case 'degoo':
                         el.position = 3;
                         break;
                     case 'gocdn':
@@ -259,7 +259,7 @@ export async function getServerSideProps(context) {
             Object.values(res.data.players).forEach((element, i) => {
                 if(res.data.players[i]){
                     res.data.players[i] = element.filter(function(item){
-                        if(item.server.title === 'Archive'){
+                        if(item.server.title === 'Archive' || item.server.title === 'Omega'){
                             return false;
                         }else{
                             return true;
