@@ -218,6 +218,7 @@ export async function getServerSideProps(context) {
             element.forEach((el) => {
                 switch (el.server.title.toLowerCase()) {
                     case 'alpha':
+                    case 'omega':
                         el.position = 0;
                         break;
                     case 'beta':
