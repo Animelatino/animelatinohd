@@ -252,14 +252,11 @@ export async function getServerSideProps(context) {
             })
             element.sort((a,b)=> (a.position > b.position ? 1 : -1))
         })
-        let isMobileView = (context.req 
-            ? context.req.headers['user-agent']
-            : navigator.userAgent
-        ).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
-        if(Boolean(isMobileView) === false){
-            Object.values(res.data.players).forEach((element, i) => {
-                if(res.data.players[i]){
-                    res.data.players[i] = element.filter(function(item){
+        let isMobileView = (context.req ? context.req.headers['user-agent'] : navigator.userAgent).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
+        if(!Boolean(isMobileView)){
+            Object.entries(res.data.players).forEach((element, i) => {
+                if(element[i]){
+                    res.data.players[element[0]] = element[1].filter(function(item){
                         if(item.server.title.toLowerCase() == 'archive' || item.server.title.toLowerCase() == 'omega'){
                             return false;
                         }else{
@@ -275,6 +272,7 @@ export async function getServerSideProps(context) {
             }
         }
     } catch (error) {
+        console.log(error)
         return {
             notFound: true
         }
