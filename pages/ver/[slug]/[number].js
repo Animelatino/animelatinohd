@@ -260,7 +260,7 @@ export async function getServerSideProps(context) {
             Object.values(res.data.players).forEach((element, i) => {
                 if(res.data.players[i]){
                     res.data.players[i] = element.filter(function(item){
-                        if(item.server.title === 'Archive' || item.server.title === 'Omega'){
+                        if(item.server.title.toLowerCase() == 'archive' || item.server.title.toLowerCase() == 'omega'){
                             return false;
                         }else{
                             return true;
