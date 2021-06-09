@@ -219,17 +219,17 @@ export async function getServerSideProps(context) {
                 switch (el.server.title.toLowerCase()) {
                     case 'alpha':
                     case 'omega':
+                    case 'gocdn':
                         el.position = 0;
                         break;
 		            case 'degoo':
                         el.position = 1;
                         break;
                     case 'beta':
-                    case 'gocdn':
-                        el.position = 3;
+                        el.position = 2;
                     break;
                     case 'yourup':
-                        el.position = 2;
+                        el.position = 3;
                         break;
                     case 'videos':
                         el.position = 4;
