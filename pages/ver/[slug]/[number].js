@@ -217,34 +217,27 @@ export async function getServerSideProps(context) {
         Object.values(res.data.players).forEach((element) => {
             element.forEach((el) => {
                 switch (el.server.title.toLowerCase()) {
-                    case 'alpha':
                     case 'omega':
                     case 'gocdn':
                         el.position = 0;
                         break;
-		            case 'degoo':
+                    case 'fireload':
                         el.position = 1;
                         break;
-                    case 'beta':
+                    case 'alpha':
+		            case 'degoo':
                         el.position = 2;
-                    break;
+                        break;
+                    case 'beta':
                     case 'yourup':
                         el.position = 3;
-                        break;
-                    case 'videos':
-                        el.position = 4;
-                        break;
-                    case 'zplayer':
-                        el.position = 9;
-                        break;
-                    case 'mega':
-                        el.position = 10;
-                        break;
+                    break;
                     case 'fembed':
-                        el.position = 11;
-                        break;
+                    case 'mega':
+                    case 'videos':
+                    case 'zplayer':
                     case 'okru':
-                        el.position = 12;
+                        el.position = 4;
                         break;
                     default:
                         el.position = 99;
