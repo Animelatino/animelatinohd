@@ -224,7 +224,6 @@ export async function getServerSideProps(context) {
                     case 'alpha':
                         el.position = 1;
                         break;
-                    case 'fireload':
 		            case 'degoo':
                         el.position = 2;
                         break;
