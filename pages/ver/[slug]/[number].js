@@ -217,6 +217,7 @@ export async function getServerSideProps(context) {
         Object.values(res.data.players).forEach((element) => {
             element.forEach((el) => {
                 switch (el.server.title.toLowerCase()) {
+                    case 'delta':
                     case 'omega':
                     case 'gocdn':
                         el.position = 0;
