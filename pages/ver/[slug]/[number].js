@@ -221,10 +221,10 @@ export async function getServerSideProps(context) {
                     case 'gocdn':
                         el.position = 0;
                         break;
-                    case 'fireload':
+                    case 'alpha':
                         el.position = 1;
                         break;
-                    case 'alpha':
+                    case 'fireload':
 		            case 'degoo':
                         el.position = 2;
                         break;
