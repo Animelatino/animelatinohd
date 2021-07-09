@@ -9,8 +9,9 @@ class MyDocument extends Document {
                     <meta name="theme-color" content="#000000"/>
                     <link rel="manifest" href="/manifest.json"/>
                     <meta name="robots" content="index, follow"/>
-                    <link rel="preconnect" href="https://fonts.gstatic.com"/>
-                    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap" rel="stylesheet"/>
+                    <link rel="preload" href="/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf" as="font" crossOrigin=""/>
+                    <link rel="preload" href="/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf" as="font" crossOrigin=""/>
+                    <link rel="preload" href="/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf" as="font" crossOrigin=""/>
                     <script async src="https://arc.io/widget.min.js#R2yjvhvV"></script>
                     <script src="/disableClick.js"></script>
                 </Head>
