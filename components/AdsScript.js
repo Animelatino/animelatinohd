@@ -15,9 +15,9 @@ class AdsScript extends PureComponent {
     }
     
     render() {
-        return (
-            <div id={'ads_inline'} className={`${this.props.className} ${styles.container}`}></div>
-        )
+       // return (
+       //     <div id={'ads_inline'} className={`${this.props.className} ${styles.container}`}></div>
+       // )
     }
 }
 
