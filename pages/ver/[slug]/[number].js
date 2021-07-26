@@ -222,23 +222,25 @@ export async function getServerSideProps(context) {
                         el.position = 0;
                         break;
                     case 'delta':
-                    case 'epsilon':
                         el.position = 1;
+                        break;
+                    case 'epsilon':
+                        el.position = 2;
                         break;
                     case 'alpha':
 		            case 'degoo':
-                        el.position = 2;
+                        el.position = 3;
                         break;
                     case 'beta':
                     case 'yourup':
-                        el.position = 3;
+                        el.position = 4;
                     break;
                     case 'fembed':
                     case 'mega':
                     case 'videos':
                     case 'zplayer':
                     case 'okru':
-                        el.position = 4;
+                        el.position = 5;
                         break;
                     default:
                         el.position = 99;
