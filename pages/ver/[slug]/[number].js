@@ -247,7 +247,7 @@ export async function getServerSideProps(context) {
                         break;
                 }
             })
-            element.sort((a,b)=> (a.position > b.position ? 1 : -1))
+            element.sort((a,b)=> (a.position > b.position ? 1 : -1));
         })
         let isMobileView = (context.req ? context.req.headers['user-agent'] : navigator.userAgent).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
         if(!Boolean(isMobileView)){
@@ -263,6 +263,17 @@ export async function getServerSideProps(context) {
                 }
             })
         }
+        Object.entries(res.data.players).forEach((element, i) => {
+            if(element[i]){
+                res.data.players[element[0]] = element[1].filter(function(item){
+                    if(item.server.title.toLowerCase() == 'epsilon'){
+                        return false;
+                    }else{
+                        return true;
+                    }
+                })
+            }
+        })
         return {
             props: { 
                 data: res.data
