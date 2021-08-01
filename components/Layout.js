@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { initGA, logPageView } from '../lib/ga';
 import HeaderNavigation from './HeaderNavigation';
 import BottomNavigation from './BottomNavigation';
-import DetectAdBlock from './DetectAdBlock';
+// import DetectAdBlock from './DetectAdBlock';
 import MobileApp from './MobileApp';
 
 export default class Layout extends Component {
@@ -21,7 +21,7 @@ export default class Layout extends Component {
                 <HeaderNavigation/>
                 {this.props.children}
                 <BottomNavigation/>
-                <DetectAdBlock />
+                {/* <DetectAdBlock /> */}
                 <MobileApp/>
             </>
         )
