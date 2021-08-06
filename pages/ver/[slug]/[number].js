@@ -266,7 +266,7 @@ export async function getServerSideProps(context) {
         Object.entries(res.data.players).forEach((element, i) => {
             if(element[i]){
                 res.data.players[element[0]] = element[1].filter(function(item){
-                    if(item.server.title.toLowerCase() == 'epsilon'){
+                    if(item.server.title.toLowerCase() == 'epsilon' || item.server.title.toLowerCase() == 'beta'){
                         return false;
                     }else{
                         return true;
