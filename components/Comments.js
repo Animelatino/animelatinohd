@@ -8,6 +8,7 @@ export default class Comments extends Component {
 
     render() {
         const { title, url, id } = this.props;
+        return null;
         return (
             <DiscussionEmbed
                 shortname={process.env.DISQUS_SHORTNAME}
