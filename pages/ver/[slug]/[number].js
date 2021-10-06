@@ -5,10 +5,19 @@ import Image from 'next/image';
 import Iframe from 'react-iframe';
 import { api } from '../../../lib/api';
 import Layout from '../../../components/Layout';
-import Comments from "../../../components/Comments";
+import Comments from '../../../components/Comments';
 import AdsScript from '../../../components/AdsScript';
-import { slugEpisode, slugAnime, posterAnime, bannerAnime } from '../../../helpers/Functions';
-import { getLanguajePlayer, getUrlVideo, getCheckLatino } from '../../../helpers/Strings';
+import {
+    slugEpisode,
+    slugAnime,
+    posterAnime,
+    bannerAnime,
+} from '../../../helpers/Functions';
+import {
+    getLanguajePlayer,
+    getUrlVideo,
+    getCheckLatino,
+} from '../../../helpers/Strings';
 
 import styles from '../../../styles/Episode.module.css';
 
@@ -20,101 +29,143 @@ export default class number extends Component {
             languaje: this.props.data?.players[0] == undefined ? 1 : 0,
             server: 0,
             random: 0,
-            id: this.props.data.id
+            id: this.props.data.id,
         };
     }
 
-    static getDerivedStateFromProps(nextProps, prevState){
+    static getDerivedStateFromProps(nextProps, prevState) {
         let defaultLang = prevState.languaje;
-        if(nextProps.data.id !== prevState.id){
-            defaultLang = nextProps.data?.players[defaultLang] == undefined ? 0 : defaultLang;
+        if (nextProps.data.id !== prevState.id) {
+            defaultLang =
+                nextProps.data?.players[defaultLang] == undefined
+                    ? 0
+                    : defaultLang;
             return {
-                iframe: nextProps.data?.players[defaultLang] ? getUrlVideo(nextProps.data?.players[defaultLang][0]) : null,
+                iframe: nextProps.data?.players[defaultLang]
+                    ? getUrlVideo(nextProps.data?.players[defaultLang][0])
+                    : null,
                 languaje: defaultLang,
                 server: 0,
                 random: prevState.random + 1,
-                id: nextProps.data.id
-            }
-        }else{
-            if(prevState.iframe == null){
+                id: nextProps.data.id,
+            };
+        } else {
+            if (prevState.iframe == null) {
                 return {
-                    iframe: nextProps.data?.players[defaultLang] ? getUrlVideo(nextProps.data?.players[defaultLang][0]) : null
-                }
-            }else{
+                    iframe: nextProps.data?.players[defaultLang]
+                        ? getUrlVideo(nextProps.data?.players[defaultLang][0])
+                        : null,
+                };
+            } else {
                 return prevState;
             }
         }
-        
     }
 
     handleChange = (e) => {
         const { data } = this.props;
         const { languaje } = this.state;
-        if(e.target.name === 'languaje'){
+        if (e.target.name === 'languaje') {
             this.setState({
                 languaje: e.target.value,
                 iframe: getUrlVideo(data?.players[e.target.value][0]),
-                server: 0
-            })
+                server: 0,
+            });
         }
-        if(e.target.name === 'server'){
+        if (e.target.name === 'server') {
             this.setState({
                 server: e.target.value,
-                iframe: getUrlVideo(data?.players[languaje][e.target.value])
-            })
+                iframe: getUrlVideo(data?.players[languaje][e.target.value]),
+            });
         }
-    }
+    };
 
     videoPlayer = () => {
         const { data } = this.props;
         const { iframe, languaje, random, server, ads } = this.state;
         let checkSandbox = false;
-        if(data.players[languaje]){
-            let seversandbox = ['gphotos','degoo','beta','videos','zplayer','evo','sendvid']
-            checkSandbox = seversandbox.includes(data?.players[languaje][server]?.server?.title?.toLowerCase());
+        if (data.players[languaje]) {
+            let seversandbox = ['uqload'];
+            checkSandbox = seversandbox.includes(
+                data?.players[languaje][server]?.server?.title?.toLowerCase()
+            );
         }
-        return(
+        return (
             <div className={styles.videoPlayer}>
-                <AdsScript className={styles.ads}/>
-                { getCheckLatino(data?.players) && (
+                <AdsScript className={styles.ads} />
+                {getCheckLatino(data?.players) && (
                     <div className={styles.msg}>
-                        <span>Este capítulo está disponible en <b>Español Latino</b></span>
+                        <span>
+                            Este capítulo está disponible en{' '}
+                            <b>Español Latino</b>
+                        </span>
                     </div>
                 )}
-                { iframe && (
+                {iframe && (
                     <>
                         <div className={styles.options}>
                             <div className={styles.type}>
-                                <label htmlFor={"languaje"}>Idioma</label>
-                                <select name={"languaje"} id={"languaje"} onChange={this.handleChange}>
-                                    {Object.keys(data?.players)?.map((item, idx) => (
-                                        <option value={item} key={idx}>{getLanguajePlayer(item)}</option>
-                                    ))}
+                                <label htmlFor={'languaje'}>Idioma</label>
+                                <select
+                                    name={'languaje'}
+                                    id={'languaje'}
+                                    onChange={this.handleChange}
+                                >
+                                    {Object.keys(data?.players)?.map(
+                                        (item, idx) => (
+                                            <option value={item} key={idx}>
+                                                {getLanguajePlayer(item)}
+                                            </option>
+                                        )
+                                    )}
                                 </select>
                             </div>
                             <div className={styles.type}>
-                                <label htmlFor={"server"}>Servidor</label>
-                                <select name={"server"} value={server} id={"server"} onChange={this.handleChange}>
-                                    {data?.players[languaje]?.map((item, idx) => (
-                                        <option value={idx} key={idx}>{item?.server?.title}</option>
-                                    ))}
+                                <label htmlFor={'server'}>Servidor</label>
+                                <select
+                                    name={'server'}
+                                    value={server}
+                                    id={'server'}
+                                    onChange={this.handleChange}
+                                >
+                                    {data?.players[languaje]?.map(
+                                        (item, idx) => (
+                                            <option value={idx} key={idx}>
+                                                {item?.server?.title}
+                                            </option>
+                                        )
+                                    )}
                                 </select>
                             </div>
                         </div>
-                        { ads && (
-                            <p className={styles.message}>ADS | Max. 1 ventana de publicidad</p>
+                        {ads && (
+                            <p className={styles.message}>
+                                ADS | Max. 1 ventana de publicidad
+                            </p>
                         )}
                         <div className={styles.video}>
-                            { checkSandbox
-                            ?   <Iframe sandbox="allow-scripts allow-same-origin" key={random} allowfullscreen={true} allow={"fullscreen"} url={iframe} display="initial"/>
-                            :   <Iframe key={random} allowfullscreen={true} allow={"fullscreen"} url={iframe} display="initial"/>
-                            }
+                            {checkSandbox ? (
+                                <iframe
+                                    sandbox="allow-scripts allow-same-origin"
+                                    scrolling="no"
+                                    src={iframe}
+                                    display="initial"
+                                    allowfullscreen=""
+                                ></iframe>
+                            ) : (
+                                <iframe
+                                    scrolling="no"
+                                    src={iframe}
+                                    display="initial"
+                                    allowfullscreen=""
+                                ></iframe>
+                            )}
                         </div>
                     </>
                 )}
             </div>
-        )
-    }
+        );
+    };
 
     navCaps = () => {
         const { data } = this.props;
@@ -123,17 +174,18 @@ export default class number extends Component {
                 <div className={styles.column}>
                     <div className={styles.info}>
                         <Link href={slugAnime(data?.anime?.slug)}>
-                        <a className={styles.cover}>
-                            <Image 
-                                className={styles.cover}
-                                alt={`${data?.anime?.name} ${data?.number}`}
-                                height={68}
-								width={48}
-								quality={95}
-								layout="intrinsic"
-                                loading={"lazy"}
-                                src={posterAnime(data?.anime?.poster) }/>
-                        </a> 
+                            <a className={styles.cover}>
+                                <Image
+                                    className={styles.cover}
+                                    alt={`${data?.anime?.name} ${data?.number}`}
+                                    height={68}
+                                    width={48}
+                                    quality={95}
+                                    layout="intrinsic"
+                                    loading={'lazy'}
+                                    src={posterAnime(data?.anime?.poster)}
+                                />
+                            </a>
                         </Link>
                         <div className={styles.details}>
                             <div className={styles.info}>
@@ -142,14 +194,23 @@ export default class number extends Component {
                                         <a>{data?.anime?.name}</a>
                                     </Link>
                                 </h1>
-                                <span className={styles.currentEp}>{`Episodio ${data?.number}`}</span>
+                                <span
+                                    className={styles.currentEp}
+                                >{`Episodio ${data?.number}`}</span>
                             </div>
-                            <p className={styles.desc}>{data?.anime?.overview?.slice(0,50)}</p>
+                            <p className={styles.desc}>
+                                {data?.anime?.overview?.slice(0, 50)}
+                            </p>
                         </div>
                     </div>
                     <div className={styles.actions}>
-                        { data?.anterior && (
-                            <Link href={slugEpisode(data?.anime?.slug, data?.anterior?.number)}>
+                        {data?.anterior && (
+                            <Link
+                                href={slugEpisode(
+                                    data?.anime?.slug,
+                                    data?.anterior?.number
+                                )}
+                            >
                                 <a className={styles.button}>
                                     <svg viewBox="0 0 24 24">
                                         <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
@@ -158,7 +219,7 @@ export default class number extends Component {
                                 </a>
                             </Link>
                         )}
-                        { data?.anime && (
+                        {data?.anime && (
                             <Link href={slugAnime(data?.anime?.slug)}>
                                 <a className={styles.button}>
                                     <svg viewBox="0 0 24 24">
@@ -167,8 +228,13 @@ export default class number extends Component {
                                 </a>
                             </Link>
                         )}
-                        { data?.siguiente && (
-                            <Link href={slugEpisode(data?.anime?.slug, data?.siguiente?.number)}>
+                        {data?.siguiente && (
+                            <Link
+                                href={slugEpisode(
+                                    data?.anime?.slug,
+                                    data?.siguiente?.number
+                                )}
+                            >
                                 <a className={styles.button}>
                                     Ep. Siguiente
                                     <svg viewBox="0 0 24 24">
@@ -180,8 +246,8 @@ export default class number extends Component {
                     </div>
                 </div>
             </div>
-        )
-    }
+        );
+    };
 
     render() {
         const { data } = this.props;
@@ -189,22 +255,56 @@ export default class number extends Component {
             <Layout>
                 <Head>
                     <title>{`Ver ${data?.anime?.name} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.NAME}`}</title>
-                    <meta name="description" content={`Anime ${data?.anime?.name} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`} />
-                    <link rel="canonical" href={`${process.env.URL}${slugEpisode(data?.anime?.slug,data?.number)}`} />
-                    <meta name="og:title" content={`Ver ${data?.anime?.name} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.NAME}`} />
-                    <meta name="og:description" content={`Anime ${data?.anime?.name} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`} />
-                    <meta name="og:url" content={`${process.env.URL}${slugEpisode(data?.anime?.slug,data?.number)}`} />
+                    <meta
+                        name="description"
+                        content={`Anime ${data?.anime?.name} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`}
+                    />
+                    <link
+                        rel="canonical"
+                        href={`${process.env.URL}${slugEpisode(
+                            data?.anime?.slug,
+                            data?.number
+                        )}`}
+                    />
+                    <meta
+                        name="og:title"
+                        content={`Ver ${data?.anime?.name} Capítulo ${data?.number} Sub Español Latino en HD Online • ${process.env.NAME}`}
+                    />
+                    <meta
+                        name="og:description"
+                        content={`Anime ${data?.anime?.name} capitulo ${data?.number} Sub Español Latino, ver online y descargar en hd 720p sin ninguna limitación`}
+                    />
+                    <meta
+                        name="og:url"
+                        content={`${process.env.URL}${slugEpisode(
+                            data?.anime?.slug,
+                            data?.number
+                        )}`}
+                    />
                     <meta name="og:locale" content="es_LA" />
                     <meta name="og:type" content="video.episode" />
-                    <meta name="og:image" content={bannerAnime(data?.anime?.banner)} />
+                    <meta
+                        name="og:image"
+                        content={bannerAnime(data?.anime?.banner)}
+                    />
                     <meta property="og:image:width" content="552" />
-			        <meta property="og:image:height" content="310" />
-                    <meta itemProp="image" content={bannerAnime(data?.anime?.banner)} />
+                    <meta property="og:image:height" content="310" />
+                    <meta
+                        itemProp="image"
+                        content={bannerAnime(data?.anime?.banner)}
+                    />
                 </Head>
                 <main className={styles.container}>
-                    { this.videoPlayer() }
-                    { this.navCaps() }
-                    <Comments title={`${data?.anime?.name} Episodio ${data?.number}`} url={`${process.env.URL}${slugEpisode(data?.anime?.slug,data?.number)}`} id={`${data?.anime?.slug}-${data?.number}`}/>
+                    {this.videoPlayer()}
+                    {this.navCaps()}
+                    <Comments
+                        title={`${data?.anime?.name} Episodio ${data?.number}`}
+                        url={`${process.env.URL}${slugEpisode(
+                            data?.anime?.slug,
+                            data?.number
+                        )}`}
+                        id={`${data?.anime?.slug}-${data?.number}`}
+                    />
                 </main>
             </Layout>
         );
@@ -213,7 +313,9 @@ export default class number extends Component {
 
 export async function getServerSideProps(context) {
     try {
-        const res = await api.get(`episodes/${context.params.slug}/${context.params.number}`);
+        const res = await api.get(
+            `episodes/${context.params.slug}/${context.params.number}`
+        );
         Object.values(res.data.players).forEach((element) => {
             element.forEach((el) => {
                 switch (el.server.title.toLowerCase()) {
@@ -228,13 +330,13 @@ export async function getServerSideProps(context) {
                         el.position = 2;
                         break;
                     case 'alpha':
-		            case 'degoo':
+                    case 'degoo':
                         el.position = 3;
                         break;
                     case 'beta':
                     case 'yourup':
                         el.position = 4;
-                    break;
+                        break;
                     case 'fembed':
                     case 'mega':
                     case 'videos':
@@ -246,42 +348,59 @@ export async function getServerSideProps(context) {
                         el.position = 99;
                         break;
                 }
-            })
-            element.sort((a,b)=> (a.position > b.position ? 1 : -1));
-        })
-        let isMobileView = (context.req ? context.req.headers['user-agent'] : navigator.userAgent).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
-        if(!Boolean(isMobileView)){
+            });
+            element.sort((a, b) => (a.position > b.position ? 1 : -1));
+        });
+        let isMobileView = (
+            context.req
+                ? context.req.headers['user-agent']
+                : navigator.userAgent
+        ).match(
+            /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+        );
+        if (!Boolean(isMobileView)) {
             Object.entries(res.data.players).forEach((element, i) => {
-                if(element[i]){
-                    res.data.players[element[0]] = element[1].filter(function(item){
-                        if(item.server.title.toLowerCase() == 'archive' || item.server.title.toLowerCase() == 'omega'){
+                if (element[i]) {
+                    res.data.players[element[0]] = element[1].filter(function (
+                        item
+                    ) {
+                        if (
+                            item.server.title.toLowerCase() == 'archive' ||
+                            item.server.title.toLowerCase() == 'omega'
+                        ) {
                             return false;
-                        }else{
+                        } else {
                             return true;
                         }
-                    })
+                    });
                 }
-            })
+            });
         }
         Object.entries(res.data.players).forEach((element, i) => {
-            if(element[i]){
-                res.data.players[element[0]] = element[1].filter(function(item){
-                    if(item.server.title.toLowerCase() == 'epsilon' || item.server.title.toLowerCase() == 'beta' || item.server.title.toLowerCase() == 'pcloud'){
+            if (element[i]) {
+                res.data.players[element[0]] = element[1].filter(function (
+                    item
+                ) {
+                    if (
+                        item.server.title.toLowerCase() == 'epsilon' ||
+                        item.server.title.toLowerCase() == 'beta' ||
+                        item.server.title.toLowerCase() == 'pcloud'
+                    ) {
                         return false;
-                    }else{
+                    } else {
                         return true;
                     }
-                })
+                });
             }
-        })
+        });
         return {
-            props: { 
-                data: res.data
-            }
-        }
+            props: {
+                data: res.data,
+            },
+        };
     } catch (error) {
         return {
-            notFound: true
-        }
+            notFound: true,
+        };
     }
 }
