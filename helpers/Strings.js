@@ -76,9 +76,10 @@ export const getNowDay = () => {
 export const getUrlVideo = (video) => {
     switch (video?.server?.title?.toLowerCase()) {
         case 'fembed':
-        case 'betaj':
-        case 'alpham':
-        case 'alphaf':
+        case 'alphaF':
+        case 'alphaJ':
+        case 'alphaM':
+        case 'alphaT':
             return video?.server?.embed
                 ? video?.server?.embed?.replace('{id}', video?.code)
                 : video?.code;
