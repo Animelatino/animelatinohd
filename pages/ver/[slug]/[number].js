@@ -85,7 +85,7 @@ export default class number extends Component {
         const { iframe, languaje, random, server, ads } = this.state;
         let checkSandbox = false;
         if (data.players[languaje]) {
-            let seversandbox = ['uqload', 'betam'];
+            let seversandbox = ['uqload', 'betam', 'gammam'];
             checkSandbox = seversandbox.includes(
                 data?.players[languaje][server]?.server?.title?.toLowerCase()
             );
