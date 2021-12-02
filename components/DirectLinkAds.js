@@ -15,7 +15,7 @@ function DirectLinkAds() {
         z-index: 99;
     `;
 
-    if (!visible) return null;
+    return null;
 
     return (
         <Container onClick={() => setVisible(false)}>
