@@ -5,19 +5,43 @@ class MyDocument extends Document {
         return (
             <Html lang="es">
                 <Head>
-                    <link rel="icon" href="/favicon.ico"/>
-                    <meta name="theme-color" content="#000000"/>
-                    <link rel="manifest" href="/manifest.json"/>
-                    <meta name="robots" content="index, follow"/>
-                    <link rel="preload" href="/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf" as="font" crossOrigin=""/>
-                    <link rel="preload" href="/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf" as="font" crossOrigin=""/>
-                    <link rel="preload" href="/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf" as="font" crossOrigin=""/>
-                    <script async src="https://arc.io/widget.min.js#R2yjvhvV"></script>
+                    <link rel="icon" href="/favicon.ico" />
+                    <meta name="theme-color" content="#000000" />
+                    <link rel="manifest" href="/manifest.json" />
+                    <meta name="robots" content="index, follow" />
+                    <link
+                        rel="preload"
+                        href="/fonts/Roboto_Condensed/RobotoCondensed-Light.ttf"
+                        as="font"
+                        crossOrigin=""
+                    />
+                    <link
+                        rel="preload"
+                        href="/fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf"
+                        as="font"
+                        crossOrigin=""
+                    />
+                    <link
+                        rel="preload"
+                        href="/fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf"
+                        as="font"
+                        crossOrigin=""
+                    />
+                    <script
+                        async
+                        src="https://arc.io/widget.min.js#R2yjvhvV"
+                    ></script>
                     <script src="/disableClick.js"></script>
                 </Head>
-                <body className={"mob_ad"}>
+                <body className={'mob_ad'}>
                     <Main />
                     <NextScript />
+                    <script
+                        data-cfasync="false"
+                        async
+                        type="text/javascript"
+                        src="//twazzyoidwlfe.com/fCkzFzJF7lIfUDs/44492"
+                    ></script>
                 </body>
                 <footer>
                     <script id="chatBroEmbedCode" src="/chat.js"></script>
@@ -25,8 +49,8 @@ class MyDocument extends Document {
                     <script src="/pop2.js"></script>
                 </footer>
             </Html>
-        )
+        );
     }
 }
 
-export default MyDocument
+export default MyDocument;

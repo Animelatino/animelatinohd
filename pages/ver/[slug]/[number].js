@@ -20,6 +20,7 @@ import {
 } from '../../../helpers/Strings';
 
 import styles from '../../../styles/Episode.module.css';
+import DirectLinkAds from '../../../components/DirectLinkAds';
 
 export default class number extends Component {
     constructor(props) {
@@ -92,7 +93,6 @@ export default class number extends Component {
         }
         return (
             <div className={styles.videoPlayer}>
-                <AdsScript className={styles.ads} />
                 {getCheckLatino(data?.players) && (
                     <div className={styles.msg}>
                         <span>
@@ -138,26 +138,23 @@ export default class number extends Component {
                                 </select>
                             </div>
                         </div>
-                        {ads && (
-                            <p className={styles.message}>
-                                ADS | Max. 1 ventana de publicidad
-                            </p>
-                        )}
+
                         <div className={styles.video}>
+                            <DirectLinkAds />
                             {checkSandbox ? (
                                 <iframe
                                     sandbox="allow-scripts allow-same-origin"
                                     scrolling="no"
                                     src={iframe}
                                     display="initial"
-                                    allowfullscreen=""
+                                    allow="fullscreen"
                                 ></iframe>
                             ) : (
                                 <iframe
                                     scrolling="no"
                                     src={iframe}
                                     display="initial"
-                                    allowfullscreen=""
+                                    allow="fullscreen"
                                 ></iframe>
                             )}
                         </div>
