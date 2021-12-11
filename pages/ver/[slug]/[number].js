@@ -143,18 +143,20 @@ export default class number extends Component {
                             <DirectLinkAds />
                             {checkSandbox ? (
                                 <iframe
-                                    sandbox="allow-scripts allow-same-origin"
                                     scrolling="no"
+                                    frameborder="0"
                                     src={iframe}
+                                    sandbox="allow-scripts allow-same-origin"
                                     display="initial"
-                                    allow="fullscreen"
+                                    allowfullscreen=""
                                 ></iframe>
                             ) : (
                                 <iframe
                                     scrolling="no"
+                                    frameborder="0"
                                     src={iframe}
                                     display="initial"
-                                    allow="fullscreen"
+                                    allowfullscreen=""
                                 ></iframe>
                             )}
                         </div>
