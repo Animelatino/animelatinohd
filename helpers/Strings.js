@@ -80,9 +80,7 @@ export const getUrlVideo = (video) => {
         case 'alphaj':
         case 'alpham':
         case 'alphat':
-            return video?.server?.embed
-                ? video?.server?.embed?.replace('{id}', video?.code)
-                : video?.code;
+            return video?.code;
         default:
             return video?.server?.type === 1
                 ? video?.server?.embed
