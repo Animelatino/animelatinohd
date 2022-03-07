@@ -36,12 +36,6 @@ class MyDocument extends Document {
                 <body className={'mob_ad'}>
                     <Main />
                     <NextScript />
-                    <script
-                        data-cfasync="false"
-                        async
-                        type="text/javascript"
-                        src="//twazzyoidwlfe.com/fCkzFzJF7lIfUDs/44492"
-                    ></script>
                 </body>
                 <footer>
                     <script id="chatBroEmbedCode" src="/chat.js"></script>
