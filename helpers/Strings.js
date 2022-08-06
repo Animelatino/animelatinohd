@@ -80,6 +80,8 @@ export const getUrlVideo = (video) => {
         case 'alphaj':
         case 'alpham':
         case 'alphat':
+        case 'gamma':
+        case 'alpha':
             return video?.code;
         default:
             return video?.server?.type === 1
