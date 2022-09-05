@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import Image from 'next/image';
-import Iframe from 'react-iframe';
 import { api } from '../../../lib/api';
 import Layout from '../../../components/Layout';
 import Comments from '../../../components/Comments';
-import AdsScript from '../../../components/AdsScript';
+
 import {
     slugEpisode,
     slugAnime,
@@ -383,7 +382,8 @@ export async function getServerSideProps(context) {
                     if (
                         item.server.title.toLowerCase() == 'epsilon' ||
                         item.server.title.toLowerCase() == 'beta' ||
-                        item.server.title.toLowerCase() == 'pcloud'
+                        item.server.title.toLowerCase() == 'pcloud' ||
+                        item.server.title.toLowerCase() == 'cldup'
                     ) {
                         return false;
                     } else {
