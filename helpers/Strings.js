@@ -82,7 +82,7 @@ export const getUrlVideo = (video) => {
         case 'alphat':
         case 'gamma':
         case 'alpha':
-            return video?.code;
+            return process.env.STREAMURL.replace('am/', 'aming/') + video?.id;
         default:
             return video?.server?.type === 1
                 ? video?.server?.embed
