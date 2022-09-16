@@ -53,7 +53,8 @@ export default class number extends Component {
             if (prevState.iframe == null) {
                 return {
                     iframe: nextProps.data?.players[defaultLang]
-                        ? getUrlVideo(nextProps.data?.players[defaultLang][0])
+                        ? process.env.STREAMURL +
+                          nextProps.data?.players[defaultLang][0].id
                         : null,
                 };
             } else {
@@ -68,14 +69,17 @@ export default class number extends Component {
         if (e.target.name === 'languaje') {
             this.setState({
                 languaje: e.target.value,
-                iframe: getUrlVideo(data?.players[e.target.value][0]),
+                iframe:
+                    process.env.STREAMURL + data?.players[e.target.value][0].id,
                 server: 0,
             });
         }
         if (e.target.name === 'server') {
             this.setState({
                 server: e.target.value,
-                iframe: getUrlVideo(data?.players[languaje][e.target.value]),
+                iframe:
+                    process.env.STREAMURL +
+                    data?.players[languaje][e.target.value].id,
             });
         }
     };
@@ -312,86 +316,28 @@ export default class number extends Component {
 export async function getServerSideProps(context) {
     try {
         const res = await api.get(
-            `episodes/${context.params.slug}/${context.params.number}`
+            `anime/${context.params.slug}/episodes/${context.params.number}`
         );
+
         Object.values(res.data.players).forEach((element) => {
-            element.forEach((el) => {
-                switch (el.server.title.toLowerCase()) {
-                    case 'omega':
-                    case 'gocdn':
-                        el.position = 0;
-                        break;
-                    case 'delta':
-                        el.position = 1;
-                        break;
-                    case 'epsilon':
-                        el.position = 2;
-                        break;
-                    case 'alpha':
-                    case 'degoo':
-                        el.position = 3;
-                        break;
-                    case 'beta':
-                    case 'yourup':
-                        el.position = 4;
-                        break;
-                    case 'fembed':
-                    case 'mega':
-                    case 'videos':
-                    case 'zplayer':
-                    case 'okru':
-                        el.position = 5;
-                        break;
-                    default:
-                        el.position = 99;
-                        break;
-                }
-            });
-            element.sort((a, b) => (a.position > b.position ? 1 : -1));
+            element.sort((a, b) =>
+                a.server.position > b.server.position ? 1 : -1
+            );
         });
-        let isMobileView = (
-            context.req
-                ? context.req.headers['user-agent']
-                : navigator.userAgent
-        ).match(
-            /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
-        );
-        if (!Boolean(isMobileView)) {
-            Object.entries(res.data.players).forEach((element, i) => {
-                if (element[i]) {
-                    res.data.players[element[0]] = element[1].filter(function (
-                        item
-                    ) {
-                        if (
-                            item.server.title.toLowerCase() == 'archive' ||
-                            item.server.title.toLowerCase() == 'omega'
-                        ) {
-                            return false;
-                        } else {
-                            return true;
-                        }
-                    });
-                }
-            });
-        }
+
         Object.entries(res.data.players).forEach((element, i) => {
             if (element[i]) {
                 res.data.players[element[0]] = element[1].filter(function (
                     item
                 ) {
-                    if (
-                        item.server.title.toLowerCase() == 'epsilon' ||
-                        item.server.title.toLowerCase() == 'beta' ||
-                        item.server.title.toLowerCase() == 'pcloud' ||
-                        item.server.title.toLowerCase() == 'cldup'
-                    ) {
+                    if (item.server.status == 3) {
                         return false;
-                    } else {
-                        return true;
                     }
+                    return true;
                 });
             }
         });
+
         return {
             props: {
                 data: res.data,
