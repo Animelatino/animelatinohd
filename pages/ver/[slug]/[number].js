@@ -53,8 +53,7 @@ export default class number extends Component {
             if (prevState.iframe == null) {
                 return {
                     iframe: nextProps.data?.players[defaultLang]
-                        ? process.env.STREAMURL +
-                          nextProps.data?.players[defaultLang][0].id
+                        ? getUrlVideo(nextProps.data?.players[defaultLang][0])
                         : null,
                 };
             } else {
@@ -69,17 +68,14 @@ export default class number extends Component {
         if (e.target.name === 'languaje') {
             this.setState({
                 languaje: e.target.value,
-                iframe:
-                    process.env.STREAMURL + data?.players[e.target.value][0].id,
+                iframe: getUrlVideo(data?.players[e.target.value][0]),
                 server: 0,
             });
         }
         if (e.target.name === 'server') {
             this.setState({
                 server: e.target.value,
-                iframe:
-                    process.env.STREAMURL +
-                    data?.players[languaje][e.target.value].id,
+                iframe: getUrlVideo(data?.players[languaje][e.target.value]),
             });
         }
     };
@@ -330,13 +326,41 @@ export async function getServerSideProps(context) {
                 res.data.players[element[0]] = element[1].filter(function (
                     item
                 ) {
-                    if (item.server.status == 3) {
+                    if (item.server.status == 0 || item.server.status == 3) {
                         return false;
                     }
                     return true;
                 });
             }
         });
+
+        let isMobileView = (
+            context.req
+                ? context.req.headers['user-agent']
+                : navigator.userAgent
+        ).match(
+            /Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i
+        );
+
+        if (!Boolean(isMobileView)) {
+            Object.entries(res.data.players).forEach((element, i) => {
+                if (element[i]) {
+                    res.data.players[element[0]] = element[1].filter(function (
+                        item
+                    ) {
+                        if (
+                            item.server.title.toLowerCase() == 'archive' ||
+                            item.server.title.toLowerCase() == 'omega' ||
+                            item.server.title.toLowerCase() == 'gamma'
+                        ) {
+                            return false;
+                        } else {
+                            return true;
+                        }
+                    });
+                }
+            });
+        }
 
         return {
             props: {
