@@ -74,22 +74,7 @@ export const getNowDay = () => {
 };
 
 export const getUrlVideo = (video) => {
-    switch (video?.server?.title?.toLowerCase()) {
-        case 'fembed':
-        case 'alphaf':
-        case 'alphaj':
-        case 'alpham':
-        case 'alphat':
-        case 'gamma':
-        case 'alpha':
-            return process.env.STREAMURL + video?.id;
-        default:
-            return video?.server?.type === 1
-                ? video?.server?.embed
-                    ? video?.server?.embed?.replace('{id}', video?.code)
-                    : video?.code
-                : process.env.STREAMURL + video.id;
-    }
+    return process.env.STREAMURL + video?.id;
 };
 
 export const getCheckLatino = (players) => {

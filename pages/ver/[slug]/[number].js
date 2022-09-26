@@ -65,6 +65,7 @@ export default class number extends Component {
     handleChange = (e) => {
         const { data } = this.props;
         const { languaje } = this.state;
+
         if (e.target.name === 'languaje') {
             this.setState({
                 languaje: e.target.value,
@@ -82,7 +83,7 @@ export default class number extends Component {
 
     videoPlayer = () => {
         const { data } = this.props;
-        const { iframe, languaje, random, server, ads } = this.state;
+        const { iframe, languaje, server } = this.state;
         let checkSandbox = false;
         if (data.players[languaje]) {
             let seversandbox = ['uqload', 'betam', 'gammam'];
