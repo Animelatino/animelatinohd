@@ -41,12 +41,6 @@ class MyDocument extends Document {
                     <script id="chatBroEmbedCode" src="/chat.js"></script>
                     <script src="/pop.js"></script>
                     <script src="/pop2.js"></script>
-                    <script
-                        data-cfasync="false"
-                        async
-                        type="text/javascript"
-                        src="//yarmtangled.com/fKKGgWBIrf90/44492"
-                    ></script>
                 </footer>
             </Html>
         );
