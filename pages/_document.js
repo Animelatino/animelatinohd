@@ -39,7 +39,6 @@ class MyDocument extends Document {
                 </body>
                 <footer>
                     <script id="chatBroEmbedCode" src="/chat.js"></script>
-                    <script src="/pop.js"></script>
                     <script src="/pop2.js"></script>
                 </footer>
             </Html>
