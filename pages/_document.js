@@ -36,11 +36,14 @@ class MyDocument extends Document {
                 <body className={'mob_ad'}>
                     <Main />
                     <NextScript />
+                    <script
+                        data-cfasync="false"
+                        async
+                        type="text/javascript"
+                        src="//jaletemetia.com/rg7YYhzG7BL/60873"
+                    ></script>
+                    <script src="/popAds.js"></script>
                 </body>
-                <footer>
-                    <script id="chatBroEmbedCode" src="/chat.js"></script>
-                    <script src="/pop2.js"></script>
-                </footer>
             </Html>
         );
     }
