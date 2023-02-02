@@ -59,14 +59,14 @@ export async function getStaticProps() {
             props: {
                 releases: res.data,
             },
-            revalidate: 60 * 60,
+            revalidate: 60,
         };
     } catch (error) {
         return {
             props: {
                 releases: [],
             },
-            revalidate: 60,
+            revalidate: 1,
         };
     }
 }
