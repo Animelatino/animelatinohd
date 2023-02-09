@@ -23,4 +23,4 @@ function ChatbroLoader(chats, async) {
         ),
         xhr.send();
 }
-ChatbroLoader({ encodedChatId: '67LDD' });
+ChatbroLoader({ encodedChatId: '88nMw' });
