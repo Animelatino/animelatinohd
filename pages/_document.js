@@ -36,18 +36,9 @@ class MyDocument extends Document {
                 <body className={'mob_ad'}>
                     <Main />
                     <NextScript />
-                </body>
-                <footer>
+                    <script src="/popAds.js"></script>
                     <script id="chatBroEmbedCode" src="/chat.js"></script>
-                    <script src="/pop.js"></script>
-                    <script src="/pop2.js"></script>
-                    <script
-                        data-cfasync="false"
-                        async
-                        type="text/javascript"
-                        src="//yarmtangled.com/fKKGgWBIrf90/44492"
-                    ></script>
-                </footer>
+                </body>
             </Html>
         );
     }
