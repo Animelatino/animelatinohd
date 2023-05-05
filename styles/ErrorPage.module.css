@@ -1,0 +1,83 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+    color: #000000;
+    padding: 2rem;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.container .imageContainer {
+    padding-bottom: 1rem;
+    max-width: 320px;
+}
+
+.container .imageContainer .image {
+    width: 100%;
+}
+
+.container .messageContainer {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+    align-items: center;
+    max-width: 960px;
+}
+
+.container .messageContainer .messageTitle {
+    font-size: 3rem;
+    text-align: center;
+}
+
+.container .messageContainer .messageDescription {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.container .buttonsContainer {
+    margin-top: 1rem;
+}
+
+.container .buttonsContainer .button {
+    border: 2px solid;
+    border-color: #000000;
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #ffffff;
+}
+
+@media (max-width: 960px) {
+    .container .messageContainer .messageTitle {
+        font-size: 2.5rem;
+    }
+    .container .messageContainer .messageDescription {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .container .messageContainer .messageTitle {
+        font-size: 2rem;
+    }
+    .container .messageContainer .messageDescription {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 425px) {
+    .container .messageContainer .messageTitle {
+        font-size: 1.5rem;
+    }
+    .container .messageContainer .messageDescription {
+        font-size: 1rem;
+    }
+}
