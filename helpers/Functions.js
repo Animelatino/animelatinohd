@@ -1,7 +1,7 @@
 import moment from 'moment';
 moment.locale('es');
 
-const pathTmdb = 'https://www.themoviedb.org/t/p/';
+const pathTmdb = 'https://image.tmdb.org/t/p/';
 
 export const posterAnime = (image, width) => {
     return pathTmdb + width + image;
