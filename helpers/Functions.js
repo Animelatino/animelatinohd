@@ -1,14 +1,14 @@
 import moment from 'moment';
 moment.locale('es');
 
-const pathTmdb = 'https://www.themoviedb.org/t/p/original';
+const pathTmdb = 'https://www.themoviedb.org/t/p/';
 
-export const posterAnime = (image) => {
-    return pathTmdb + image;
+export const posterAnime = (image, width) => {
+    return pathTmdb + width + image;
 };
 
-export const bannerAnime = (image) => {
-    return pathTmdb + image;
+export const bannerAnime = (image, width) => {
+    return pathTmdb + width + image;
 };
 
 export const slugAnime = (slug) => {

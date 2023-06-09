@@ -12,7 +12,7 @@ export default class index extends Component {
     }
 
     render() {
-        const { releases } = this.props;
+        const { data } = this.props;
         return (
             <Layout>
                 <Head>
@@ -45,7 +45,7 @@ export default class index extends Component {
                     />
                 </Head>
                 <main className={styles.container}>
-                    <ListEpisodes episodes={releases} />
+                    <ListEpisodes episodes={data} />
                 </main>
             </Layout>
         );
@@ -53,20 +53,12 @@ export default class index extends Component {
 }
 
 export async function getStaticProps() {
-    try {
-        const res = await api.get(`releases`);
-        return {
-            props: {
-                releases: res.data,
-            },
-            revalidate: 60,
-        };
-    } catch (error) {
-        return {
-            props: {
-                releases: [],
-            },
-            revalidate: 1,
-        };
-    }
+    const res = await api.get(`releases`);
+    const data = await res?.data;
+    return {
+        props: {
+            data,
+        },
+        revalidate: 60,
+    };
 }

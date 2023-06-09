@@ -13,24 +13,28 @@ export default class AnimeItemSearch extends Component {
     render() {
         const { data } = this.props;
         return (
-            <Link href={slugAnime(data?.slug)}>
-                <a className={styles.result} alt={data?.name} title={data?.name}>
-                    <div className={styles.image}>
-                        <Image 
-                            className="poster"
-                            alt={data?.name}
-                            height={50}
-                            width={40}
-							quality={95}
-                            layout={"intrinsic"}
-                            loading={"lazy"}
-                            src={posterAnime(data?.poster) }/>
-                    </div>
-                    <div className={styles.content}>
-                        <p className={styles.title}>{data?.name}</p>
-                        <p className={styles.type}>{data?.type}</p>
-                    </div>
-                </a>
+            <Link
+                href={slugAnime(data?.slug)}
+                className={styles.result}
+                alt={data?.name}
+                title={data?.name}
+            >
+                <div className={styles.image}>
+                    <img
+                        className="poster"
+                        alt={data?.name}
+                        height={50}
+                        width={40}
+                        quality={95}
+                        layout={'intrinsic'}
+                        loading={'lazy'}
+                        src={posterAnime(data?.poster, 'w45')}
+                    />
+                </div>
+                <div className={styles.content}>
+                    <p className={styles.title}>{data?.name}</p>
+                    <p className={styles.type}>{data?.type}</p>
+                </div>
             </Link>
         );
     }

@@ -13,20 +13,38 @@ export default class AnimeCalendar extends Component {
     render() {
         const { data } = this.props;
         return (
-            <Link href={slugAnime(data?.slug)}>
-                <a className={styles.item} title={data?.name} alt={data?.name}>
-                    <div className={styles.content} style={{ backgroundImage: "url("+`/_next/image?url=${bannerAnime(data?.banner)}&w=280&q=95`+")"}}>
-                        <div className={styles.text}>
-                            <p>{ isNowEpisode(data?.date) ? `Episodio ${data?.lastEpisode}` : `Episodio ${parseInt(data?.lastEpisode + 1)}` }
-                                <b>{ isNowEpisode(data?.date) ? getFromNow(data?.date) : ''}</b>
-                            </p>
-                            <h1>
-                                <div className={styles.limit}>{data?.name}</div>
-                            </h1>
-                        </div>
-                        <div className={styles.overlay}></div>
+            <Link
+                href={slugAnime(data?.slug)}
+                className={styles.item}
+                title={data?.name}
+                alt={data?.name}
+            >
+                <div
+                    className={styles.content}
+                    style={{
+                        backgroundImage:
+                            'url(' +
+                            `${bannerAnime(data?.banner, 'w300')}` +
+                            ')',
+                    }}
+                >
+                    <div className={styles.text}>
+                        <p>
+                            {isNowEpisode(data?.date)
+                                ? `Episodio ${data?.lastEpisode}`
+                                : `Episodio ${parseInt(data?.lastEpisode + 1)}`}
+                            <b>
+                                {isNowEpisode(data?.date)
+                                    ? getFromNow(data?.date)
+                                    : ''}
+                            </b>
+                        </p>
+                        <h1>
+                            <div className={styles.limit}>{data?.name}</div>
+                        </h1>
                     </div>
-                </a>
+                    <div className={styles.overlay}></div>
+                </div>
             </Link>
         );
     }

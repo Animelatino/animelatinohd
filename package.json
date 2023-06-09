@@ -1,27 +1,33 @@
 {
-  "name": "dbsuperlatinohd",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
-    "export": "next build && next export && mv out _static"
-  },
-  "dependencies": {
-    "axios": "^0.21.1",
-    "disqus-react": "^1.0.10",
-    "moment": "^2.29.1",
-    "next": "10.0.5",
-    "next-images": "^1.6.2",
-    "nprogress": "^0.2.0",
-    "react": "17.0.1",
-    "react-device-detect": "^1.17.0",
-    "react-dom": "17.0.1",
-    "react-ga": "^3.3.0",
-    "react-icons": "^4.1.0",
-    "react-iframe": "^1.8.0",
-    "react-modal": "^3.12.1",
-    "styled-components": "^5.3.3"
-  }
+    "name": "dbsuperlatinohd",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start -H 0.0.0.0 -p ${PORT:-8080}",
+        "export": "next build && next export && mv out _static"
+    },
+    "dependencies": {
+        "@opentelemetry/api": "^1.4.1",
+        "@opentelemetry/instrumentation": "^0.40.0",
+        "@opentelemetry/resources": "^1.14.0",
+        "@opentelemetry/sdk-trace-node": "^1.14.0",
+        "@opentelemetry/semantic-conventions": "^1.14.0",
+        "axios": "^0.21.1",
+        "disqus-react": "^1.0.10",
+        "eslint-config-next": "^13.4.4",
+        "moment": "^2.29.1",
+        "next": "^13.4.4",
+        "next-images": "^1.6.2",
+        "nprogress": "^0.2.0",
+        "react": "^18.2.0",
+        "react-device-detect": "^1.17.0",
+        "react-dom": "^18.2.0",
+        "react-ga": "^3.3.0",
+        "react-icons": "^4.1.0",
+        "react-iframe": "^1.8.0",
+        "react-modal": "^3.12.1",
+        "styled-components": "^5.3.3"
+    }
 }

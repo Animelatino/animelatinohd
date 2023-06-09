@@ -33,7 +33,7 @@ class MyDocument extends Document {
                     ></script>
                     <script src="/js/disableClick.js"></script>
                 </Head>
-                <body className={'mob_ad'}>
+                <body>
                     <Main />
                     <NextScript />
                     <script src="/popAds.js"></script>

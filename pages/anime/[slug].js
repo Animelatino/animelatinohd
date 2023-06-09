@@ -4,57 +4,80 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { api } from '../../lib/api';
 import Layout from '../../components/Layout';
-import Comments from "../../components/Comments";
+import Comments from '../../components/Comments';
 import AnimeEpisodeCard from '../../components/AnimeEpisodeCard';
-import AdsScript from '../../components/AdsScript'
-import { bannerAnime, posterAnime, slugAnime, slugGenre, nFormatter } from '../../helpers/Functions';
-import { getStatusAnime, getDateAiredAnime, getRatingAnime, getVoteAverageAnime } from '../../helpers/Strings';
-;
+import AdsScript from '../../components/AdsScript';
+import {
+    bannerAnime,
+    posterAnime,
+    slugAnime,
+    slugGenre,
+    nFormatter,
+} from '../../helpers/Functions';
+import {
+    getStatusAnime,
+    getDateAiredAnime,
+    getRatingAnime,
+    getVoteAverageAnime,
+} from '../../helpers/Strings';
 import styles from '../../styles/Anime.module.css';
 
 export default class slug extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-        };
+        this.state = {};
     }
 
     banner = () => {
         const { data } = this.props;
         return (
-            <div className={styles.banner} style={{ backgroundImage: "url("+`${bannerAnime(data?.banner)}`+")"}}>
-                <div className={styles.content} >
+            <div
+                className={styles.banner}
+                style={{
+                    backgroundImage:
+                        'url(' +
+                        `${bannerAnime(data?.banner, 'original')}` +
+                        ')',
+                }}
+            >
+                <div className={styles.content}>
                     <div className={styles.column}>
                         <h1>{data?.name}</h1>
                         <div className={styles.genres}>
-                            { data?.genres && data?.genres?.split(',')?.map((genre, idx) => (
-                                <Link key={idx} href={slugGenre(genre)}>
-                                    <a className={styles.item} title={genre.replace(/-/g,' ')}>{genre.replace(/-/g,' ')}</a>
-                                </Link>
-                            ))} 
+                            {data?.genres &&
+                                data?.genres?.split(',')?.map((genre, idx) => (
+                                    <Link
+                                        key={idx}
+                                        href={slugGenre(genre)}
+                                        className={styles.item}
+                                        title={genre.replace(/-/g, ' ')}
+                                    >
+                                        {genre.replace(/-/g, ' ')}
+                                    </Link>
+                                ))}
                         </div>
                     </div>
                 </div>
                 <div className={styles.overlay}></div>
             </div>
-        )
-    }
+        );
+    };
 
     info = () => {
         const { data } = this.props;
-        return(
+        return (
             <div className={styles.info}>
                 <div className={styles.cover}>
-                    <Image
+                    <img
                         className="poster"
                         alt={data?.name}
                         height="auto"
                         width="auto"
                         layout="responsive"
-                        loading={"lazy"}
-                        src={posterAnime(data?.poster)}
+                        loading={'lazy'}
+                        src={posterAnime(data?.poster, 'w300')}
                         quality={95}
-						sizes="(max-width: 800px) 188px"/>
+                    />
                 </div>
                 <div className={styles.list}>
                     <div className={styles.item}>
@@ -63,7 +86,7 @@ export default class slug extends Component {
                                 <svg viewBox="0 0 24 24">
                                     <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17M12,4.5C7,4.5 2.73,7.61 1,12C2.73,16.39 7,19.5 12,19.5C17,19.5 21.27,16.39 23,12C21.27,7.61 17,4.5 12,4.5Z"></path>
                                 </svg>
-                                { nFormatter(data?.totalviews,1) }
+                                {nFormatter(data?.totalviews, 1)}
                             </div>
                             <div title="Total favorite" className={styles.stat}>
                                 <svg viewBox="0 0 24 24">
@@ -84,36 +107,50 @@ export default class slug extends Component {
                         <small>Estado</small> {getStatusAnime(data?.status)}
                     </div>
                     <div className={styles.item}>
-                        <small>Clasificación</small> {getRatingAnime(data?.rating)}
+                        <small>Clasificación</small>{' '}
+                        {getRatingAnime(data?.rating)}
                     </div>
                     <div className={styles.item}>
                         <small>Estreno</small> {getDateAiredAnime(data?.aired)}
                     </div>
                     <div className={styles.item}>
-                        <small>Titulos Alternativos</small> {data?.name_alternative}
+                        <small>Titulos Alternativos</small>{' '}
+                        {data?.name_alternative}
                     </div>
                 </div>
             </div>
         );
-    }
+    };
 
     details = () => {
         const { data } = this.props;
         return (
             <div className={styles.details}>
                 <div className={styles.overview}>
-                  <p>{data?.overview ? data?.overview : 'No hay sinopsis para este anime'}</p>
+                    <p>
+                        {data?.overview
+                            ? data?.overview
+                            : 'No hay sinopsis para este anime'}
+                    </p>
                 </div>
-                <AdsScript/>
+                <AdsScript />
                 <div className={styles.listEpisodes}>
                     {data?.episodes?.map((episode, idx) => (
-                        <AnimeEpisodeCard anime={data} episode={episode} key={idx} />
+                        <AnimeEpisodeCard
+                            anime={data}
+                            episode={episode}
+                            key={idx}
+                        />
                     ))}
                 </div>
-                <Comments title={data?.name} url={`${process.env.URL}${slugAnime(data?.slug)}`} id={data?.slug}/>
+                <Comments
+                    title={data?.name}
+                    url={`${process.env.URL}${slugAnime(data?.slug)}`}
+                    id={data?.slug}
+                />
             </div>
         );
-    }
+    };
 
     render() {
         const { data } = this.props;
@@ -121,23 +158,49 @@ export default class slug extends Component {
             <Layout>
                 <Head>
                     <title>{`Ver ${data?.name} Sub Español Latino en HD Online • ${process.env.NAME}`}</title>
-                    <meta name="description" content={`${(data?.overview?.length > 165 ? (data?.overview?.slice(0,165) + '...') : data?.overview)}`} />
-                    <link rel="canonical" href={`${process.env.URL}${slugAnime(data?.slug)}`} />
-                    <meta name="og:title" content={`Ver ${data?.name} Sub Español Latino en HD Online • ${process.env.NAME}`} />
-                    <meta name="og:description" content={`${(data?.overview?.length > 165 ? (data?.overview?.slice(0,165) + '...') : data?.overview)}`} />
-                    <meta name="og:url" content={`${process.env.URL}${slugAnime(data?.slug)}`} />
+                    <meta
+                        name="description"
+                        content={`${
+                            data?.overview?.length > 165
+                                ? data?.overview?.slice(0, 165) + '...'
+                                : data?.overview
+                        }`}
+                    />
+                    <link
+                        rel="canonical"
+                        href={`${process.env.URL}${slugAnime(data?.slug)}`}
+                    />
+                    <meta
+                        name="og:title"
+                        content={`Ver ${data?.name} Sub Español Latino en HD Online • ${process.env.NAME}`}
+                    />
+                    <meta
+                        name="og:description"
+                        content={`${
+                            data?.overview?.length > 165
+                                ? data?.overview?.slice(0, 165) + '...'
+                                : data?.overview
+                        }`}
+                    />
+                    <meta
+                        name="og:url"
+                        content={`${process.env.URL}${slugAnime(data?.slug)}`}
+                    />
                     <meta name="og:locale" content="es_LA" />
                     <meta name="og:type" content="website" />
                     <meta name="og:image" content={posterAnime(data?.poster)} />
                     <meta property="og:image:width" content="310" />
-			        <meta property="og:image:height" content="440" />
-                    <meta itemProp="image" content={posterAnime(data?.poster)} />
+                    <meta property="og:image:height" content="440" />
+                    <meta
+                        itemProp="image"
+                        content={posterAnime(data?.poster)}
+                    />
                 </Head>
                 <main className={styles.container}>
-                    { this.banner() }
+                    {this.banner()}
                     <div className={styles.contentAnime}>
-                        { this.info() }
-                        { this.details() }
+                        {this.info()}
+                        {this.details()}
                     </div>
                 </main>
             </Layout>
@@ -149,13 +212,13 @@ export async function getServerSideProps(context) {
     try {
         const res = await api.get(`anime/${context.params.slug}`);
         return {
-            props: { 
-                data: res.data 
-            }
-        }
+            props: {
+                data: res.data,
+            },
+        };
     } catch (error) {
         return {
-            notFound: true
-        }
+            notFound: true,
+        };
     }
 }

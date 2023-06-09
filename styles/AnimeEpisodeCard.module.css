@@ -1,0 +1,158 @@
+.container {
+    overflow: hidden;
+}
+
+.container > img {
+    object-fit: cover;
+}
+
+.container > .image > div:first-child {
+    position: absolute !important;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+.container > .holder {
+    position: relative;
+    overflow: hidden;
+}
+
+.container > .holder > .overlay {
+    background: -webkit-linear-gradient(
+        top,
+        rgba(0, 0, 0, 0.5) 0,
+        rgba(0, 0, 0, 0.05) 50%,
+        rgba(0, 0, 0, 0.05) 50%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.5) 0,
+        rgba(0, 0, 0, 0.05) 50%,
+        rgba(0, 0, 0, 0.05) 50%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
+}
+
+.container > .holder > .overlay,
+.container > .holder > .overlay > .play {
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.container > .holder > div {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.container > .holder > .overlay > .play {
+    -webkit-transition: opacity 0.2s ease-in;
+    transition: opacity 0.2s ease-in;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    opacity: 0;
+}
+
+.container > .holder > .overlay > .play:hover {
+    opacity: 1;
+}
+
+.container > .holder > .overlay > .play svg {
+    fill: #e50914;
+    background: rgba(0, 0, 0, 0.75);
+    width: 5em;
+    height: 5em;
+    border-radius: 5em;
+    margin: 0;
+    font-size: 0.65rem;
+}
+
+.container > .holder > .overlay > .time {
+    -webkit-transition: opacity 0.2s ease-out;
+    transition: opacity 0.2s ease-out;
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    text-transform: uppercase;
+    opacity: 1;
+    z-index: 1;
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.container > .holder > .overlay:hover > .time {
+    opacity: 0;
+}
+
+.container > .holder > .overlay > .cover {
+    z-index: 2;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    border: 2px solid #171717;
+    border-bottom: 0;
+    border-right: 0;
+    background-color: #1b1c1d;
+    line-height: 0;
+}
+
+.container > .holder > .overlay > .cover > div {
+    width: 53px;
+    height: 73px;
+}
+
+.container > .text > .title {
+    padding: 0.5em 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.container > .text > .title > .limit {
+    flex: 1;
+    font-size: 0.8rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-weight: 700;
+}
+
+.container > .text > .title > .episode {
+    text-align: right;
+    color: #b9b9b9;
+    text-transform: uppercase;
+    font-weight: 400;
+    font-size: 0.65rem;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.container > .text > .title > .episode > .checkView {
+    width: 1rem;
+    height: 1rem;
+    display: flex;
+    align-items: flex-end;
+    margin-right: 0.2em;
+}
+
+.container > .text > .title > .episode > .checkView > svg {
+    fill: var(--background-color);
+}
+
+.container > .text > .title:visited > .episode > .checkView svg {
+    fill: var(--white-color) !important;
+}

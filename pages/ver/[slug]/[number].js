@@ -172,25 +172,26 @@ export default class number extends Component {
             <div className={styles.navCaps}>
                 <div className={styles.column}>
                     <div className={styles.info}>
-                        <Link href={slugAnime(data?.anime?.slug)}>
-                            <a className={styles.cover}>
-                                <Image
-                                    className={styles.cover}
-                                    alt={`${data?.anime?.name} ${data?.number}`}
-                                    height={68}
-                                    width={48}
-                                    quality={95}
-                                    layout="intrinsic"
-                                    loading={'lazy'}
-                                    src={posterAnime(data?.anime?.poster)}
-                                />
-                            </a>
+                        <Link
+                            href={slugAnime(data?.anime?.slug)}
+                            className={styles.cover}
+                        >
+                            <img
+                                className={styles.cover}
+                                alt={`${data?.anime?.name} ${data?.number}`}
+                                height={68}
+                                width={48}
+                                quality={95}
+                                layout="intrinsic"
+                                loading={'lazy'}
+                                src={posterAnime(data?.anime?.poster, 'w92')}
+                            />
                         </Link>
                         <div className={styles.details}>
                             <div className={styles.info}>
                                 <h1>
                                     <Link href={slugAnime(data?.anime?.slug)}>
-                                        <a>{data?.anime?.name}</a>
+                                        {data?.anime?.name}
                                     </Link>
                                 </h1>
                                 <span
@@ -209,22 +210,22 @@ export default class number extends Component {
                                     data?.anime?.slug,
                                     data?.anterior?.number
                                 )}
+                                className={styles.button}
                             >
-                                <a className={styles.button}>
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
-                                    </svg>
-                                    Ep. Anterior
-                                </a>
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z"></path>
+                                </svg>
+                                Ep. Anterior
                             </Link>
                         )}
                         {data?.anime && (
-                            <Link href={slugAnime(data?.anime?.slug)}>
-                                <a className={styles.button}>
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M7,13H21V11H7M7,19H21V17H7M7,7H21V5H7M2,11H3.8L2,13.1V14H5V13H3.2L5,10.9V10H2M3,8H4V4H2V5H3M2,17H4V17.5H3V18.5H4V19H2V20H5V16H2V17Z"></path>
-                                    </svg>
-                                </a>
+                            <Link
+                                href={slugAnime(data?.anime?.slug)}
+                                className={styles.button}
+                            >
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M7,13H21V11H7M7,19H21V17H7M7,7H21V5H7M2,11H3.8L2,13.1V14H5V13H3.2L5,10.9V10H2M3,8H4V4H2V5H3M2,17H4V17.5H3V18.5H4V19H2V20H5V16H2V17Z"></path>
+                                </svg>
                             </Link>
                         )}
                         {data?.siguiente && (
@@ -233,13 +234,12 @@ export default class number extends Component {
                                     data?.anime?.slug,
                                     data?.siguiente?.number
                                 )}
+                                className={styles.button}
                             >
-                                <a className={styles.button}>
-                                    Ep. Siguiente
-                                    <svg viewBox="0 0 24 24">
-                                        <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
-                                    </svg>
-                                </a>
+                                Ep. Siguiente
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"></path>
+                                </svg>
                             </Link>
                         )}
                     </div>
