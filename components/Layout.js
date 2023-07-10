@@ -10,7 +10,6 @@ export default class Layout extends Component {
                 <HeaderNavigation />
                 {this.props.children}
                 <BottomNavigation />
-                {/* <DetectAdBlock /> */}
                 <MobileApp />
             </>
         );

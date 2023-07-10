@@ -4,6 +4,7 @@ import Search from './Search';
 import { menuItems } from '../helpers/Functions';
 
 import styles from '../styles/HeaderNavigation.module.css';
+import DetectAdBlock from './DetectAdBlock';
 
 export default class HeaderNavigation extends Component {
     constructor(props) {
@@ -13,6 +14,7 @@ export default class HeaderNavigation extends Component {
     menu = () => {
         return (
             <div className={styles.menu}>
+                <DetectAdBlock />
                 <Link href={'/'} className={`${styles.item} ${styles.logo}`}>
                     {process?.env?.NAME}
                 </Link>
