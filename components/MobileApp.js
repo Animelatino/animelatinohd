@@ -53,7 +53,7 @@ class MobileApp extends PureComponent {
                                 abrir.
                             </p>
                             <div className={styles.buttons}>
-                                <Link href="https://play.google.com/store/apps/details?id=com.darkdeveloper.kwanimes">
+                                <Link href="https://github.com/animelhd/kawaii-animes/raw/main/app-release.apk">
                                     <a
                                         target={'_BLANK'}
                                         className={`${styles.button} ${styles.success}`}
