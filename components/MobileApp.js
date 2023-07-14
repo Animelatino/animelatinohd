@@ -34,7 +34,7 @@ class MobileApp extends PureComponent {
         }
 
         const { isOpen } = this.state;
-        return !isMobile ? (
+        return isMobile ? (
             <Modal
                 ariaHideApp={false}
                 isOpen={isOpen}
