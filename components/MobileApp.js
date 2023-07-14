@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import Link from 'next/link';
 import { isMobile } from 'react-device-detect';
 import Modal from 'react-modal';
+import { withRouter } from 'next/router';
 
 import styles from '../styles/Modal.module.css';
 
@@ -15,20 +16,25 @@ class MobileApp extends PureComponent {
 
     componentDidMount = () => {
         this.setState({
-            isOpen:
-                localStorage.getItem('isModalApp') === 'false' ? false : true,
+            isOpen: true,
         });
     };
 
     salir = () => {
-        this.setState({ isOpen: false }, () =>
-            localStorage.setItem('isModalApp', false)
-        );
+        this.setState({ isOpen: false });
     };
 
     render() {
+        const { router } = this.props;
+
+        const isCurrentPage = router.pathname === '/';
+
+        if (!isCurrentPage) {
+            return null;
+        }
+
         const { isOpen } = this.state;
-        return isMobile ? (
+        return !isMobile ? (
             <Modal
                 ariaHideApp={false}
                 isOpen={isOpen}
@@ -53,29 +59,26 @@ class MobileApp extends PureComponent {
                                 abrir.
                             </p>
                             <div className={styles.buttons}>
-                                <Link href="https://github.com/animelhd/kawaii-animes/raw/main/app-release.apk">
-                                    <a
-                                        target={'_BLANK'}
-                                        className={`${styles.button} ${styles.success}`}
-                                    >
-                                        Opcion 1
-                                    </a>
+                                <Link
+                                    target={'_BLANK'}
+                                    className={`${styles.button} ${styles.success}`}
+                                    href="https://github.com/animelhd/kawaii-animes/raw/main/app-release.apk"
+                                >
+                                    Opcion 1
                                 </Link>
-                                <Link href="https://kawaiianimes.app/">
-                                    <a
-                                        target={'_BLANK'}
-                                        className={`${styles.button} ${styles.infob}`}
-                                    >
-                                        Opcion 2
-                                    </a>
+                                <Link
+                                    href="https://kawaiianimes.app/"
+                                    target={'_BLANK'}
+                                    className={`${styles.button} ${styles.infob}`}
+                                >
+                                    Opcion 2
                                 </Link>
-                                <Link href={''}>
-                                    <a
-                                        onClick={() => this.salir()}
-                                        className={`${styles.button} ${styles.danger}`}
-                                    >
-                                        Salir
-                                    </a>
+                                <Link
+                                    href={''}
+                                    onClick={() => this.salir()}
+                                    className={`${styles.button} ${styles.danger}`}
+                                >
+                                    Salir
                                 </Link>
                             </div>
                         </div>
@@ -86,4 +89,4 @@ class MobileApp extends PureComponent {
     }
 }
 
-export default MobileApp;
+export default withRouter(MobileApp);

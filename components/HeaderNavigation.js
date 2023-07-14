@@ -14,7 +14,7 @@ export default class HeaderNavigation extends Component {
     menu = () => {
         return (
             <div className={styles.menu}>
-                <DetectAdBlock />
+                {/* <DetectAdBlock /> */}
                 <Link href={'/'} className={`${styles.item} ${styles.logo}`}>
                     {process?.env?.NAME}
                 </Link>
